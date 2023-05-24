@@ -1,0 +1,58 @@
+{
+  "not_supported_yet": "Not supported yet",
+  "sos_central": "SOS Central",
+  "login_btn": "Login",
+  "register_btn": "Register",
+  "continue_btn": "Continue",
+  "password": "Password",
+  "confirmPassword": "Confirm Password",
+  "enter_your_phone": "Enter your phone number",
+  "enter_your_mail": "Enter your email address",
+  "phone": "Phone",
+  "phone_number": "phone number",
+  "email": "Email",
+  "name": "Name",
+  "address": "Address",
+  "search": "Search",
+  "invalid": "Invalid",
+  "password_hint": "6 characters(number, lower, upper)",
+  "password_invalid": "Please enter 6 or more characters (within Number, Upper and Lowercase)",
+  "password_not_match": "Password must match",
+  "name_invalid": "Name Invalid",
+  "system_sent_otp_to": "We sent an OTP to @something",
+  "enter_otp_here": "Enter OTP here:",
+  "finish_btn": "Finish",
+  "not_receive_otp_yet": "Not received OTP yet?",
+  "phone_number_invalid": "Phone Number Invalid",
+  "email_invalid": "Email Invalid",
+  "go_to_login": "Go to Login",
+  "welcome": {
+    "welcome_to_petdo_k": "Welcome to \\nPetdoK",
+    "login_without_account": "Login as guest"
+  },
+  "login": {
+    "where_are_you_from": "Where are you from",
+    "select_your_country": "Select your country",
+    "last_select": "Last choice",
+    "save_login": "Save login",
+    "forgot_password": "Forgot password?",
+    "you_do_not_have_account": "You don't have an account? "
+  },
+  "register": {
+    "you_had_account_already": "You already had an account? ",
+    "i_agree_with": "I agree with ",
+    "terms_and_conditions": "Terms and Conditions",
+    "confirm_otp": "Confirm OTP",
+    "success": "Register new account\\nsuccessfully"
+  },
+  "forgot_password": {
+    "title": "Forgot Password",
+    "success": "Create new password\\nsuccessfully",
+    "title_new": "New Password",
+    "enter_new_password": "Enter new password",
+    "enter_email_phone": "Enter Email or Phone",
+    "email_phone": "Email/Phone",
+    "enter_email_phone_registered": "Enter registered Email or Phone",
+    "send_otp": "Send OTP"
+  }
+}

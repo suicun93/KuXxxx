@@ -1,0 +1,58 @@
+{
+  "not_supported_yet": "Tính năng này chưa được hỗ trợ",
+  "sos_central": "Tổng đài SOS",
+  "login_btn": "Đăng nhập",
+  "register_btn": "Đăng ký",
+  "continue_btn": "Tiếp tục",
+  "password": "Mật khẩu",
+  "confirmPassword": "Xác nhận mật khẩu",
+  "enter_your_phone": "Nhập số điện thoại",
+  "enter_your_mail": "Nhập email",
+  "phone": "Điện thoại",
+  "phone_number": "số",
+  "email": "Email",
+  "name": "Tên",
+  "address": "Địa chỉ",
+  "search": "Tìm kiếm",
+  "invalid": "Không hợp lệ",
+  "password_hint": "6 kí tự(số, chữ hoa, thường)",
+  "password_invalid": "Vui lòng nhập 6 kí tự hoặc hơn (gồm số, chữ hoa, chữ thường)",
+  "password_not_match": "Mật khẩu không khớp",
+  "name_invalid": "Tên không hợp lệ",
+  "system_sent_otp_to": "Hệ thống đã gửi mã xác thực OTP đến @something",
+  "enter_otp_here": "Nhập mã vào đây:",
+  "finish_btn": "Hoàn thành",
+  "not_receive_otp_yet": "Chưa nhận được mã?",
+  "phone_number_invalid": "Số điện thoại không hợp lệ",
+  "email_invalid": "Email không hợp lệ",
+  "go_to_login": "Đi tới đăng nhập",
+  "welcome": {
+    "welcome_to_petdo_k": "Chào mừng đến với \\nPetdoK",
+    "login_without_account": "Không cần tài khoản"
+  },
+  "login": {
+    "where_are_you_from": "Bạn đến từ đâu",
+    "select_your_country": "Chọn nước của bạn",
+    "last_select": "Lựa chọn gần nhất",
+    "save_login": "Lưu đăng nhập",
+    "forgot_password": "Quên mật khẩu?",
+    "you_do_not_have_account": "Bạn chưa có tài khoản? "
+  },
+  "register": {
+    "you_had_account_already": "Bạn đã có tài khoản? ",
+    "i_agree_with": "Tôi đồng ý với ",
+    "terms_and_conditions": "Hợp đồng và điều khoản",
+    "confirm_otp": "Xác thực OTP",
+    "success": "Đăng ký tài khoản\\nthành công"
+  },
+  "forgot_password": {
+    "title": "Quên mật khẩu",
+    "success": "Tạo mật khẩu mới\\nthành công",
+    "title_new": "Nhập mật khẩu",
+    "enter_new_password": "Mật khẩu mới",
+    "enter_email_phone": "Nhập Email/SĐT",
+    "email_phone": "Email/SĐT",
+    "enter_email_phone_registered": "Nhập Email hoặc SĐT đã đăng ký",
+    "send_otp": "Gửi OTP"
+  }
+}
