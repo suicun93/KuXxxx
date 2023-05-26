@@ -64,7 +64,7 @@ void showSnackBar(String message) => {
         '',
         titleText: Container(),
         messageText: Text(message),
-        dismissDirection: SnackDismissDirection.HORIZONTAL,
+        dismissDirection: DismissDirection.horizontal,
         isDismissible: true,
         snackPosition: SnackPosition.BOTTOM,
       )
