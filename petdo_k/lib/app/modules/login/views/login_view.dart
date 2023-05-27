@@ -4,6 +4,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 
 import '../../../../generated/locales.g.dart';
 import '../../../common/const.dart';
@@ -17,51 +18,53 @@ class LoginView extends GetView<LoginController> {
     final oversize = Get.height < 836;
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-      child: AnnotatedRegion<SystemUiOverlayStyle>(
-        value: defaultSystemUiOverlayStyle,
-        child: Scaffold(
-          resizeToAvoidBottomInset: oversize,
-          body: oversize
-              ? ListView(
-                  keyboardDismissBehavior:
-                      ScrollViewKeyboardDismissBehavior.onDrag,
-                  padding: EdgeInsets.only(
+      child: LoaderOverlay(
+        child: AnnotatedRegion<SystemUiOverlayStyle>(
+          value: defaultSystemUiOverlayStyle,
+          child: Scaffold(
+            resizeToAvoidBottomInset: oversize,
+            body: oversize
+                ? ListView(
+              keyboardDismissBehavior:
+              ScrollViewKeyboardDismissBehavior.onDrag,
+              padding: EdgeInsets.only(
+                top: Get.mediaQuery.viewPadding.top,
+              ),
+              children: [
+                Container(
+                  alignment: Alignment.center,
+                  padding: EdgeInsets.symmetric(vertical: size * 0.11),
+                  child: Image.asset(
+                    'images/splash_logo.png',
+                    width: size * 0.3,
+                  ),
+                ),
+                main(oversize: oversize, context: context),
+              ],
+            )
+                : Column(
+              children: [
+                Container(
+                  alignment: Alignment.center,
+                  margin: EdgeInsets.only(
                     top: Get.mediaQuery.viewPadding.top,
                   ),
-                  children: [
-                    Container(
-                      alignment: Alignment.center,
-                      padding: EdgeInsets.symmetric(vertical: size * 0.11),
-                      child: Image.asset(
-                        'images/splash_logo.png',
-                        width: size * 0.3,
-                      ),
-                    ),
-                    main(oversize: oversize),
-                  ],
-                )
-              : Column(
-                  children: [
-                    Container(
-                      alignment: Alignment.center,
-                      margin: EdgeInsets.only(
-                        top: Get.mediaQuery.viewPadding.top,
-                      ),
-                      padding: EdgeInsets.symmetric(vertical: size * 0.11),
-                      child: Image.asset(
-                        'images/splash_logo.png',
-                        width: size * 0.3,
-                      ),
-                    ),
-                    Expanded(child: main(oversize: oversize)),
-                  ],
+                  padding: EdgeInsets.symmetric(vertical: size * 0.11),
+                  child: Image.asset(
+                    'images/splash_logo.png',
+                    width: size * 0.3,
+                  ),
                 ),
-        ),
+                Expanded(child: main(oversize: oversize, context: context)),
+              ],
+            ),
+          ),
+        )
       ),
     );
   }
 
-  Widget main({required bool oversize}) {
+  Widget main({required bool oversize, required BuildContext context}) {
     return Obx(
       () => Container(
         padding: const EdgeInsets.symmetric(horizontal: 40),
@@ -81,7 +84,7 @@ class LoginView extends GetView<LoginController> {
               alignment: Alignment.centerLeft,
               child: Text(
                 LocaleKeys.login_btn.tr,
-                style: Get.textTheme.headline1,
+                style: Get.textTheme.displayLarge,
               ),
             ),
             SizedBox(height: 16),
@@ -131,7 +134,7 @@ class LoginView extends GetView<LoginController> {
                             toolbarHeight: toolbarHeight,
                             title: Text(
                               LocaleKeys.login_where_are_you_from.tr,
-                              style: Get.textTheme.subtitle2?.copyWith(
+                              style: Get.textTheme.titleSmall?.copyWith(
                                 color: Colors.white,
                               ),
                             ),
@@ -165,7 +168,7 @@ class LoginView extends GetView<LoginController> {
                                   child: Text(
                                     '${countryCode?.name ?? ''} (${countryCode?.dialCode ?? ''})',
                                     overflow: TextOverflow.ellipsis,
-                                    style: Get.textTheme.headline6,
+                                    style: Get.textTheme.titleLarge,
                                   ),
                                 ),
                                 SizedBox(width: 8),
@@ -200,7 +203,7 @@ class LoginView extends GetView<LoginController> {
                         /// Phone
                         TextFormField(
                           cursorColor: subPrimaryColor,
-                          style: Get.textTheme.headline6,
+                          style: Get.textTheme.titleLarge,
                           keyboardType: TextInputType.phone,
                           controller: controller.phoneController,
                           onChanged: (_) => controller.phoneNumber.value = _,
@@ -222,7 +225,7 @@ class LoginView extends GetView<LoginController> {
                     )
                   : TextFormField(
                       cursorColor: subPrimaryColor,
-                      style: Get.textTheme.headline6,
+                      style: Get.textTheme.titleLarge,
                       keyboardType: TextInputType.emailAddress,
                       controller: controller.emailController,
                       onChanged: (_) => controller.email.value = _,
@@ -245,7 +248,7 @@ class LoginView extends GetView<LoginController> {
 
             /// Password
             TextFormField(
-              style: Get.textTheme.headline6,
+              style: Get.textTheme.titleLarge,
               cursorColor: subPrimaryColor,
               obscureText: controller.hidePassword.value,
               keyboardType: TextInputType.visiblePassword,
@@ -299,7 +302,7 @@ class LoginView extends GetView<LoginController> {
                             WidgetSpan(child: SizedBox(width: 7)),
                             TextSpan(
                               text: LocaleKeys.login_save_login.tr,
-                              style: Get.textTheme.bodyText1,
+                              style: Get.textTheme.bodyLarge,
                             ),
                           ],
                         ),
@@ -318,7 +321,7 @@ class LoginView extends GetView<LoginController> {
                         LocaleKeys.login_forgot_password.tr,
                         maxLines: 3,
                         textAlign: TextAlign.right,
-                        style: Get.textTheme.button?.copyWith(
+                        style: Get.textTheme.labelLarge?.copyWith(
                           color: subPrimaryColor,
                         ),
                       ),
@@ -334,7 +337,10 @@ class LoginView extends GetView<LoginController> {
               width: double.infinity,
               child: ElevatedButton(
                 child: Text(LocaleKeys.login_btn.tr),
-                onPressed: controller.submit,
+                onPressed: () {
+                  context.loaderOverlay.show();
+                  controller.submit?.call();
+                },
                 // onPressed: null,
               ),
             ),
@@ -344,11 +350,11 @@ class LoginView extends GetView<LoginController> {
                 children: [
                   TextSpan(
                     text: LocaleKeys.login_you_do_not_have_account.tr,
-                    style: Get.textTheme.bodyText1,
+                    style: Get.textTheme.bodyLarge,
                   ),
                   TextSpan(
                     text: LocaleKeys.register_btn.tr,
-                    style: Get.textTheme.button?.copyWith(
+                    style: Get.textTheme.labelLarge?.copyWith(
                       color: subPrimaryColor,
                     ),
                     recognizer: TapGestureRecognizer()

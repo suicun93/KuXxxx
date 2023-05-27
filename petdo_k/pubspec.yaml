@@ -64,6 +64,10 @@ dependencies:
   smooth_page_indicator:
   carousel_slider:
 
+  firebase_core: ^2.13.0
+  cloud_firestore: ^4.7.1
+  loader_overlay: ^2.2.0
+
 dev_dependencies:
   lints: 2.0.1
   flutter_test:

@@ -2,26 +2,18 @@ import 'package:get/get.dart';
 
 import '../../../../../views/dropdown_list.dart';
 import '../../../controllers/home_controller.dart';
+import '../views/dictionary_summary/controllers/dictionary_summary_provider.dart';
 
 class DictionaryController extends GetxController {
+  final provider = Get.find<DictionarySummaryProvider>();
   List<DropboxItem> get animalType => [
         DropboxItem('c', 'Chó'),
         DropboxItem('m', 'Mèo'),
-        DropboxItem('d', 'Cá sấu'),
-        DropboxItem('e', 'Cá sấu'),
       ];
 
-  List<DropboxItem> get moneyType => [
-        DropboxItem('a', '100->200'),
-        DropboxItem('b', '200->300'),
-        DropboxItem('c', 'Free'),
-      ];
+  List<DropboxItem> get moneyType => [];
 
-  List<DropboxItem> get originalType => [
-        DropboxItem('c', 'Đan Mạch'),
-        DropboxItem('m', 'England'),
-        DropboxItem('d', 'America'),
-      ];
+  List<DropboxItem> get originalType => [];
 
   /// Selected drop box
   final selectedType = Rxn<DropboxItem>();
@@ -42,10 +34,16 @@ class DictionaryController extends GetxController {
       Duration(milliseconds: 2000),
       () => ready.value = true,
     );
+    getCats();
   }
 
   @override
   void onClose() {}
+
+  void getCats() async{
+    final response = await provider.getCats();
+    print(response);
+  }
 
   void toSummary({
     required String name,

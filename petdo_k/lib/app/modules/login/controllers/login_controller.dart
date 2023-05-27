@@ -1,9 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:country_list_pick/country_list_pick.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 import '../../../common/my_get_controller.dart';
 import '../../../common/preferences.dart';
+import '../../../constant.dart';
 import '../../../routes/app_pages.dart';
 import '../providers/login_provider.dart';
 
@@ -93,6 +95,10 @@ class LoginController extends MyGetxController<LoginProvider> {
       await Preference.setPassword('');
       await Preference.setSaveLogin(false);
     }
+    dbWelCome.doc(loginDocument).collection(emailCollection).where(email, isEqualTo: true).get().then((value) {
+      for (final doc in value.docs) {
+      }
+    });
     Get.offAndToNamed(Routes.HOME);
   }
 
