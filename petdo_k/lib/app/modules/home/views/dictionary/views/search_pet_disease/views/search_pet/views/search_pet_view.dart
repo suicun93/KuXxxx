@@ -115,6 +115,8 @@ class SearchPetView extends GetView<SearchPetController> {
                                 itemBuilder: (c, _) => AnimalItem(
                                   url: listAnimalUrls[_],
                                   name: name[_],
+                                  origin: '',
+                                  temperament: '',
                                   onTap: () => controller.toSummary(
                                     name: name[_],
                                     image: listAnimalUrls[_],

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import '../controllers/home_controller.dart';
 import '../views/dictionary/controllers/dictionary_controller.dart';
 import '../views/dictionary/views/dictionary_summary/controllers/dictionary_summary_controller.dart';
+import '../views/dictionary/views/dictionary_summary/controllers/dictionary_summary_provider.dart';
 import '../views/dictionary/views/search_pet_disease/controllers/search_pet_disease_controller.dart';
 import '../views/dictionary/views/search_pet_disease/views/search_disease/controllers/search_disease_controller.dart';
 import '../views/dictionary/views/search_pet_disease/views/search_pet/controllers/search_pet_controller.dart';
@@ -30,6 +31,9 @@ class HomeBinding extends Bindings {
     );
     Get.lazyPut<DictionarySummaryController>(
       () => DictionarySummaryController(),
+    );
+    Get.lazyPut<DictionarySummaryProvider>(
+      () => DictionarySummaryProvider(),
     );
     Get.lazyPut<SearchPetDiseaseController>(
       () => SearchPetDiseaseController(),

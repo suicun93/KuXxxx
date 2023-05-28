@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "156764998067",
+    "project_id": "petdok-dc224",
+    "storage_bucket": "petdok-dc224.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:156764998067:android:257303e2e266af6bb023c6",
+        "android_client_info": {
+          "package_name": "com.ducht.petdok.petdo_k"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCnvWyQBaruGn2-wrb27wYcPKyZwm-3vKI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

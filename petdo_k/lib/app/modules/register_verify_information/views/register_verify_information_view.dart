@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 
 import '../../../../generated/locales.g.dart';
 import '../../../common/const.dart';
@@ -16,7 +18,7 @@ class RegisterVerifyInformationView
 
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-      child: Scaffold(
+      child: LoaderOverlay(child: Scaffold(
         appBar: AppBar(
           title: Text(LocaleKeys.register_btn.tr),
           toolbarHeight: toolbarHeight,
@@ -38,25 +40,25 @@ class RegisterVerifyInformationView
             // keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
             padding: EdgeInsets.only(left: 40, right: 40),
             child: oversize
-                ? main(oversize: oversize)
+                ? main(oversize: oversize, context: context)
                 : ConstrainedBox(
-                    constraints: BoxConstraints.tightFor(
-                      height: Get.height -
-                          Get.mediaQuery.viewPadding.top -
-                          // ((Platform.isIOS && Get.mediaQuery.viewPadding.bottom > 0)
-                          //     ? 0
-                          //     : Get.mediaQuery.viewPadding.bottom) -
-                          toolbarHeight,
-                    ),
-                    child: main(oversize: oversize),
-                  ),
+              constraints: BoxConstraints.tightFor(
+                height: Get.height -
+                    Get.mediaQuery.viewPadding.top -
+                    // ((Platform.isIOS && Get.mediaQuery.viewPadding.bottom > 0)
+                    //     ? 0
+                    //     : Get.mediaQuery.viewPadding.bottom) -
+                    toolbarHeight + 20,
+              ),
+              child: main(oversize: oversize, context: context),
+            ),
           ),
         ),
-      ),
+      ),),
     );
   }
 
-  Widget main({required bool oversize}) {
+  Widget main({required bool oversize, required BuildContext context}) {
     return Obx(
       () => Column(
         children: [
@@ -67,7 +69,7 @@ class RegisterVerifyInformationView
             validator: (v) =>
                 !(v?.isNotEmpty ?? false) ? LocaleKeys.name_invalid.tr : null,
             autovalidateMode: AutovalidateMode.onUserInteraction,
-            style: Get.textTheme.headline6,
+            style: Get.textTheme.titleLarge,
             cursorColor: subPrimaryColor,
             keyboardType: TextInputType.name,
             onChanged: (_) => controller.name.value = _,
@@ -239,7 +241,18 @@ class RegisterVerifyInformationView
             width: double.infinity,
             child: ElevatedButton(
               child: Text(LocaleKeys.continue_btn.tr),
-              onPressed: controller.submit,
+              onPressed: () {
+                context.loaderOverlay.show();
+                controller.submit.then((done) {
+                  context.loaderOverlay.hide();
+                  if (done) {
+                    Fluttertoast.showToast(msg: 'Create account succeed');
+                    Get.offNamed(Routes.LOGIN);
+                  } else {
+                    Fluttertoast.showToast(msg: 'Something wrong, please try again');
+                  }
+                });
+              },
               // onPressed: null,
             ),
           ),

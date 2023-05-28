@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:petdo_k/utils.dart';
 
 import '../../../common/const.dart';
 import '../../../routes/app_pages.dart';
@@ -49,26 +50,28 @@ class RegisterVerifyInformationController extends GetxController {
 
   bool get validToSubmit =>
       name.value.isNotEmpty &&
-      ((registerPhone && phone.value.isPhoneNumber) ||
-          (registerEmail && email.value.isEmail)) &&
-      password.value.isPassword == null &&
-      confirmPassword.value.isNotEmpty &&
-      password.value == confirmPassword.value &&
-      agreeWithTermAndCondition.isTrue;
+          ((registerPhone && phone.value.isPhoneNumber) ||
+              (registerEmail && email.value.isEmail)) &&
+          password.value.isPassword == null &&
+          confirmPassword.value.isNotEmpty &&
+          password.value == confirmPassword.value &&
+          agreeWithTermAndCondition.isTrue;
 
-  VoidCallback? get submit => validToSubmit ? () => tiepTuc() : null;
+  Future<bool> get submit => validToSubmit ? tiepTuc() : Future.value(false);
 
-  void tiepTuc() => Get.toNamed(
-        Routes.REGISTER_VERIFY_OTP,
-        parameters: {
-          registerTypeKey: registerPhone ? phoneKey : emailKey,
-          emailKey: email.value,
-          phoneKey: phone.value,
-          nameKey: name.value,
-          addressKey: address.value,
-          passwordKey: password.value,
-        },
-      );
+  Future<bool> tiepTuc() async {
+    final documentInfo = dbWelCome.doc(infoDocument).collection(
+        phone.value.isPhoneNumber ? phoneCollection : emailCollection).doc(
+        phone.value.isPhoneNumber ? phone.value : email.value);
+    await documentInfo.set({
+      'name': name.value,
+      'address': address.value
+    });
+    final documentLogin = dbWelCome.doc(loginDocument).collection(phone.value.isPhoneNumber ? phoneCollection : emailCollection).doc(
+        phone.value.isPhoneNumber ? phone.value : email.value);
+    await documentLogin.set({'password': password.value});
+    return true;
+  }
 
   static const emailKey = 'email_key';
   static const phoneKey = 'phone_key';
