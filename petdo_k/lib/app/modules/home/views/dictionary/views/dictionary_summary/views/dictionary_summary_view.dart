@@ -40,17 +40,17 @@ class DictionarySummaryView extends GetView<DictionarySummaryController> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        controller.name.value,
-                        style: Get.textTheme.subtitle2?.copyWith(
+                        controller.catResponse.value.name ?? controller.dogResponse.value.name ?? '',
+                        style: Get.textTheme.titleSmall?.copyWith(
                           fontSize: 20,
                           color: Colors.white,
                         ),
                       ),
                       SizedBox(height: 3),
                       Text(
-                        'German Shephern Dog',
+                        controller.catResponse.value.temperament ?? controller.dogResponse.value.temperament ?? '',
                         overflow: TextOverflow.ellipsis,
-                        style: Get.textTheme.bodyText1?.copyWith(
+                        style: Get.textTheme.bodyLarge?.copyWith(
                           color: Colors.white,
                         ),
                       ),
@@ -60,9 +60,9 @@ class DictionarySummaryView extends GetView<DictionarySummaryController> {
                     fit: StackFit.expand,
                     children: [
                       CarouselSlider.builder(
-                        itemCount: 3,
+                        itemCount: controller.imageUrl.length,
                         itemBuilder: (_, index, realIndex) => MyImage(
-                          link: controller.image.value,
+                          link: controller.imageUrl[index].url,
                         ),
                         // carouselController: controller.carouselController,
                         options: CarouselOptions(
@@ -108,8 +108,8 @@ class DictionarySummaryView extends GetView<DictionarySummaryController> {
                         child: Column(
                           children: [
                             Text(
-                              'Chó Becgie có tên đầy đủ là chó chăn cừu Đức, tên tiếng Anh: German Shepherd Dog. Là giống chó chăn gia súc có nguồn gốc từ nước Đức. Ngoài ra, Chó Becgie có tên đầy đủ là chó chăn cừu Đức, tên tiếng Anh: German Shepherd Dog. Là giống chó chăn gia súc có nguồn gốc từ nước Đức.',
-                              style: Get.textTheme.bodyText1,
+                              controller.dogResponse.value.description ?? controller.catResponse.value.description ?? '',
+                              style: Get.textTheme.bodyLarge,
                               maxLines: !controller.expanding.value ? 3 : 1000,
                               overflow: !controller.expanding.value
                                   ? TextOverflow.ellipsis
@@ -141,19 +141,19 @@ class DictionarySummaryView extends GetView<DictionarySummaryController> {
                           _info(
                             image: 'images/ic_original.png',
                             label: 'Original',
-                            info: 'Đức',
+                            info: controller.catResponse.value.origin ?? controller.dogResponse.value.origin ?? '',
                           ),
-                          SizedBox(height: 16),
-                          _info(
-                            image: 'images/ic_price.png',
-                            label: 'Price',
-                            info: '60.000 - 200.000 ￥',
-                          ),
+                          // SizedBox(height: 16),
+                          // _info(
+                          //   image: 'images/ic_price.png',
+                          //   label: 'Price',
+                          //   info: '60.000 - 200.000 ￥',
+                          // ),
                           SizedBox(height: 16),
                           _info(
                             image: 'images/ic_age.png',
                             label: 'Age',
-                            info: '9-13 years old',
+                            info: '${controller.catResponse.value.lifeSpan ?? controller.dogResponse.value.lifeSpan ?? ''} years old',
                           ),
                         ],
                       ),

@@ -4,11 +4,11 @@
 
 import 'dart:convert';
 
-List<DogsResponse> dogsResponseFromJson(List list) => list.map((x) => DogsResponse.fromJson(x)).toList();
+List<DogResponse> dogsResponseFromJson(List list) => list.map((x) => DogResponse.fromJson(x)).toList();
 
-String dogsResponseToJson(List<DogsResponse> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+String dogsResponseToJson(List<DogResponse> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-class DogsResponse {
+class DogResponse {
   Eight? weight;
   Eight? height;
   int? id;
@@ -24,7 +24,7 @@ class DogsResponse {
   String? description;
   String? history;
 
-  DogsResponse({
+  DogResponse({
     this.weight,
     this.height,
     this.id,
@@ -41,7 +41,7 @@ class DogsResponse {
     this.history,
   });
 
-  factory DogsResponse.fromJson(Map<String, dynamic> json) => DogsResponse(
+  factory DogResponse.fromJson(Map<String, dynamic> json) => DogResponse(
     weight: json["weight"] == null ? null : Eight.fromJson(json["weight"]),
     height: json["height"] == null ? null : Eight.fromJson(json["height"]),
     id: json["id"],

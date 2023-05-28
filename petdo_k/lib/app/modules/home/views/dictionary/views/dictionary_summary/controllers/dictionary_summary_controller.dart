@@ -1,13 +1,16 @@
 import 'package:get/get.dart';
+import 'package:petdo_k/app/model/cat_response.dart';
+import 'package:petdo_k/app/model/dog_response.dart';
+import 'package:petdo_k/app/model/image_search.dart';
 
 import '../../../../../controllers/home_controller.dart';
-import '../../../controllers/dictionary_controller.dart';
 import 'dictionary_summary_provider.dart';
 
 class DictionarySummaryController extends GetxController {
   /// Selected drop box
-  final image = ''.obs;
-  final name = ''.obs;
+  final dogResponse = DogResponse().obs;
+  final catResponse = CatResponse().obs;
+  final imageUrl = <ImageSearch>[].obs;
   final expanding = false.obs;
 
   final carouselIndex = 0.obs;
@@ -16,18 +19,23 @@ class DictionarySummaryController extends GetxController {
   @override
   void onReady() {
     super.onReady();
-    image.value = HomeController.instance.selectedAnimalImage;
-    name.value = HomeController.instance.selectedAnimalName;
-    getCats();
+    imageUrl.clear();
+    if (HomeController.instance.selectedDog != null) {
+      dogResponse.value = HomeController.instance.selectedDog!;
+      provider.getDogImages(dogResponse.value.id.toString()).then((value) {
+        imageUrl.value = value.body?.take(3).toList() ?? [];
+      });
+    }
+    if (HomeController.instance.selectedCat != null) {
+      catResponse.value = HomeController.instance.selectedCat!;
+      provider.getCatImages(catResponse.value.id.toString()).then((value) {
+        imageUrl.value = value.body?.take(3).toList() ?? [];
+      });
+    }
   }
 
   @override
   void onClose() {}
 
   back() => HomeController.instance.back();
-
-  void getCats() async{
-    final response = await provider.getCatsByBreed();
-    print(response);
-  }
 }

@@ -33,8 +33,8 @@ class SearchPetDiseaseController extends GetxController {
     required String name,
     required String image,
   }) {
-    HomeController.instance.selectedAnimalImage = image;
-    HomeController.instance.selectedAnimalName = name;
+    // HomeController.instance.selectedDog = image;
+    // HomeController.instance.selectedCat = name;
     HomeController.instance.changeMainView(MainView.dictionarySummary);
   }
 

@@ -132,8 +132,7 @@ class DictionaryView extends GetView<DictionaryController> {
                                 origin: controller.response[index].origin,
                                 temperament: controller.response[index].temperament,
                                 onTap: () => controller.toSummary(
-                                  name: controller.response[index].name,
-                                  image: controller.response[index].imageUrl,
+                                    controller.response[index].name
                                 ),
                               ),
                               itemCount: controller.response.length,

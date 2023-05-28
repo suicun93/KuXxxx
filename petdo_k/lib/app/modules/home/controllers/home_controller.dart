@@ -1,6 +1,8 @@
 import 'dart:collection';
 
 import 'package:get/get.dart';
+import 'package:petdo_k/app/model/cat_response.dart';
+import 'package:petdo_k/app/model/dog_response.dart';
 
 import '../views/dictionary/controllers/dictionary_controller.dart';
 import '../views/dictionary/views/dictionary_summary/controllers/dictionary_summary_controller.dart';
@@ -76,8 +78,8 @@ class HomeController extends GetxController {
   TabType get currentTab => _currentView.value.tab;
 
   /// Dictionary variables
-  var selectedAnimalImage = '';
-  var selectedAnimalName = '';
+  DogResponse? selectedDog;
+  CatResponse? selectedCat;
 
   // @override
   // void onInit() {
