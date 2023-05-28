@@ -8,13 +8,17 @@ import 'my_image.dart';
 class AnimalItem extends StatelessWidget {
   final String url;
   final String name;
+  final String origin;
+  final String temperament;
   final GestureTapCallback? onTap;
 
   const AnimalItem({
     Key? key,
     required this.url,
     required this.name,
+    required this.origin,
     required this.onTap,
+    required this.temperament,
   }) : super(key: key);
 
   @override
@@ -58,7 +62,7 @@ class AnimalItem extends StatelessWidget {
                 child: Align(
                   alignment: Alignment.topLeft,
                   child: Text(
-                    'Lorem ipsum',
+                    temperament,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                     style: Get.textTheme.bodyText2,
@@ -81,7 +85,7 @@ class AnimalItem extends StatelessWidget {
                       SizedBox(width: 4),
                       Expanded(
                         child: Text(
-                          'Australia',
+                          origin,
                           overflow: TextOverflow.ellipsis,
                           maxLines: 1,
                           style: Get.textTheme.bodyText1?.copyWith(

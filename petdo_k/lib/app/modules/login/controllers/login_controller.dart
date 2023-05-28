@@ -1,11 +1,10 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:country_list_pick/country_list_pick.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
+import '../../../../utils.dart';
 import '../../../common/my_get_controller.dart';
 import '../../../common/preferences.dart';
-import '../../../constant.dart';
 import '../../../routes/app_pages.dart';
 import '../providers/login_provider.dart';
 
@@ -16,6 +15,7 @@ class LoginController extends MyGetxController<LoginProvider> {
   final phoneNumber = ''.obs;
   final email = ''.obs;
   final password = ''.obs;
+  final wrongPassword = false.obs;
   final country = Rxn(
     CountryCode(
       name: "Việt Nam",
@@ -80,9 +80,9 @@ class LoginController extends MyGetxController<LoginProvider> {
           phoneNumber.value.isPhoneNumber) ||
       (registerEmail && email.value.isEmail);
 
-  VoidCallback? get submit => validToSubmit ? () => login() : null;
+  Future<bool> get submit => validToSubmit ? login() : Future.value(false);
 
-  void login() async {
+  Future<bool> login() async {
     if (saveLogin.isTrue) {
       await Preference.setPhoneNumber(
           phoneNumber.value.isPhoneNumber ? phoneNumber.value : '');
@@ -95,11 +95,19 @@ class LoginController extends MyGetxController<LoginProvider> {
       await Preference.setPassword('');
       await Preference.setSaveLogin(false);
     }
-    dbWelCome.doc(loginDocument).collection(emailCollection).where(email, isEqualTo: true).get().then((value) {
-      for (final doc in value.docs) {
-      }
-    });
-    Get.offAndToNamed(Routes.HOME);
+    final result = await dbWelCome
+        .doc(loginDocument)
+        .collection(
+            phoneNumber.value.isPhoneNumber ? phoneCollection : emailCollection)
+        .get();
+    result.docs.printInfo();
+    if (result.docs.isNotEmpty &&
+        result.docs.first.data()[passwordField] == password.string) {
+      return true;
+    } else {
+      wrongPassword.value = true;
+      return false;
+    }
   }
 
   forgotPass() => Get.toNamed(Routes.FORGOT_PASSWORD_INPUT_PHONE_MAIL);

@@ -19,48 +19,47 @@ class LoginView extends GetView<LoginController> {
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: LoaderOverlay(
-        child: AnnotatedRegion<SystemUiOverlayStyle>(
-          value: defaultSystemUiOverlayStyle,
-          child: Scaffold(
-            resizeToAvoidBottomInset: oversize,
-            body: oversize
-                ? ListView(
-              keyboardDismissBehavior:
-              ScrollViewKeyboardDismissBehavior.onDrag,
-              padding: EdgeInsets.only(
-                top: Get.mediaQuery.viewPadding.top,
-              ),
-              children: [
-                Container(
-                  alignment: Alignment.center,
-                  padding: EdgeInsets.symmetric(vertical: size * 0.11),
-                  child: Image.asset(
-                    'images/splash_logo.png',
-                    width: size * 0.3,
-                  ),
-                ),
-                main(oversize: oversize, context: context),
-              ],
-            )
-                : Column(
-              children: [
-                Container(
-                  alignment: Alignment.center,
-                  margin: EdgeInsets.only(
+          child: AnnotatedRegion<SystemUiOverlayStyle>(
+        value: defaultSystemUiOverlayStyle,
+        child: Scaffold(
+          resizeToAvoidBottomInset: oversize,
+          body: oversize
+              ? ListView(
+                  keyboardDismissBehavior:
+                      ScrollViewKeyboardDismissBehavior.onDrag,
+                  padding: EdgeInsets.only(
                     top: Get.mediaQuery.viewPadding.top,
                   ),
-                  padding: EdgeInsets.symmetric(vertical: size * 0.11),
-                  child: Image.asset(
-                    'images/splash_logo.png',
-                    width: size * 0.3,
-                  ),
+                  children: [
+                    Container(
+                      alignment: Alignment.center,
+                      padding: EdgeInsets.symmetric(vertical: size * 0.11),
+                      child: Image.asset(
+                        'images/splash_logo.png',
+                        width: size * 0.3,
+                      ),
+                    ),
+                    main(oversize: oversize, context: context),
+                  ],
+                )
+              : Column(
+                  children: [
+                    Container(
+                      alignment: Alignment.center,
+                      margin: EdgeInsets.only(
+                        top: Get.mediaQuery.viewPadding.top,
+                      ),
+                      padding: EdgeInsets.symmetric(vertical: size * 0.11),
+                      child: Image.asset(
+                        'images/splash_logo.png',
+                        width: size * 0.3,
+                      ),
+                    ),
+                    Expanded(child: main(oversize: oversize, context: context)),
+                  ],
                 ),
-                Expanded(child: main(oversize: oversize, context: context)),
-              ],
-            ),
-          ),
-        )
-      ),
+        ),
+      )),
     );
   }
 
@@ -339,10 +338,25 @@ class LoginView extends GetView<LoginController> {
                 child: Text(LocaleKeys.login_btn.tr),
                 onPressed: () {
                   context.loaderOverlay.show();
-                  controller.submit?.call();
+                  controller.submit.then((isOk) {
+                    context.loaderOverlay.hide();
+                    if (isOk) {
+                      Get.offAndToNamed(Routes.HOME);
+                    }
+                  });
                 },
-                // onPressed: null,
               ),
+            ),
+            SizedBox(height: 10),
+            Visibility(
+              child: Center(
+                child: Text(
+                  'Wrong password',
+                  style:
+                      TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
+                ),
+              ),
+              visible: controller.wrongPassword.value,
             ),
             SizedBox(height: 32),
             Text.rich(

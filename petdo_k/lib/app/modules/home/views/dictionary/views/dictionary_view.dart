@@ -126,15 +126,17 @@ class DictionaryView extends GetView<DictionaryController> {
                                 childAspectRatio: 3 / 4.6,
                               ),
                               shrinkWrap: true,
-                              itemBuilder: (c, _) => AnimalItem(
-                                url: listAnimalUrls[_],
-                                name: name[_],
+                              itemBuilder: (c, index) => AnimalItem(
+                                url: controller.response[index].imageUrl,
+                                name: controller.response[index].name,
+                                origin: controller.response[index].origin,
+                                temperament: controller.response[index].temperament,
                                 onTap: () => controller.toSummary(
-                                  name: name[_],
-                                  image: listAnimalUrls[_],
+                                  name: controller.response[index].name,
+                                  image: controller.response[index].imageUrl,
                                 ),
                               ),
-                              itemCount: listAnimalUrls.length,
+                              itemCount: controller.response.length,
                               addRepaintBoundaries: true,
                               addSemanticIndexes: true,
                               padding: EdgeInsets.only(
@@ -144,6 +146,7 @@ class DictionaryView extends GetView<DictionaryController> {
                                 bottom: 24,
                               ),
                               physics: BouncingScrollPhysics(),
+                              addAutomaticKeepAlives: true,
                             ),
                           ],
                         ),

@@ -26,6 +26,7 @@
   "phone_number_invalid": "Phone Number Invalid",
   "email_invalid": "Email Invalid",
   "go_to_login": "Go to Login",
+  "wrong_password": "Wrong password",
   "welcome": {
     "welcome_to_petdo_k": "Welcome to \\nPetdoK",
     "login_without_account": "Login as guest"

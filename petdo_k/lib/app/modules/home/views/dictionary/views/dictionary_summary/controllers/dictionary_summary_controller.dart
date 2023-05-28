@@ -27,7 +27,7 @@ class DictionarySummaryController extends GetxController {
   back() => HomeController.instance.back();
 
   void getCats() async{
-    final response = await provider.getCats();
+    final response = await provider.getCatsByBreed();
     print(response);
   }
 }

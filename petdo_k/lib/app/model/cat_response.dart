@@ -1,46 +1,14 @@
 // To parse this JSON data, do
 //
-//     final catResponse = catResponseFromJson(jsonString);
+//     final catsResponse = catsResponseFromJson(jsonString);
 
 import 'dart:convert';
 
-CatResponse catResponseFromJson(String str) => CatResponse.fromJson(json.decode(str));
+List<CatsResponse> catsResponseFromJson(List list) => list.map((x) => CatsResponse.fromJson(x)).toList();
 
-String catResponseToJson(CatResponse data) => json.encode(data.toJson());
+String catsResponseToJson(List<CatsResponse> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-class CatResponse {
-  String? id;
-  String? url;
-  List<Breed>? breeds;
-  int? width;
-  int? height;
-
-  CatResponse({
-    this.id,
-    this.url,
-    this.breeds,
-    this.width,
-    this.height,
-  });
-
-  factory CatResponse.fromJson(Map<String, dynamic> json) => CatResponse(
-    id: json["id"],
-    url: json["url"],
-    breeds: json["breeds"] == null ? [] : List<Breed>.from(json["breeds"]!.map((x) => Breed.fromJson(x))),
-    width: json["width"],
-    height: json["height"],
-  );
-
-  Map<String, dynamic> toJson() => {
-    "id": id,
-    "url": url,
-    "breeds": breeds == null ? [] : List<dynamic>.from(breeds!.map((x) => x.toJson())),
-    "width": width,
-    "height": height,
-  };
-}
-
-class Breed {
+class CatsResponse {
   Weight? weight;
   String? id;
   String? name;
@@ -78,8 +46,9 @@ class Breed {
   String? wikipediaUrl;
   int? hypoallergenic;
   String? referenceImageId;
+  Image? image;
 
-  Breed({
+  CatsResponse({
     this.weight,
     this.id,
     this.name,
@@ -117,9 +86,10 @@ class Breed {
     this.wikipediaUrl,
     this.hypoallergenic,
     this.referenceImageId,
+    this.image,
   });
 
-  factory Breed.fromJson(Map<String, dynamic> json) => Breed(
+  factory CatsResponse.fromJson(Map<String, dynamic> json) => CatsResponse(
     weight: json["weight"] == null ? null : Weight.fromJson(json["weight"]),
     id: json["id"],
     name: json["name"],
@@ -157,6 +127,7 @@ class Breed {
     wikipediaUrl: json["wikipedia_url"],
     hypoallergenic: json["hypoallergenic"],
     referenceImageId: json["reference_image_id"],
+    image: json["image"] == null ? null : Image.fromJson(json["image"]),
   );
 
   Map<String, dynamic> toJson() => {
@@ -197,6 +168,35 @@ class Breed {
     "wikipedia_url": wikipediaUrl,
     "hypoallergenic": hypoallergenic,
     "reference_image_id": referenceImageId,
+    "image": image?.toJson(),
+  };
+}
+
+class Image {
+  String? id;
+  int? width;
+  int? height;
+  String? url;
+
+  Image({
+    this.id,
+    this.width,
+    this.height,
+    this.url,
+  });
+
+  factory Image.fromJson(Map<String, dynamic> json) => Image(
+    id: json["id"],
+    width: json["width"],
+    height: json["height"],
+    url: json["url"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "width": width,
+    "height": height,
+    "url": url,
   };
 }
 

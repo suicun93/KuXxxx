@@ -1,14 +1,17 @@
 import 'package:get/get.dart';
+import 'package:petdo_k/api_utils.dart';
+import 'package:petdo_k/app/model/dog_response.dart';
 
-import '../../../../../controllers/home_controller.dart';
-import '../../../controllers/dictionary_controller.dart';
-import 'cat_response.dart';
+import '../../../../../../../model/cat_response.dart';
 
 class DictionarySummaryProvider extends GetConnect {
-  Future<Response<CatResponse>> getCats() {
-    return get(
-      'https://api.thecatapi.com/v1/images/0XYvRd7oD',
-      decoder: (json) => CatResponse.fromJson(json),
-    );
+  Future<Response<List<CatsResponse>>> getCatsByBreed({int page = 0}) {
+    return ApiUtils.getCatData<List<CatsResponse>>(
+        'breeds?limit=5&page=$page', (json) => catsResponseFromJson(json));
+  }
+
+  Future<Response<List<DogsResponse>>> getDogsByBreed({int page = 0}) {
+    return ApiUtils.getDogData(
+        'breeds?limit=5&page=$page', (json) => dogsResponseFromJson(json));
   }
 }
