@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
 import 'package:get/get.dart';
 import 'package:petdo_k/app/modules/home/controllers/home_controller.dart';
 
@@ -93,7 +92,7 @@ class HealthRecordView extends GetView<HealthRecordController> {
                                     SizedBox(width: 9),
                                     Text(
                                       'Add',
-                                      style: Get.textTheme.button?.copyWith(
+                                      style: Get.textTheme.labelLarge?.copyWith(
                                         color: subPrimaryColor,
                                       ),
                                     ),
@@ -109,24 +108,20 @@ class HealthRecordView extends GetView<HealthRecordController> {
                         child: controller.ready.value
                             ? RefreshIndicator(
                                 onRefresh: () async {
-                                  controller.noPet.toggle();
                                   controller.onReady();
                                 },
                                 child: controller.noPet.value
                                     ? ListView.builder(
                                         padding: EdgeInsets.only(
                                             top: 12, bottom: 50),
-                                        itemBuilder: (_, id) => _pet(
-                                          image: listAnimalUrls[id],
-                                          name: name[id],
-                                          gender: id % 2 == 0 ? 'Đực' : 'Cái',
-                                          age: '${id + 1} tháng tuổi',
-                                          onTap: () => controller.toDetail(
-                                            image: listAnimalUrls[id],
-                                            name: name[id],
-                                          ),
+                                        itemBuilder: (_, index) => _pet(
+                                          image: controller.pets[index].imageUrl,
+                                          name: controller.pets[index].name,
+                                          gender: controller.pets[index].isMale ? 'Đực' : 'Cái',
+                                          age: '${index + 1} tháng tuổi',
+                                          onTap: () => controller.toDetail(pet: controller.pets[index]),
                                         ),
-                                        itemCount: listAnimalUrls.length,
+                                        itemCount: controller.pets.length,
                                       )
                                     : ListView(
                                         children: [

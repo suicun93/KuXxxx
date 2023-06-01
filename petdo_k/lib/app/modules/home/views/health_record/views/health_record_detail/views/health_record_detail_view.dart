@@ -1,7 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 
 import '../../../../../../../../generated/locales.g.dart';
 import '../../../../../../../common/const.dart';
@@ -16,83 +15,103 @@ class HealthRecordDetailView extends GetView<HealthRecordDetailController> {
     return Obx(
       () => WillPopScope(
         onWillPop: () => controller.back(),
-        child: Container(
-          color: backgroundColorShadow,
-          child: Column(
-            children: [
-              _appbar,
-              Expanded(
-                child: controller.ready.value
-                    ? RefreshIndicator(
-                        onRefresh: () async => controller.onReady(),
-                        child: ListView(
-                          padding: EdgeInsets.only(top: 4, bottom: 50),
-                          children: [
-                            SizedBox(height: 16),
-                            IntrinsicHeight(
-                              child: Row(
-                                children: [
-                                  SizedBox(width: 24),
-                                  _petInfo1(
-                                    image: controller.selectedImage.value,
-                                    name: controller.selectedName.value,
-                                    birthday: '29/08/2022',
-                                    gender: 'Đực',
-                                  ),
-                                  SizedBox(width: 16),
-                                  _petInfo2(
-                                    weight: '4 kg',
-                                    origin: 'Corgi Pembroke Wales',
-                                  ),
-                                  SizedBox(width: 24),
-                                ],
-                              ),
-                            ),
-
-                            /// Vaccine
-                            _scheduleBlock(
-                              header: 'Lịch tiêm Vaccine gần nhất',
-                              title1: 'Ngày tiêm',
-                              content1: '01/06/2021',
-                              title2: 'Loại vaccine',
-                              content2: 'Astra Zeneca',
-                              buttonShow: 'Xem lịch khác',
-                              onShow: controller.showVaccine,
-                              buttonAdd: 'Thêm lịch tiêm',
-                              onAdd: controller.addVaccine,
-                            ),
-
-                            /// Khám
-                            _scheduleBlock(
-                              header: 'Lịch khám gần nhất',
-                              title1: 'Ngày khám',
-                              content1: '01/06/2021',
-                              title2: 'Cở sở khám',
-                              content2: 'Thu Cúc',
-                              buttonShow: 'Xem lịch khác',
-                              onShow: controller.showExamination,
-                              buttonAdd: 'Thêm lịch khám',
-                              onAdd: controller.addExamination,
-                            ),
-
-                            Padding(
-                              padding:
-                                  const EdgeInsets.fromLTRB(40, 16, 40, 24),
-                              child: ElevatedButton(
-                                onPressed: () => _showDialog(
-                                  'Bạn muốn xóa ${controller.selectedName.value}?',
-                                  () => HomeController.instance.back(),
+        child: LoaderOverlay(
+          child: Container(
+            color: backgroundColorShadow,
+            child: Column(
+              children: [
+                _appbar,
+                Expanded(
+                  child: controller.ready.value
+                      ? RefreshIndicator(
+                          onRefresh: () async => controller.onReady(),
+                          child: ListView(
+                            padding: EdgeInsets.only(top: 4, bottom: 50),
+                            children: [
+                              SizedBox(height: 16),
+                              IntrinsicHeight(
+                                child: Row(
+                                  children: [
+                                    SizedBox(width: 24),
+                                    _petInfo1(
+                                      image: controller
+                                              .selectedPet.value?.imageUrl ??
+                                          '',
+                                      name:
+                                          controller.selectedPet.value?.name ??
+                                              '',
+                                      birthday: controller
+                                              .selectedPet.value?.birthDay ??
+                                          '',
+                                      gender: controller
+                                                  .selectedPet.value?.isMale ==
+                                              true
+                                          ? 'Đực'
+                                          : 'Cái',
+                                    ),
+                                    SizedBox(width: 16),
+                                    _petInfo2(
+                                      weight:
+                                          '${controller.selectedPet.value?.weight} kg',
+                                      origin:
+                                          controller.selectedPet.value?.type ??
+                                              '',
+                                    ),
+                                    SizedBox(width: 24),
+                                  ],
                                 ),
-                                child: Text('Delete Pet'),
-                                style: _redElevatedButtonTheme,
                               ),
-                            ),
-                          ],
-                        ),
-                      )
-                    : LoadingWidget(),
-              ),
-            ],
+
+                              /// Vaccine
+                              _scheduleBlock(
+                                header: 'Lịch tiêm Vaccine gần nhất',
+                                title1: 'Ngày tiêm',
+                                content1: '01/06/2021',
+                                title2: 'Loại vaccine',
+                                content2: 'Astra Zeneca',
+                                buttonShow: 'Xem lịch khác',
+                                onShow: controller.showVaccine,
+                                buttonAdd: 'Thêm lịch tiêm',
+                                onAdd: controller.addVaccine,
+                              ),
+
+                              /// Khám
+                              _scheduleBlock(
+                                header: 'Lịch khám gần nhất',
+                                title1: 'Ngày khám',
+                                content1: '01/06/2021',
+                                title2: 'Cở sở khám',
+                                content2: 'Thu Cúc',
+                                buttonShow: 'Xem lịch khác',
+                                onShow: controller.showExamination,
+                                buttonAdd: 'Thêm lịch khám',
+                                onAdd: controller.addExamination,
+                              ),
+
+                              Padding(
+                                padding:
+                                    const EdgeInsets.fromLTRB(40, 16, 40, 24),
+                                child: ElevatedButton(
+                                  onPressed: () => _showDialog(
+                                    'Bạn muốn xóa ${controller.selectedPet.value?.name}?',
+                                    () async {
+                                      context.loaderOverlay.show();
+                                      await controller.removePet();
+                                      context.loaderOverlay.hide();
+                                      HomeController.instance.back();
+                                    },
+                                  ),
+                                  child: Text('Delete Pet'),
+                                  style: _redElevatedButtonTheme,
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
+                      : LoadingWidget(),
+                ),
+              ],
+            ),
           ),
         ),
       ),

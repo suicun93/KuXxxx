@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 
 import '../../../../../../../../common/const.dart';
@@ -38,7 +37,8 @@ class AddPetView extends GetView<AddPetController> {
                                     child: Column(
                                       children: [
                                         ClipRRect(
-                                          borderRadius: BorderRadius.circular(8),
+                                          borderRadius:
+                                              BorderRadius.circular(8),
                                           child: controller.image.value == null
                                               ? Image.asset(
                                                   'images/logo.png',
@@ -47,7 +47,8 @@ class AddPetView extends GetView<AddPetController> {
                                                 )
                                               : Image.file(
                                                   File(
-                                                    controller.image.value!.path,
+                                                    controller
+                                                        .image.value!.path,
                                                   ),
                                                   width: 156,
                                                   height: 156,
@@ -107,7 +108,10 @@ class AddPetView extends GetView<AddPetController> {
                                     ),
                                   ),
                                   SizedBox(height: 24),
-                                  _buildTextFormField(title: 'Tên thú cưng'),
+                                  _buildTextFormField(
+                                      title: 'Tên thú cưng',
+                                      onChange: (_) =>
+                                          controller.petName.value = _),
                                   SizedBox(height: 24),
                                   Container(
                                     padding: const EdgeInsets.symmetric(
@@ -143,22 +147,24 @@ class AddPetView extends GetView<AddPetController> {
                                             underline: Container(),
                                             onChanged: (_) =>
                                                 controller.gender.value = _,
-                                            selectedItemBuilder: (_) =>
-                                                [true, false]
-                                                    .map<DropdownMenuItem<bool>>(
-                                                      (item) =>
-                                                          DropdownMenuItem<bool>(
-                                                        value: item,
-                                                        child: Container(
-                                                          child: Text(
-                                                            item ? 'Đực' : 'Cái',
-                                                            style: Get.textTheme
-                                                                .headline6,
-                                                          ),
-                                                        ),
+                                            selectedItemBuilder: (_) => [
+                                              true,
+                                              false
+                                            ]
+                                                .map<DropdownMenuItem<bool>>(
+                                                  (item) =>
+                                                      DropdownMenuItem<bool>(
+                                                    value: item,
+                                                    child: Container(
+                                                      child: Text(
+                                                        item ? 'Đực' : 'Cái',
+                                                        style: Get.textTheme
+                                                            .headline6,
                                                       ),
-                                                    )
-                                                    .toList(),
+                                                    ),
+                                                  ),
+                                                )
+                                                .toList(),
                                             items: [true, false]
                                                 .map<DropdownMenuItem<bool>>(
                                                   (item) =>
@@ -166,8 +172,8 @@ class AddPetView extends GetView<AddPetController> {
                                                     value: item,
                                                     child: Text(
                                                       item ? 'Đực' : 'Cái',
-                                                      style:
-                                                          Get.textTheme.headline6,
+                                                      style: Get
+                                                          .textTheme.headline6,
                                                     ),
                                                   ),
                                                 )
@@ -188,9 +194,15 @@ class AddPetView extends GetView<AddPetController> {
                                     controller.birthdayController,
                                   ),
                                   SizedBox(height: 24),
-                                  _buildTextFormField(title: 'Giống'),
+                                  _buildTextFormField(title: 'Giống', onChange: (_) => controller.type.value = _),
                                   SizedBox(height: 24),
-                                  _buildTextFormField(title: 'Cân nặng (kg)'),
+                                  _buildTextFormField(
+                                      title: 'Cân nặng (kg)',
+                                      textInputType:
+                                          TextInputType.numberWithOptions(
+                                              decimal: true),
+                                      onChange: (weight) => controller.petWeight
+                                          .value = double.parse(weight)),
                                 ],
                               ),
                             ),
@@ -234,7 +246,7 @@ class AddPetView extends GetView<AddPetController> {
             ),
             Expanded(
               child: Center(
-                child: Text('Add new pet', style: Get.textTheme.subtitle2),
+                child: Text('Add new pet', style: Get.textTheme.titleSmall),
               ),
             ),
             SizedBox(width: 60),
@@ -256,11 +268,12 @@ class AddPetView extends GetView<AddPetController> {
   TextFormField _buildTextFormField({
     required String title,
     ValueChanged<String>? onChange,
+    TextInputType? textInputType,
   }) =>
       TextFormField(
         style: Get.textTheme.headline6,
         cursorColor: subPrimaryColor,
-        keyboardType: TextInputType.streetAddress,
+        keyboardType: textInputType ?? TextInputType.streetAddress,
         onChanged: onChange,
         decoration: InputDecoration(
           labelText: title,

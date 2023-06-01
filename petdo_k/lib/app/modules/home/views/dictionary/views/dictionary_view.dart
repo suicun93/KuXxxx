@@ -12,6 +12,7 @@ import '../controllers/dictionary_controller.dart';
 class DictionaryView extends GetView<DictionaryController> {
   @override
   Widget build(BuildContext context) {
+    controller.listenTypeSelected();
     return Obx(
       () {
         return Scaffold(
@@ -23,7 +24,12 @@ class DictionaryView extends GetView<DictionaryController> {
                 child: controller.ready.value
                     ? RefreshIndicator(
                         onRefresh: () async {
-                          controller.onReady();
+                          if (controller.selectedType.value != controller.animalType[0]){
+                            controller.onReady();
+                          } else {
+                            controller.clearData();
+                            controller.getCatsAndDogs(0, 0);
+                          }
                         },
                         child: ListView(
                           padding: EdgeInsets.only(

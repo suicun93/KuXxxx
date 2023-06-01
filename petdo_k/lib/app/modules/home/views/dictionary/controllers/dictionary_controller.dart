@@ -11,6 +11,7 @@ class DictionaryController extends GetxController {
   final provider = Get.find<DictionarySummaryProvider>();
 
   List<DropboxItem> get animalType => [
+        DropboxItem('a', 'Tất cả'),
         DropboxItem('c', 'Chó'),
         DropboxItem('m', 'Mèo'),
       ];
@@ -29,29 +30,49 @@ class DictionaryController extends GetxController {
   final _catResponse = <CatResponse>[];
   final _dogResponse = <DogResponse>[];
 
-  // @override
-  // void onInit() {
-  //   super.onInit();
-  // }
-
   @override
   void onReady() async {
     super.onReady();
     ready.value = false;
-    response.clear();
-    _dogResponse.clear();
-    _catResponse.clear();
-    await Future.delayed(
-      Duration(milliseconds: 2000),
-      () => ready.value = true,
-    );
-    getCatsAndDogs(dogPage: 0, catPage: 0);
+    clearData();
+    selectedType.value = animalType[0];
   }
 
   @override
   void onClose() {}
 
-  void getCatsAndDogs({required int dogPage, required int catPage}) async {
+  void clearData() {
+    response.clear();
+    _dogResponse.clear();
+    _catResponse.clear();
+  }
+
+  void listenTypeSelected() {
+    selectedType.listen((type) async{
+      response.clear();
+      _dogResponse.clear();
+      _catResponse.clear();
+      if (type == animalType[1]){
+        final dogResponse = (await provider.getDogsByBreed()).body ?? [];
+        response.addAll(dogResponse.map((e) => AnimalResponse(
+            e.image?.url ?? '',
+            e.name ?? '',
+            e.origin ?? '',
+            e.temperament ?? '')));
+      } else if (type == animalType[2]) {
+        final catResponse = (await provider.getCatsByBreed()).body ?? [];
+        response.addAll(catResponse.map((e) => AnimalResponse(
+            e.image?.url ?? '',
+            e.name ?? '',
+            e.origin ?? '',
+            e.temperament ?? '')));
+      } else {
+        getCatsAndDogs(0, 0);
+      }
+    });
+  }
+
+  void getCatsAndDogs(int dogPage,int catPage) async {
     final catResponse =
         (await provider.getCatsByBreed(page: catPage)).body ?? [];
     final dogResponse =
@@ -79,6 +100,7 @@ class DictionaryController extends GetxController {
             dogResponse[i].temperament ?? ''));
       }
     }
+    ready.value = true;
   }
 
   void toSummary(

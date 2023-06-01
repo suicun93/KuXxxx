@@ -1,31 +1,50 @@
 import 'package:get/get.dart';
+import 'package:petdo_k/app/model/health.dart';
+import 'package:petdo_k/utils.dart';
 
-import '../../../../../common/preferences.dart';
 import '../../../controllers/home_controller.dart';
 
 class HealthRecordController extends GetxController {
   final token = RxnString();
   final ready = false.obs;
   final noPet = true.obs;
-  final selectedImage = ''.obs;
-  final selectedName = ''.obs;
+  final selectedPet = Rxn<PetHealth>();
+  final pets = <PetHealth>[].obs;
+  final ids = <String>[];
 
   @override
   void onReady() async {
     super.onReady();
     // token.value = await Preference.getToken();
-    Preference.getToken();
+    // Preference.getToken();
     token.value = 'abc';
     ready.value = false;
-    Future.delayed(Duration(milliseconds: 1500), () => ready.value = true);
+    _getAllHealthRecord();
   }
 
   @override
   void onClose() {}
 
-  void toDetail({required String image, required String name}) {
-    selectedImage.value = image;
-    selectedName.value = name;
+  _getAllHealthRecord() async {
+    pets.clear();
+    ids.clear();
+    final result = await dbHealth.get();
+    ids.addAll(result.docs.map((e) => e.id));
+    pets.value = petsFromJson(result.docs.map((e) => e.data()).toList());
+    ready.value = true;
+    noPet.value = pets.isNotEmpty;
+  }
+
+  Future<void> deletePet() async {
+    final petIndex = pets.indexOf(selectedPet.value);
+   await dbHealth.doc(ids[petIndex]).delete();
+   await storageRef.child(selectedPet.value?.imageId ?? '').delete();
+   ids.removeAt(petIndex);
+   pets.removeAt(petIndex);
+  }
+
+  void toDetail({required PetHealth pet}) {
+    selectedPet.value = pet;
     HomeController.instance.changeMainView(MainView.healthRecordDetail);
   }
 }

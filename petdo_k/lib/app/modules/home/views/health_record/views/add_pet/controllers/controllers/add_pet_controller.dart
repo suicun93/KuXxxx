@@ -1,6 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:petdo_k/app/model/health.dart';
+import 'package:petdo_k/app/modules/home/views/health_record/controllers/health_record_controller.dart';
+import 'package:petdo_k/utils.dart';
 
 import '../../../../../../controllers/home_controller.dart';
 
@@ -11,13 +16,37 @@ class AddPetController extends GetxController {
   final birthdayController = TextEditingController();
   final date = ''.obs;
   final Rxn<XFile> image = Rxn();
+  final petName = ''.obs;
+  final petWeight = 0.0.obs;
+  final type = ''.obs;
+  final backController = Get.find<HealthRecordController>();
 
   VoidCallback? get add => date.value.isEmpty
       ? null
       : () async {
           ready.value = false;
-          await Future.delayed(Duration(seconds: 1));
-          back();
+          if (image.value?.path != null) {
+            final imageId = '${DateTime.now().millisecondsSinceEpoch}_${image.value?.name}';
+            final imageStorage = storageRef.child(imageId);
+            await imageStorage.putFile(File(image.value!.path));
+            final imageUrl = await imageStorage.getDownloadURL();
+            final petInfo =
+                dbHealth.doc(DateTime.now().millisecondsSinceEpoch.toString());
+            petInfo
+                .set(PetHealth(
+                        imageUrl: imageUrl,
+                        imageId: imageId,
+                        type: type.value,
+                        name: petName.value,
+                        birthDay: birthdayController.text,
+                        isMale: gender.value ?? false,
+                        weight: petWeight.value)
+                    .toJson())
+                .whenComplete(() {
+              backController.onReady();
+              back();
+            });
+          }
         };
 
   get getImage => () async {

@@ -1,11 +1,11 @@
 import 'package:get/get.dart';
+import 'package:petdo_k/app/model/health.dart';
 
 import '../../../../../controllers/home_controller.dart';
 import '../../../../health_record/controllers/health_record_controller.dart';
 
 class HealthRecordDetailController extends GetxController {
-  final selectedImage = ''.obs;
-  final selectedName = ''.obs;
+  final selectedPet = Rxn<PetHealth>();
   final ready = false.obs;
   final backController = Get.find<HealthRecordController>();
 
@@ -28,14 +28,17 @@ class HealthRecordDetailController extends GetxController {
   @override
   void onReady() {
     super.onReady();
-    selectedImage.value = backController.selectedImage.value;
-    selectedName.value = backController.selectedName.value;
     ready.value = false;
+    selectedPet.value = backController.selectedPet.value;
     Future.delayed(Duration(milliseconds: 1500), () => ready.value = true);
   }
 
   @override
   void onClose() {}
+
+  Future<void> removePet() async{
+    await backController.deletePet();
+  }
 
   back() => HomeController.instance.back();
 }
