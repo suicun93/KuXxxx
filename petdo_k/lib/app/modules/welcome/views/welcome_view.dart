@@ -43,22 +43,13 @@ class WelcomeView extends GetView<WelcomeController> {
               ),
             ),
             Container(
-              margin: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+              margin: EdgeInsets.symmetric(horizontal: 40, vertical: 50),
               width: double.infinity,
               child: ElevatedButton(
                 child: Text(LocaleKeys.login_btn.tr),
                 onPressed: () => Get.offNamed(Routes.LOGIN),
               ),
             ),
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
-              width: double.infinity,
-              child: TextButton(
-                onPressed: () => Get.offNamed(Routes.HOME),
-                child: Text(LocaleKeys.welcome_login_without_account.tr),
-              ),
-            ),
-            sosCall,
           ],
         ),
       ),

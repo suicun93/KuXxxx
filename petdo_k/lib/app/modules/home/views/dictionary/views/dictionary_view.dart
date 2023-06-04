@@ -59,25 +59,25 @@ class DictionaryView extends GetView<DictionaryController> {
                                     ),
                                   ),
                                   Spacer(),
-                                  GestureDetector(
-                                    onTap: () =>
-                                        HomeController.instance.changeMainView(
-                                      MainView.searchPetDisease,
-                                    ),
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      padding: const EdgeInsets.all(12),
-                                      decoration: const BoxDecoration(
-                                        color: Colors.white,
-                                        shape: BoxShape.circle,
-                                        boxShadow: [defaultBoxShadow],
-                                      ),
-                                      child: Image.asset(
-                                        'images/ic_search.png',
-                                        height: 20,
-                                      ),
-                                    ),
-                                  ),
+                                  // GestureDetector(
+                                  //   onTap: () =>
+                                  //       HomeController.instance.changeMainView(
+                                  //     MainView.searchPetDisease,
+                                  //   ),
+                                  //   child: Container(
+                                  //     alignment: Alignment.center,
+                                  //     padding: const EdgeInsets.all(12),
+                                  //     decoration: const BoxDecoration(
+                                  //       color: Colors.white,
+                                  //       shape: BoxShape.circle,
+                                  //       boxShadow: [defaultBoxShadow],
+                                  //     ),
+                                  //     child: Image.asset(
+                                  //       'images/ic_search.png',
+                                  //       height: 20,
+                                  //     ),
+                                  //   ),
+                                  // ),
                                 ],
                               ),
                             ),
@@ -94,29 +94,29 @@ class DictionaryView extends GetView<DictionaryController> {
                                     SizedBox(width: 24),
                                     DropdownList(
                                       list: controller.animalType,
-                                      hintText: 'Loại',
+                                      hintText: '',
                                       selectedItem:
                                           controller.selectedType.value,
                                       onSelect: (_) =>
                                           controller.selectedType.value = _,
                                     ),
-                                    DropdownList(
-                                      list: controller.moneyType,
-                                      hintText: 'Giá tiền',
-                                      selectedItem:
-                                          controller.selectedMoney.value,
-                                      onSelect: (_) =>
-                                          controller.selectedMoney.value = _,
-                                    ),
-                                    DropdownList(
-                                      list: controller.originalType,
-                                      hintText: 'Nguồn gốc',
-                                      selectedItem:
-                                          controller.selectedOriginal.value,
-                                      onSelect: (_) =>
-                                          controller.selectedOriginal.value = _,
-                                    ),
-                                    SizedBox(width: 24),
+                                    // DropdownList(
+                                    //   list: controller.moneyType,
+                                    //   hintText: 'Giá tiền',
+                                    //   selectedItem:
+                                    //       controller.selectedMoney.value,
+                                    //   onSelect: (_) =>
+                                    //       controller.selectedMoney.value = _,
+                                    // ),
+                                    // DropdownList(
+                                    //   list: controller.originalType,
+                                    //   hintText: 'Nguồn gốc',
+                                    //   selectedItem:
+                                    //       controller.selectedOriginal.value,
+                                    //   onSelect: (_) =>
+                                    //       controller.selectedOriginal.value = _,
+                                    // ),
+                                    // SizedBox(width: 24),
                                   ],
                                 ),
                               ),
@@ -164,15 +164,4 @@ class DictionaryView extends GetView<DictionaryController> {
       },
     );
   }
-
-  final listAnimalUrls = [
-    'https://huanluyenchothanhtai.com/wp-content/uploads/2019/07/cho-corgi-4.jpg',
-    'https://media.baamboozle.com/uploads/images/115667/1600676707_579518',
-    'https://thumbor.forbes.com/thumbor/711x533/https://specials-images.forbesimg.com/imageserve/5faad4255239c9448d6c7bcd/Best-Animal-Photos-Contest--Close-Up-Of-baby-monkey/960x0.jpg',
-    'https://aldf.org/wp-content/uploads/2018/05/lamb-iStock-665494268-16x9-e1559777676675.jpg',
-    'https://images.pexels.com/photos/47547/squirrel-animal-cute-rodents-47547.jpeg',
-    'https://images.hindustantimes.com/rf/image_size_630x354/HT/p2/2019/08/08/Pictures/happy-golden-retriever-puppy_c7b14e3e-b9eb-11e9-a203-e6c4ad816de5.jpg',
-    'https://www.thevetonfourth.com/wp-content/uploads/2019/12/cat-looking-up.jpg'
-  ];
-  final name = ['Corgi', 'Chó', 'Khỉ', 'Cừu', 'Sóc', 'Chó', 'Quàng thượng'];
 }

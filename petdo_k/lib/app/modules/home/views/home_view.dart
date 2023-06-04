@@ -16,35 +16,6 @@ class HomeView extends GetView<HomeController> {
         resizeToAvoidBottomInset: false,
         backgroundColor: backgroundColorShadow,
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-        floatingActionButton: GestureDetector(
-          onTap: () => showSnackBar(LocaleKeys.not_supported_yet.tr),
-          child: Container(
-            alignment: Alignment.center,
-            padding: const EdgeInsets.all(3),
-            margin: const EdgeInsets.only(bottom: 80),
-            height: 53,
-            width: 53,
-            decoration: BoxDecoration(
-              color: sosColor,
-              shape: BoxShape.circle,
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  CupertinoIcons.phone_fill,
-                  color: Colors.white,
-                  size: 25,
-                ),
-                SizedBox(width: 6),
-                Text(
-                  'SOS',
-                  style: Get.textTheme.button?.copyWith(color: Colors.white),
-                ),
-              ],
-            ),
-          ),
-        ),
         body: AnnotatedRegion<SystemUiOverlayStyle>(
           value: homeSystemUiOverlayStyle,
           child: Column(
@@ -92,7 +63,7 @@ class HomeView extends GetView<HomeController> {
             SizedBox(height: 6.67),
             Text(
               tab.label,
-              style: Get.textTheme.caption?.copyWith(
+              style: Get.textTheme.bodySmall?.copyWith(
                 color: selected ? Colors.white : Colors.transparent,
               ),
             ),
@@ -101,12 +72,6 @@ class HomeView extends GetView<HomeController> {
       ),
     );
   }
-
-// static const _tabs = [
-//   TabType.DICTIONARY,
-//   TabType.HEALTH_RECORD,
-//   TabType.SETTING,
-// ];
 }
 
 extension TabTypeInfo on TabType {
@@ -124,11 +89,11 @@ extension TabTypeInfo on TabType {
   String get label {
     switch (this) {
       case TabType.dictionary:
-        return 'Từ điển';
+        return LocaleKeys.dictionary.tr;
       case TabType.healthRecord:
-        return 'Sổ y bạ';
+        return LocaleKeys.medical_book.tr;
       case TabType.setting:
-        return 'Cài đặt';
+        return LocaleKeys.setting.tr;
     }
   }
 }

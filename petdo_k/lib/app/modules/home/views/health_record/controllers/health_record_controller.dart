@@ -12,6 +12,8 @@ class HealthRecordController extends GetxController {
   final pets = <PetHealth>[].obs;
   final ids = <String>[];
 
+  final selectedId = Rxn<String>();
+
   @override
   void onReady() async {
     super.onReady();
@@ -45,6 +47,7 @@ class HealthRecordController extends GetxController {
 
   void toDetail({required PetHealth pet}) {
     selectedPet.value = pet;
+    selectedId.value = ids[pets.indexOf(selectedPet.value)];
     HomeController.instance.changeMainView(MainView.healthRecordDetail);
   }
 }

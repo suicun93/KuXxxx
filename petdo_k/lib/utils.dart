@@ -11,6 +11,8 @@ const passwordField = 'password';
 const infoDocument = 'info';
 const petDocument = 'Pet';
 const healthCollection = 'Health';
+const vaccineCollection = 'Vaccine';
+const vetCollection = 'Vet';
 
 const baseUrl = 'https://api.thecatapi.com/v1/';
 const dogApi = 'live_S3kXjyJeQFZ9n5zWmad6t72eRFMrXYNpphfztWK9zF7KgULtZ3wef784DIUHCEm9';

@@ -63,7 +63,7 @@ class RegisterVerifyPhoneController extends GetxController {
         parameters: {
           registerTypeKey: registerPhone ? phoneKey : emailKey,
           emailKey: email.value,
-          phoneKey: '${country.value?.dialCode}${phoneNumber.value.remove0}',
+          phoneKey: phoneNumber.value,
         },
       );
 

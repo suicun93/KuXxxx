@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:petdo_k/generated/locales.g.dart';
 
 import '../../../../../../../../../common/const.dart';
 import '../../../../../../../../../views/loading_view.dart';
@@ -38,7 +39,7 @@ class VaccineScheduleView extends GetView<VaccineScheduleController> {
                     Expanded(
                       child: Center(
                         child: Text(
-                          'Lịch sử tiêm vaccine',
+                          LocaleKeys.history.tr,
                           style: Get.textTheme.subtitle2,
                         ),
                       ),
@@ -55,7 +56,7 @@ class VaccineScheduleView extends GetView<VaccineScheduleController> {
                   ),
                   style: _elevatedButton,
                   child: Text(
-                    'Thêm lịch tiêm vaccine',
+                    LocaleKeys.add_schedule.tr,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                   ),
@@ -67,11 +68,12 @@ class VaccineScheduleView extends GetView<VaccineScheduleController> {
                         onRefresh: () async => controller.onReady(),
                         child: ListView.builder(
                           padding: EdgeInsets.only(top: 12, bottom: 50),
-                          itemCount: 10,
-                          itemBuilder: (_, id) => _vaccineBuilder(
-                            index: 10 - id,
+                          itemCount: controller.vaccineMap.length,
+                          itemBuilder: (_, index) => _vaccineBuilder(
+                            index: index,
                             onTap: () {
-                              controller.selected.value = 10 - id;
+                              controller.selected.value = controller.vaccineMap[index];
+                              controller.vaccineCount.value = controller.vaccineMap.length - index;
                               HomeController.instance.changeMainView(
                                 MainView.vaccineEdit,
                               );
@@ -100,8 +102,8 @@ class VaccineScheduleView extends GetView<VaccineScheduleController> {
             Padding(
               padding: const EdgeInsets.only(left: 40),
               child: Text(
-                'Lần $index',
-                style: Get.textTheme.caption?.copyWith(color: Colors.black),
+                '${LocaleKeys.number.tr} ${controller.vaccineMap.length - index}',
+                style: Get.textTheme.bodySmall?.copyWith(color: Colors.black),
               ),
             ),
             _container(
@@ -114,12 +116,12 @@ class VaccineScheduleView extends GetView<VaccineScheduleController> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Ngày khám:',
+                            '${LocaleKeys.time.tr}: ',
                             style: Get.textTheme.bodyText1,
                           ),
                           SizedBox(height: 12),
                           Text(
-                            'Loại vaccine:',
+                            '${LocaleKeys.vaccine_type.tr}: ',
                             style: Get.textTheme.bodyText1,
                           ),
                         ],
@@ -130,13 +132,13 @@ class VaccineScheduleView extends GetView<VaccineScheduleController> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              '19/10/2020',
+                              controller.vaccineMap[index].values.first.date ?? '',
                               overflow: TextOverflow.ellipsis,
                               style: Get.textTheme.headline6,
                             ),
                             SizedBox(height: 12),
                             Text(
-                              'Astra Zeneca',
+                              controller.vaccineMap[index].values.first.vaccineType ?? '',
                               style: Get.textTheme.headline6,
                               overflow: TextOverflow.ellipsis,
                             ),

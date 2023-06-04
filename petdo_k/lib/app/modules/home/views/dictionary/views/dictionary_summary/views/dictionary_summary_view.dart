@@ -2,8 +2,10 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../../../../../generated/locales.g.dart';
 import '../../../../../../../common/const.dart';
@@ -110,7 +112,7 @@ class DictionarySummaryView extends GetView<DictionarySummaryController> {
                             Text(
                               controller.dogResponse.value.description ?? controller.catResponse.value.description ?? '',
                               style: Get.textTheme.bodyLarge,
-                              maxLines: !controller.expanding.value ? 3 : 1000,
+                              maxLines: !controller.expanding.value ? 1 : 200,
                               overflow: !controller.expanding.value
                                   ? TextOverflow.ellipsis
                                   : TextOverflow.visible,
@@ -119,13 +121,13 @@ class DictionarySummaryView extends GetView<DictionarySummaryController> {
                             _divider,
                             !controller.expanding.value
                                 ? Text(
-                                    'Show more',
+                                    LocaleKeys.show_more.tr,
                                     style: Get.textTheme.button?.copyWith(
                                       color: subPrimaryColor,
                                     ),
                                   )
                                 : Text(
-                                    'Show less',
+                                    LocaleKeys.show_less.tr,
                                     style: Get.textTheme.button?.copyWith(
                                       color: subPrimaryColor,
                                     ),
@@ -143,12 +145,6 @@ class DictionarySummaryView extends GetView<DictionarySummaryController> {
                             label: 'Original',
                             info: controller.catResponse.value.origin ?? controller.dogResponse.value.origin ?? '',
                           ),
-                          // SizedBox(height: 16),
-                          // _info(
-                          //   image: 'images/ic_price.png',
-                          //   label: 'Price',
-                          //   info: '60.000 - 200.000 ￥',
-                          // ),
                           SizedBox(height: 16),
                           _info(
                             image: 'images/ic_age.png',
@@ -162,69 +158,10 @@ class DictionarySummaryView extends GetView<DictionarySummaryController> {
                     _container(
                       child: Column(
                         children: [
-                          _menu(title: 'Kích thước'),
-                          _divider,
-                          _menu(title: 'Tính cách'),
-                          _divider,
-                          _menu(title: 'Đặc điểm ngoại hình'),
-                          _divider,
-                          _menu(title: 'Độ phổ biến'),
-                          _divider,
-                          _menu(title: 'Sở thích'),
-                          _divider,
-                          _menu(title: 'Chế độ dinh dưỡng'),
-                          _divider,
-                          _menu(title: 'Điều kiện sống'),
-                        ],
-                      ),
-                    ),
-                    SizedBox(height: 16),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 40),
-                        child: Text(
-                          'Các loại bệnh',
-                          style: Get.textTheme.caption?.copyWith(
-                            color: Colors.black,
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: Get.width * 0.3 + 85 + 16,
-                      child: ListView(
-                        scrollDirection: Axis.horizontal,
-                        padding: EdgeInsets.only(
-                          bottom: 85,
-                          top: 16,
-                          right: 24,
-                          left: 24,
-                        ),
-                        children: [
-                          DiseaseItem(
-                            title: 'Bệnh viêm ruột',
-                            image:
-                                'https://biowish.vn/wp-content/uploads/2020/05/17DOGS-superJumbo-1024x683.jpg',
-                          ),
-                          SizedBox(width: 12),
-                          DiseaseItem(
-                            title: 'Bệnh ghẻ',
-                            image:
-                                'https://doctors24h.vn/uploads/news/06_2019/13/lam-the-nao-thu-cung-co-the-cai-thien-suc-khoe-cua-ban-doi-tac-cham-soc-ung-thu-tot-hon.jpg',
-                          ),
-                          SizedBox(width: 12),
-                          DiseaseItem(
-                            title: 'Bệnh xàm',
-                            image:
-                                'https://www.petcity.vn/media/news/2801_tam_cho_thu_cung_dung_cach.jpg',
-                          ),
-                          SizedBox(width: 12),
-                          DiseaseItem(
-                            title: 'Bệnh copy',
-                            image:
-                                'https://i2.wp.com/azpet.vn/wp-content/uploads/2020/07/chon-thuc-an-phu-hop-voi-chuot-tai-cac-cua-hang-thu-cung.jpg?fit=800%2C533&ssl=1',
-                          ),
+                          if(controller.catResponse.value.wikipediaUrl?.isNotEmpty == true)
+                            _menu(title: LocaleKeys.detail_information.tr, onTap: () {
+                            _launchUrl(controller.catResponse.value.wikipediaUrl ?? '');
+                          })
                         ],
                       ),
                     ),
@@ -284,4 +221,10 @@ class DictionarySummaryView extends GetView<DictionarySummaryController> {
         thickness: 1,
         height: 30,
       );
+
+  _launchUrl(String url) async {
+    if (!await launchUrl(Uri.parse(url))) {
+      throw Exception('Could not launch $url');
+    }
+  }
 }

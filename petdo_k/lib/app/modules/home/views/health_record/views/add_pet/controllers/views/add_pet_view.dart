@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:petdo_k/generated/locales.g.dart';
 
 import '../../../../../../../../common/const.dart';
 import '../../../../../../../../views/date_picker.dart';
@@ -88,13 +89,13 @@ class AddPetView extends GetView<AddPetController> {
                                     child: CupertinoSlidingSegmentedControl(
                                       children: {
                                         true: Text(
-                                          'Chó',
+                                          LocaleKeys.dog.tr,
                                           style: Get.textTheme.button?.copyWith(
                                             color: Colors.white,
                                           ),
                                         ),
                                         false: Text(
-                                          'Mèo',
+                                          LocaleKeys.cat.tr,
                                           style: Get.textTheme.button?.copyWith(
                                             color: Colors.white,
                                           ),
@@ -109,7 +110,7 @@ class AddPetView extends GetView<AddPetController> {
                                   ),
                                   SizedBox(height: 24),
                                   _buildTextFormField(
-                                      title: 'Tên thú cưng',
+                                      title: LocaleKeys.name.tr,
                                       onChange: (_) =>
                                           controller.petName.value = _),
                                   SizedBox(height: 24),
@@ -136,7 +137,7 @@ class AddPetView extends GetView<AddPetController> {
                                             focusColor: Colors.white,
                                             hint: Center(
                                               child: Text(
-                                                'Giới tính',
+                                                LocaleKeys.gender.tr,
                                                 style: Get.textTheme.bodyText2,
                                               ),
                                             ),
@@ -157,7 +158,7 @@ class AddPetView extends GetView<AddPetController> {
                                                     value: item,
                                                     child: Container(
                                                       child: Text(
-                                                        item ? 'Đực' : 'Cái',
+                                                        item ? LocaleKeys.male.tr : LocaleKeys.female.tr,
                                                         style: Get.textTheme
                                                             .headline6,
                                                       ),
@@ -171,7 +172,7 @@ class AddPetView extends GetView<AddPetController> {
                                                       DropdownMenuItem<bool>(
                                                     value: item,
                                                     child: Text(
-                                                      item ? 'Đực' : 'Cái',
+                                                      item ? LocaleKeys.male.tr : LocaleKeys.female.tr,
                                                       style: Get
                                                           .textTheme.headline6,
                                                     ),
@@ -190,14 +191,14 @@ class AddPetView extends GetView<AddPetController> {
                                   ),
                                   SizedBox(height: 24),
                                   _buildDatePicker(
-                                    'Ngày sinh',
+                                    LocaleKeys.birth.tr,
                                     controller.birthdayController,
                                   ),
                                   SizedBox(height: 24),
-                                  _buildTextFormField(title: 'Giống', onChange: (_) => controller.type.value = _),
+                                  _buildTextFormField(title: LocaleKeys.breed.tr, onChange: (_) => controller.type.value = _),
                                   SizedBox(height: 24),
                                   _buildTextFormField(
-                                      title: 'Cân nặng (kg)',
+                                      title: '${LocaleKeys.weight.tr} (kg)',
                                       textInputType:
                                           TextInputType.numberWithOptions(
                                               decimal: true),
@@ -212,7 +213,7 @@ class AddPetView extends GetView<AddPetController> {
                               ),
                               child: ElevatedButton(
                                 onPressed: controller.add,
-                                child: Text('Add'),
+                                child: Text(LocaleKeys.add),
                               ),
                             ),
                             SizedBox(height: 50),

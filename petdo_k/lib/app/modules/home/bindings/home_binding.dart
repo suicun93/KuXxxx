@@ -17,6 +17,7 @@ import '../views/health_record/views/health_record_detail/views/vaccine_add/cont
 import '../views/health_record/views/health_record_detail/views/vaccine_edit/controllers/vaccine_edit_controller.dart';
 import '../views/health_record/views/health_record_detail/views/vaccine_schedule/controllers/vaccine_schedule_controller.dart';
 import '../views/setting/controllers/setting_controller.dart';
+import '../views/setting/views/info/user_info_controller.dart';
 
 class HomeBinding extends Bindings {
   @override
@@ -77,6 +78,9 @@ class HomeBinding extends Bindings {
     /// Setting
     Get.lazyPut<SettingController>(
       () => SettingController(),
+    );
+    Get.lazyPut<UserInfoController>(
+          () => UserInfoController(),
     );
   }
 }

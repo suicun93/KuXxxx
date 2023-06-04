@@ -38,6 +38,56 @@ class LocaleKeys {
   static const phone_number_invalid = 'phone_number_invalid';
   static const email_invalid = 'email_invalid';
   static const go_to_login = 'go_to_login';
+  static const wrong_password = 'wrong_password';
+  static const dictionary = 'dictionary';
+  static const medical_book = 'medical_book';
+  static const setting = 'setting';
+  static const all = 'all';
+  static const dog = 'dog';
+  static const cat = 'cat';
+  static const detail_information = 'detail_information';
+  static const male = 'male';
+  static const female = 'female';
+  static const weight = 'weight';
+  static const breed = 'breed';
+  static const most_recent_vaccinated_time = 'most_recent_vaccinated_time';
+  static const most_recent_examined_time = 'most_recent_examined_time';
+  static const see_other = 'see_other';
+  static const add_schedule = 'add_schedule';
+  static const time = 'time';
+  static const vaccine_type = 'vaccine_type';
+  static const body_temp = 'body_temp';
+  static const revaccinate_date = 'revaccinate_date';
+  static const doctor = 'doctor';
+  static const location = 'location';
+  static const edit = 'edit';
+  static const delete = 'delete';
+  static const symptom = 'symptom';
+  static const illness = 'illness';
+  static const drug = 'drug';
+  static const reexamine_date = 'reexamine_date';
+  static const delete_pet = 'delete_pet';
+  static const account_info = 'account_info';
+  static const logout = 'logout';
+  static const add = 'add';
+  static const number = 'number';
+  static const gender = 'gender';
+  static const birth = 'birth';
+  static const do_you_want_to_delete = 'do_you_want_to_delete';
+  static const decline_delete = 'decline_delete';
+  static const cancel = 'cancel';
+  static const history = 'history';
+  static const select = 'select';
+  static const exit = 'exit';
+  static const enter = 'enter';
+  static const error = 'error';
+  static const show_more = 'show_more';
+  static const show_less = 'show_less';
+  static const no_info = 'no_info';
+  static const wrong_date_format = 'wrong_date_format';
+  static const date_too_far = 'date_too_far';
+  static const do_you_want_to_delete_schedule =
+      'do_you_want_to_delete_schedule';
   static const welcome_welcome_to_petdo_k = 'welcome_welcome_to_petdo_k';
   static const welcome_login_without_account = 'welcome_login_without_account';
   static const login_where_are_you_from = 'login_where_are_you_from';
@@ -77,7 +127,7 @@ class Locales {
     'enter_your_phone': 'Enter your phone number',
     'enter_your_mail': 'Enter your email address',
     'phone': 'Phone',
-    'phone_number': 'phone number',
+    'phone_number': 'Phone number',
     'email': 'Email',
     'name': 'Name',
     'address': 'Address',
@@ -95,6 +145,55 @@ class Locales {
     'phone_number_invalid': 'Phone Number Invalid',
     'email_invalid': 'Email Invalid',
     'go_to_login': 'Go to Login',
+    'wrong_password': 'Wrong password',
+    'dictionary': 'Dictionary',
+    'medical_book': 'Medical book',
+    'setting': 'Setting',
+    'all': 'All',
+    'dog': 'Dog',
+    'cat': 'Cat',
+    'detail_information': 'Detail information',
+    'male': 'Male',
+    'female': 'Female',
+    'weight': 'Weight',
+    'breed': 'Breed',
+    'most_recent_vaccinated_time': 'Most recent vaccinated time',
+    'most_recent_examined_time': 'Most recent examined time',
+    'see_other': 'See other',
+    'add_schedule': 'Add Schedule',
+    'time': 'Time',
+    'vaccine_type': 'Vaccine Type',
+    'body_temp': 'Body Temperature',
+    'revaccinate_date': 'Re-vaccinate date',
+    'doctor': 'Doctor',
+    'location': 'Location',
+    'edit': 'Edit',
+    'delete': 'Delete',
+    'symptom': 'Symptom',
+    'illness': 'Illness',
+    'drug': 'Drug',
+    'reexamine_date': 'Re-examine date',
+    'delete_pet': 'Delete pet',
+    'account_info': 'Account Info',
+    'logout': 'Logout',
+    'add': 'Add',
+    'number': 'Number',
+    'gender': 'Gender',
+    'birth': 'Birth',
+    'do_you_want_to_delete': 'Do you want to delete',
+    'decline_delete': 'Decline delete',
+    'cancel': 'Cancel',
+    'history': 'History',
+    'select': 'Select',
+    'exit': 'Exit',
+    'enter': 'Enter',
+    'error': 'error',
+    'show_more': 'Show more',
+    'show_less': 'Show less',
+    'no_info': 'No information',
+    'wrong_date_format': 'Wrong date format',
+    'date_too_far': 'Date too far',
+    'do_you_want_to_delete_schedule': 'Do you want to delete schedule ?',
     'welcome_welcome_to_petdo_k': 'Welcome to \nPetdoK',
     'welcome_login_without_account': 'Login as guest',
     'login_where_are_you_from': 'Where are you from',
@@ -112,7 +211,7 @@ class Locales {
     'forgot_password_success': 'Create new password\nsuccessfully',
     'forgot_password_title_new': 'New Password',
     'forgot_password_enter_new_password': 'Enter new password',
-    'forgot_password_enter_email_phone': 'Enter email/phone',
+    'forgot_password_enter_email_phone': 'Enter Email or Phone',
     'forgot_password_email_phone': 'Email/Phone',
     'forgot_password_enter_email_phone_registered':
         'Enter registered Email or Phone',
@@ -147,6 +246,55 @@ class Locales {
     'phone_number_invalid': 'Số điện thoại không hợp lệ',
     'email_invalid': 'Email không hợp lệ',
     'go_to_login': 'Đi tới đăng nhập',
+    'wrong_password': 'Sai mật khẩu',
+    'dictionary': 'Từ điển',
+    'medical_book': 'Sổ y bạ',
+    'setting': 'Cài đặt',
+    'all': 'Tất cả',
+    'dog': 'Chó',
+    'cat': 'Mèo',
+    'detail_information': 'Thông tin chi tiết',
+    'male': 'Đực',
+    'female': 'Cái',
+    'weight': 'Cân nặng',
+    'breed': 'Giống',
+    'most_recent_vaccinated_time': 'Lịch tiêm vaccine gần nhất',
+    'most_recent_examined_time': 'Lịch khám gần nhất',
+    'see_other': 'Xem thêm',
+    'add_schedule': 'Thêm lịch',
+    'time': 'Thời gian',
+    'vaccine_type': 'Loại vaccine',
+    'body_temp': 'Nhiệt độ cơ thể',
+    'revaccinate_date': 'Ngày tái tiêm',
+    'doctor': 'Bác sỹ',
+    'location': 'Địa chỉ',
+    'edit': 'Chỉnh sửa',
+    'delete': 'Xóa',
+    'symptom': 'Triệu chứng',
+    'illness': 'Chuẩn bệnh',
+    'drug': 'Thuốc sử dụng',
+    'reexamine_date': 'Ngày tái khám',
+    'delete_pet': 'Xóa thú cưng',
+    'account_info': 'Thông tin tài khoản',
+    'logout': 'Đăng xuất',
+    'add': 'Thêm',
+    'do_you_want_to_delete': 'Bạn có muốn xóa',
+    'decline_delete': 'Không xóa',
+    'cancel': 'Hủy',
+    'history': 'History',
+    'number': 'Số',
+    'gender': 'Giới tính',
+    'birth': 'Ngày sinh',
+    'select': 'Chọn',
+    'exit': 'Thoát',
+    'enter': 'Nhập',
+    'show_more': 'Mở rộng',
+    'show_less': 'Thu gọn',
+    'error': 'Có lỗi xảy ra',
+    'no_info': 'Không có thông tin',
+    'wrong_date_format': 'Sai định dạng ngày',
+    'date_too_far': 'Ngày chọn quá xa',
+    'do_you_want_to_delete_schedule': 'Bạn có muốn xóa lịch này không ?',
     'welcome_welcome_to_petdo_k': 'Chào mừng đến với \nPetdoK',
     'welcome_login_without_account': 'Không cần tài khoản',
     'login_where_are_you_from': 'Bạn đến từ đâu',

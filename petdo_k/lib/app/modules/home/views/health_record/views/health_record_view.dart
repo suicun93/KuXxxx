@@ -71,7 +71,7 @@ class HealthRecordView extends GetView<HealthRecordController> {
                           children: [
                             SizedBox(width: 84),
                             Text(
-                              'Sổ y bạ',
+                              LocaleKeys.medical_book.tr,
                               style: Get.textTheme.subtitle2,
                             ),
                             GestureDetector(
@@ -91,7 +91,7 @@ class HealthRecordView extends GetView<HealthRecordController> {
                                     ),
                                     SizedBox(width: 9),
                                     Text(
-                                      'Add',
+                                      LocaleKeys.add.tr,
                                       style: Get.textTheme.labelLarge?.copyWith(
                                         color: subPrimaryColor,
                                       ),
@@ -117,7 +117,7 @@ class HealthRecordView extends GetView<HealthRecordController> {
                                         itemBuilder: (_, index) => _pet(
                                           image: controller.pets[index].imageUrl,
                                           name: controller.pets[index].name,
-                                          gender: controller.pets[index].isMale ? 'Đực' : 'Cái',
+                                          gender: controller.pets[index].isMale ? LocaleKeys.male.tr : LocaleKeys.female.tr,
                                           age: '${index + 1} tháng tuổi',
                                           onTap: () => controller.toDetail(pet: controller.pets[index]),
                                         ),
@@ -203,7 +203,7 @@ class HealthRecordView extends GetView<HealthRecordController> {
                           SizedBox(
                             width: double.infinity,
                             child: Text(
-                              '$gender - $age',
+                              gender,
                               style: Get.textTheme.bodyText2,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,

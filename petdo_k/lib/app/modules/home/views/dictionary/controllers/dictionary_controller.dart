@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:petdo_k/app/model/animal.dart';
 import 'package:petdo_k/app/model/cat_response.dart';
 import 'package:petdo_k/app/model/dog_response.dart';
+import 'package:petdo_k/generated/locales.g.dart';
 
 import '../../../../../views/dropdown_list.dart';
 import '../../../controllers/home_controller.dart';
@@ -11,9 +12,9 @@ class DictionaryController extends GetxController {
   final provider = Get.find<DictionarySummaryProvider>();
 
   List<DropboxItem> get animalType => [
-        DropboxItem('a', 'Tất cả'),
-        DropboxItem('c', 'Chó'),
-        DropboxItem('m', 'Mèo'),
+        DropboxItem('a', LocaleKeys.all.tr),
+        DropboxItem('c', LocaleKeys.dog.tr),
+        DropboxItem('m', LocaleKeys.cat.tr),
       ];
   final response = <AnimalResponse>[].obs;
 

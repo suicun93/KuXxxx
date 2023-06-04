@@ -1,6 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:petdo_k/generated/locales.g.dart';
 
 import '../../../../../../../../../common/const.dart';
 import '../../../../../../../../../views/date_picker.dart';
@@ -42,7 +42,7 @@ class ExaminationAddView extends GetView<ExaminationAddController> {
                       Expanded(
                         child: Center(
                           child: Text(
-                            'Thêm lịch khám bệnh',
+                            LocaleKeys.add_schedule.tr,
                             style: Get.textTheme.subtitle2,
                           ),
                         ),
@@ -66,36 +66,59 @@ class ExaminationAddView extends GetView<ExaminationAddController> {
                                 children: [
                                   SizedBox(height: 10),
                                   _buildDatePicker(
-                                    'Ngày khám',
+                                    LocaleKeys.time.tr,
                                     controller.vaccineDateController,
                                   ),
                                   SizedBox(height: 24),
-                                  _buildTextFormField(title: 'Thân nhiệt'),
+                                  _buildTextFormField(
+                                      title: LocaleKeys.body_temp.tr,
+                                      onChange: ((_) =>
+                                          controller.temp.value = _),
+                                      textInputType: TextInputType.number),
                                   SizedBox(height: 24),
-                                  _buildTextFormField(title: 'Cân nặng'),
-                                   SizedBox(height: 24),
-                                  _buildTextFormField(title: 'Các triệu chứng'),
-                                   SizedBox(height: 24),
-                                  _buildTextFormField(title: 'Chẩn đoán bệnh'),
-                                   SizedBox(height: 24),
-                                  _buildTextFormField(title: 'Các loại thuốc sử dụng'),
+                                  _buildTextFormField(
+                                      title: LocaleKeys.weight.tr,
+                                      onChange: ((_) =>
+                                          controller.weight.value = _),
+                                      textInputType: TextInputType.number),
                                   SizedBox(height: 24),
-                                  _buildTextFormField(title: 'Loại bệnh'),
+                                  _buildTextFormField(
+                                      title: LocaleKeys.symptom.tr,
+                                      onChange: ((_) =>
+                                          controller.symptom.value = _)),
+                                  SizedBox(height: 24),
+                                  _buildTextFormField(
+                                      title: LocaleKeys.illness.tr,
+                                      onChange: ((_) =>
+                                          controller.illness.value = _)),
+                                  SizedBox(height: 24),
+                                  _buildTextFormField(
+                                      title: LocaleKeys.drug.tr,
+                                      onChange: ((_) =>
+                                          controller.drug.value = _)),
+                                  SizedBox(height: 24),
+                                  _buildTextFormField(
+                                      title: LocaleKeys.phone_number.tr,
+                                      onChange: ((_) =>
+                                          controller.phone.value = _),
+                                      textInputType: TextInputType.phone),
                                   SizedBox(height: 24),
                                   _buildDatePicker(
-                                    'Ngày hẹn tái tiêm',
+                                    LocaleKeys.reexamine_date.tr,
                                     controller.revaccineDateController,
                                   ),
                                   SizedBox(height: 24),
                                   _buildTextFormField(
-                                      title: 'Bác sỹ tiếp nhận'),
+                                      title: LocaleKeys.doctor.tr,
+                                      onChange: ((_) =>
+                                          controller.doctor.value = _)),
                                 ],
                               ),
                             ),
                             SizedBox(height: 24),
                             ElevatedButton(
                               onPressed: controller.submit,
-                              child: Text('Thêm'),
+                              child: Text(LocaleKeys.add.tr),
                             ),
                           ],
                         )
@@ -117,12 +140,13 @@ class ExaminationAddView extends GetView<ExaminationAddController> {
 
   TextFormField _buildTextFormField({
     required String title,
+    TextInputType? textInputType,
     ValueChanged<String>? onChange,
   }) =>
       TextFormField(
         style: Get.textTheme.headline6,
         cursorColor: subPrimaryColor,
-        keyboardType: TextInputType.streetAddress,
+        keyboardType: textInputType ?? TextInputType.streetAddress,
         onChanged: onChange,
         decoration: InputDecoration(
           labelText: title,

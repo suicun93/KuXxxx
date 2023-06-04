@@ -3,6 +3,8 @@ import 'dart:collection';
 import 'package:get/get.dart';
 import 'package:petdo_k/app/model/cat_response.dart';
 import 'package:petdo_k/app/model/dog_response.dart';
+import 'package:petdo_k/app/modules/home/views/setting/views/info/user_info_controller.dart';
+import 'package:petdo_k/app/modules/home/views/setting/views/info/user_info_view.dart';
 
 import '../views/dictionary/controllers/dictionary_controller.dart';
 import '../views/dictionary/views/dictionary_summary/controllers/dictionary_summary_controller.dart';
@@ -71,6 +73,7 @@ class HomeController extends GetxController {
 
     /// Setting
     MainView.setting: SettingView(),
+    MainView.userInfoView: UserInfoView(),
   };
 
   GetView? get view => _mapViews[_currentView.value];
@@ -138,8 +141,14 @@ class HomeController extends GetxController {
         case MainView.examinationEdit:
           Get.reload<ExaminationEditController>();
           break;
+        case MainView.userInfoView:
+          Get.reload<UserInfoController>();
+          break;
 
         /// Setting
+        case MainView.setting:
+          Get.reload<SettingController>();
+          break;
         default:
           break;
       }
@@ -149,28 +158,10 @@ class HomeController extends GetxController {
 
   void changeTab(TabType tab) {
     // Người dùng ấn lại vào tab đang chọn
-    if (tab == currentTab) {
-      // Người dùng ấn lại vào tab đang chọn
-      // và trang đầu tiên đang được hiển thị
-      switch (_currentView.value) {
-        case MainView.dictionary:
-          Get.find<DictionaryController>().onReady();
-          break;
-        case MainView.healthRecord:
-          Get.find<HealthRecordController>().onReady();
-          break;
-        case MainView.setting:
-          Get.find<SettingController>().onReady();
-          break;
-        default:
-          break;
-      }
-
-      // Người dùng ấn lại vào tab đang chọn -> cho lên trang đầu tiên
-      _mapStackView[tab] = ListQueue.from([_mapStackView[tab]!.first]);
+    if (tab != currentTab) {
+      // Chuyển sang view của tab được chọn
+      changeMainView(_mapStackView[tab]!.last);
     }
-    // Chuyển sang view của tab được chọn
-    changeMainView(_mapStackView[tab]!.last);
   }
 
   MainView back() {
@@ -207,6 +198,7 @@ enum MainView {
   examinationSchedule,
   examinationAdd,
   examinationEdit,
+  userInfoView,
 
   /// Setting
   setting,
@@ -239,6 +231,7 @@ extension Tab on MainView {
 
       ///
       case MainView.setting:
+      case MainView.userInfoView:
         return TabType.setting;
     }
   }

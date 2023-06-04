@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:petdo_k/app/model/pet_vet.dart';
+import 'package:petdo_k/app/modules/home/views/health_record/controllers/health_record_controller.dart';
+import 'package:petdo_k/generated/locales.g.dart';
+import 'package:petdo_k/utils.dart';
 
 import '../../../../../../../../../common/const.dart';
 import '../../../../../../../controllers/home_controller.dart';
@@ -31,22 +35,23 @@ class ExaminationEditController extends GetxController {
     super.onReady();
     ready.value = false;
     Future.delayed(Duration(milliseconds: 1500), () => ready.value = true);
+    final vetData =
+        Get.find<ExaminationScheduleController>().selected.values.first;
     title.value =
-        'Lần ${Get.find<ExaminationScheduleController>().selected.value}';
+    '${LocaleKeys.number.tr} ${Get.find<ExaminationScheduleController>().vetCount.value}';
     // Date time
-    final example = formatterFullDate(DateTime.now())!;
-    vaccineDateController.text = example;
-    revaccineDateController.text = example;
+    vaccineDateController.text = vetData.date ?? '';
+    revaccineDateController.text = vetData.returnDate ?? '';
     date.value = vaccineDateController.text;
     // Thong tin khac
-    thanNhietController.text = '38°C';
-    canNangController.text = '4.9 kg';
-    trieuChungController.text = 'Nổi mẩn';
-    chanDoanBenhController.text = 'Ghẻ';
-    cacLoaiThuocController.text = 'Thuốc trị ghẻ';
-    doctorPhoneController.text = '038737373';
-    bacSyController.text = 'Đức Hoàng';
-    coSoController.text = 'Thu Cúc, Hà Nội';
+    thanNhietController.text = '${vetData.bodyTemp}°C';
+    canNangController.text = '${vetData.weight} kg';
+    trieuChungController.text = vetData.symptom ?? '';
+    chanDoanBenhController.text = vetData.illness ?? '';
+    cacLoaiThuocController.text = vetData.drug ?? '';
+    doctorPhoneController.text = vetData.phone ?? '';
+    bacSyController.text = vetData.doctor ?? '';
+    coSoController.text = vetData.location ?? '';
     ever<bool>(editMode, (_) {
       if (_) {
         ready.value = false;
@@ -63,10 +68,52 @@ class ExaminationEditController extends GetxController {
 
   back() => HomeController.instance.back();
 
-  callAPI() async {
+  callAPIDelete() async {
     ready.value = false;
-    Future.delayed(Duration(milliseconds: 1500), () {
+    dbHealth
+        .doc(Get.find<HealthRecordController>().selectedId.value)
+        .collection(vetCollection)
+        .doc(Get.find<ExaminationScheduleController>().selected.keys.first)
+        .delete()
+        .then((_) {
       showSnackBar('Successfully');
+      ready.value = true;
+      if (HomeController.instance.back() != MainView.examinationSchedule) {
+        HomeController.instance.changeMainView(MainView.examinationSchedule);
+      }
+      Get.find<ExaminationScheduleController>().onReady();
+    });
+  }
+
+  callAPIEdit() async {
+    ready.value = false;
+    dbHealth
+        .doc(Get.find<HealthRecordController>().selectedId.value)
+        .collection(vetCollection)
+        .doc(Get.find<ExaminationScheduleController>().selected.keys.first)
+        .update(PetVet(
+        date: vaccineDateController.text,
+        returnDate: revaccineDateController.text,
+        location: coSoController.text,
+        doctor: bacSyController.text,
+        symptom: trieuChungController.text,
+        phone: doctorPhoneController.text,
+        drug: cacLoaiThuocController.text,
+        illness: chanDoanBenhController.text,
+        weight:
+        canNangController.text.replaceAll(RegExp(r'[^0-9]'), ''),
+        bodyTemp:
+        thanNhietController.text.replaceAll(RegExp(r'[^0-9]'), ''))
+        .toJson())
+        .then((_) {
+      showSnackBar('Successfully');
+      ready.value = true;
+      if (HomeController.instance.back() != MainView.examinationSchedule) {
+        HomeController.instance.changeMainView(MainView.examinationSchedule);
+      }
+      Get.find<ExaminationScheduleController>().onReady();
+    }).onError((error, stackTrace) {
+      showSnackBar('Failed');
       ready.value = true;
       if (HomeController.instance.back() != MainView.examinationSchedule) {
         HomeController.instance.changeMainView(MainView.examinationSchedule);
@@ -78,9 +125,9 @@ class ExaminationEditController extends GetxController {
   VoidCallback deleteButton(Function(VoidCallback) showDialog) {
     return editMode.value
         ? () => editMode.value = false
-        : () => showDialog(() => callAPI());
+        : () => showDialog(() => callAPIDelete());
   }
 
   get editButton =>
-      editMode.value ? () => callAPI() : () => editMode.value = true;
+      editMode.value ? () => callAPIEdit() : () => editMode.value = true;
 }

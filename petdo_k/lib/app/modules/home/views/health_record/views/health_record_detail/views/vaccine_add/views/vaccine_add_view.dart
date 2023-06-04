@@ -1,6 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:petdo_k/generated/locales.g.dart';
 
 import '../../../../../../../../../common/const.dart';
 import '../../../../../../../../../views/date_picker.dart';
@@ -42,7 +42,7 @@ class VaccineAddView extends GetView<VaccineAddController> {
                       Expanded(
                         child: Center(
                           child: Text(
-                            'Thêm lịch tiêm Vaccine',
+                            LocaleKeys.add_schedule.tr,
                             style: Get.textTheme.subtitle2,
                           ),
                         ),
@@ -66,30 +66,52 @@ class VaccineAddView extends GetView<VaccineAddController> {
                                 children: [
                                   SizedBox(height: 10),
                                   _buildDatePicker(
-                                    'Ngày tiêm',
+                                    LocaleKeys.time.tr,
                                     controller.vaccineDateController,
                                   ),
                                   SizedBox(height: 24),
-                                  _buildTextFormField(title: 'Thân nhiệt'),
+                                  _buildTextFormField(
+                                      title: LocaleKeys.body_temp.tr,
+                                      textInputType:
+                                          TextInputType.numberWithOptions(
+                                              decimal: true),
+                                      onChange: (_) =>
+                                          controller.temp.value = _),
                                   SizedBox(height: 24),
-                                  _buildTextFormField(title: 'Cân nặng'),
+                                  _buildTextFormField(
+                                      title: LocaleKeys.weight.tr,
+                                      textInputType:
+                                          TextInputType.numberWithOptions(
+                                              decimal: true),
+                                      onChange: (_) =>
+                                          controller.weight.value = _),
                                   SizedBox(height: 24),
-                                  _buildTextFormField(title: 'Loại vaccine'),
+                                  _buildTextFormField(
+                                      title: LocaleKeys.vaccine_type.tr,
+                                      onChange: (_) =>
+                                          controller.vaccineType.value = _),
                                   SizedBox(height: 24),
                                   _buildDatePicker(
-                                    'Ngày hẹn tái tiêm',
+                                    LocaleKeys.revaccinate_date.tr,
                                     controller.revaccineDateController,
                                   ),
                                   SizedBox(height: 24),
                                   _buildTextFormField(
-                                      title: 'Bác sỹ tiếp nhận'),
+                                      title: LocaleKeys.doctor.tr,
+                                      onChange: (_) =>
+                                          controller.doctor.value = _),
+                                  SizedBox(height: 24),
+                                  _buildTextFormField(
+                                      title: LocaleKeys.location.tr,
+                                      onChange: (_) =>
+                                      controller.location.value = _),
                                 ],
                               ),
                             ),
                             SizedBox(height: 24),
                             ElevatedButton(
                               onPressed: controller.submit,
-                              child: Text('Thêm'),
+                              child: Text(LocaleKeys.add.tr),
                             ),
                           ],
                         )
@@ -112,11 +134,12 @@ class VaccineAddView extends GetView<VaccineAddController> {
   TextFormField _buildTextFormField({
     required String title,
     ValueChanged<String>? onChange,
+    TextInputType? textInputType,
   }) =>
       TextFormField(
         style: Get.textTheme.headline6,
         cursorColor: subPrimaryColor,
-        keyboardType: TextInputType.streetAddress,
+        keyboardType: textInputType ?? TextInputType.streetAddress,
         onChanged: onChange,
         decoration: InputDecoration(
           labelText: title,

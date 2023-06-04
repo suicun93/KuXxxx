@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:petdo_k/generated/locales.g.dart';
 
 import '../../../../../../../../../common/const.dart';
 import '../../../../../../../../../views/date_picker.dart';
@@ -67,14 +68,14 @@ class VaccineEditView extends GetView<VaccineEditController> {
                                 children: [
                                   SizedBox(height: 10),
                                   _buildDatePicker(
-                                    'Ngày tiêm',
+                                    LocaleKeys.time.tr,
                                     controller.vaccineDateController,
                                   ),
                                   controller.editMode.value
                                       ? SizedBox(height: 24)
                                       : _divider,
                                   _buildTextFormField(
-                                    title: 'Thân nhiệt',
+                                    title: LocaleKeys.body_temp.tr,
                                     editController:
                                         controller.thanNhietController,
                                   ),
@@ -82,7 +83,7 @@ class VaccineEditView extends GetView<VaccineEditController> {
                                       ? SizedBox(height: 24)
                                       : _divider,
                                   _buildTextFormField(
-                                    title: 'Cân nặng',
+                                    title: LocaleKeys.weight.tr,
                                     editController:
                                         controller.canNangController,
                                   ),
@@ -90,7 +91,7 @@ class VaccineEditView extends GetView<VaccineEditController> {
                                       ? SizedBox(height: 24)
                                       : _divider,
                                   _buildTextFormField(
-                                    title: 'Loại vaccine',
+                                    title: LocaleKeys.vaccine_type.tr,
                                     editController:
                                         controller.loaiVaccineController,
                                   ),
@@ -98,21 +99,21 @@ class VaccineEditView extends GetView<VaccineEditController> {
                                       ? SizedBox(height: 24)
                                       : _divider,
                                   _buildDatePicker(
-                                    'Ngày hẹn tái tiêm',
+                                    LocaleKeys.revaccinate_date.tr,
                                     controller.revaccineDateController,
                                   ),
                                   controller.editMode.value
                                       ? SizedBox(height: 24)
                                       : _divider,
                                   _buildTextFormField(
-                                    title: 'Bác sỹ tiếp nhận',
+                                    title: LocaleKeys.doctor.tr,
                                     editController: controller.bacSyController,
                                   ),
                                   controller.editMode.value
                                       ? SizedBox(height: 24)
                                       : _divider,
                                   _buildTextFormField(
-                                    title: 'Cơ sở tiêm',
+                                    title: LocaleKeys.location.tr,
                                     editController: controller.coSoController,
                                   ),
                                   SizedBox(height: 10),
@@ -128,7 +129,7 @@ class VaccineEditView extends GetView<VaccineEditController> {
                                     onPressed: controller
                                         .deleteButton((_) => _showDialog(_)),
                                     child: Text(
-                                      controller.editMode.value ? 'Hủy' : 'Xóa',
+                                      controller.editMode.value ? LocaleKeys.cancel.tr : LocaleKeys.delete.tr,
                                     ),
                                     style: controller.editMode.value
                                         ? Get.theme.textButtonTheme.style
@@ -141,8 +142,8 @@ class VaccineEditView extends GetView<VaccineEditController> {
                                     onPressed: controller.editButton,
                                     child: Text(
                                       controller.editMode.value
-                                          ? 'Hoàn thành'
-                                          : 'Chỉnh sửa',
+                                          ? LocaleKeys.finish_btn.tr
+                                          : LocaleKeys.edit.tr,
                                     ),
                                   ),
                                 ),
@@ -260,8 +261,8 @@ class VaccineEditView extends GetView<VaccineEditController> {
               child: Column(
                 children: [
                   Text(
-                    'Bạn muốn xóa lịch tiêm?',
-                    style: Get.textTheme.subtitle2?.copyWith(
+                    LocaleKeys.do_you_want_to_delete_schedule.tr,
+                    style: Get.textTheme.titleSmall?.copyWith(
                       fontSize: 20,
                     ),
                   ),
@@ -271,7 +272,7 @@ class VaccineEditView extends GetView<VaccineEditController> {
                       Expanded(
                         child: TextButton(
                           onPressed: () => Get.back(),
-                          child: Text('Không xóa'),
+                          child: Text(LocaleKeys.cancel.tr),
                         ),
                       ),
                       SizedBox(width: 16),
@@ -281,7 +282,7 @@ class VaccineEditView extends GetView<VaccineEditController> {
                             Get.back();
                             onPress();
                           },
-                          child: Text('Xóa'),
+                          child: Text(LocaleKeys.delete.tr),
                           style: Get.theme.elevatedButtonTheme.style?.copyWith(
                             backgroundColor: MaterialStateProperty.all(red),
                           ),

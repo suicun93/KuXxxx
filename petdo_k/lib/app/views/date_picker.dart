@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:petdo_k/generated/locales.g.dart';
 
 import '../common/const.dart';
 
@@ -26,14 +27,14 @@ class DatePicker extends StatelessWidget {
                 await showDatePicker(
                   context: Get.context!,
                   initialDate: now,
-                  helpText: 'Chọn $title'.capitalizeFirst,
+                  helpText: '${LocaleKeys.select.tr} $title'.capitalizeFirst,
                   // Can be used as title
-                  cancelText: 'Thoát',
-                  confirmText: 'Chọn',
+                  cancelText: LocaleKeys.exit.tr,
+                  confirmText: LocaleKeys.select.tr,
                   fieldLabelText: title,
-                  fieldHintText: 'Nhập $title'.capitalizeFirst,
-                  errorFormatText: 'Không đúng định dạng ngày',
-                  errorInvalidText: 'Ngày bạn chọn quá xa',
+                  fieldHintText: '${LocaleKeys.enter.tr} $title'.capitalizeFirst,
+                  errorFormatText: LocaleKeys.wrong_date_format.tr,
+                  errorInvalidText: LocaleKeys.date_too_far.tr,
                   firstDate: now.subtract(Duration(days: 365)),
                   lastDate: now.add(Duration(days: 365)),
                   builder: (context, child) => Theme(

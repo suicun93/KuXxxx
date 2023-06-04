@@ -46,8 +46,8 @@ class HealthRecordDetailView extends GetView<HealthRecordDetailController> {
                                       gender: controller
                                                   .selectedPet.value?.isMale ==
                                               true
-                                          ? 'Đực'
-                                          : 'Cái',
+                                          ? LocaleKeys.male.tr
+                                          : LocaleKeys.female.tr,
                                     ),
                                     SizedBox(width: 16),
                                     _petInfo2(
@@ -64,27 +64,35 @@ class HealthRecordDetailView extends GetView<HealthRecordDetailController> {
 
                               /// Vaccine
                               _scheduleBlock(
-                                header: 'Lịch tiêm Vaccine gần nhất',
-                                title1: 'Ngày tiêm',
-                                content1: '01/06/2021',
-                                title2: 'Loại vaccine',
-                                content2: 'Astra Zeneca',
-                                buttonShow: 'Xem lịch khác',
+                                header: LocaleKeys.most_recent_vaccinated_time.tr,
+                                title1: LocaleKeys.time.tr,
+                                content1: controller.vaccineMap.isNotEmpty
+                                    ? controller.vaccineMap.first.values.first
+                                            .date ??
+                                        ''
+                                    : '',
+                                title2: LocaleKeys.vaccine_type.tr,
+                                content2: controller.vaccineMap.isNotEmpty
+                                    ? controller.vaccineMap.first.values.first
+                                            .vaccineType ??
+                                        ''
+                                    : '',
+                                buttonShow: LocaleKeys.see_other.tr,
                                 onShow: controller.showVaccine,
-                                buttonAdd: 'Thêm lịch tiêm',
+                                buttonAdd: LocaleKeys.add_schedule.tr,
                                 onAdd: controller.addVaccine,
                               ),
 
                               /// Khám
                               _scheduleBlock(
-                                header: 'Lịch khám gần nhất',
-                                title1: 'Ngày khám',
-                                content1: '01/06/2021',
-                                title2: 'Cở sở khám',
-                                content2: 'Thu Cúc',
-                                buttonShow: 'Xem lịch khác',
+                                header: LocaleKeys.most_recent_examined_time.tr,
+                                title1: LocaleKeys.time.tr,
+                                content1: controller.vetMap.isNotEmpty ? controller.vetMap.first.values.first.date ?? '' : '',
+                                title2: LocaleKeys.location.tr,
+                                content2: controller.vetMap.isNotEmpty ? controller.vetMap.first.values.first.location ?? '' : '',
+                                buttonShow: LocaleKeys.see_other.tr,
                                 onShow: controller.showExamination,
-                                buttonAdd: 'Thêm lịch khám',
+                                buttonAdd: LocaleKeys.add_schedule.tr,
                                 onAdd: controller.addExamination,
                               ),
 
@@ -93,7 +101,7 @@ class HealthRecordDetailView extends GetView<HealthRecordDetailController> {
                                     const EdgeInsets.fromLTRB(40, 16, 40, 24),
                                 child: ElevatedButton(
                                   onPressed: () => _showDialog(
-                                    'Bạn muốn xóa ${controller.selectedPet.value?.name}?',
+                                    '${LocaleKeys.do_you_want_to_delete.tr} ${controller.selectedPet.value?.name}?',
                                     () async {
                                       context.loaderOverlay.show();
                                       await controller.removePet();
@@ -101,7 +109,7 @@ class HealthRecordDetailView extends GetView<HealthRecordDetailController> {
                                       HomeController.instance.back();
                                     },
                                   ),
-                                  child: Text('Delete Pet'),
+                                  child: Text(LocaleKeys.delete_pet.tr),
                                   style: _redElevatedButtonTheme,
                                 ),
                               ),
@@ -194,7 +202,7 @@ class HealthRecordDetailView extends GetView<HealthRecordDetailController> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Cân nặng:',
+                  '${LocaleKeys.weight.tr}:',
                   style: Get.textTheme.bodyText2,
                   overflow: TextOverflow.ellipsis,
                   maxLines: 1,
@@ -212,20 +220,19 @@ class HealthRecordDetailView extends GetView<HealthRecordDetailController> {
                           maxLines: 1,
                         ),
                       ),
-                      Image.asset('images/ic_edit.png', width: 18, height: 18),
+                      // Image.asset('images/ic_edit.png', width: 18, height: 18),
                     ],
                   ),
                 ),
                 SizedBox(height: 2),
               ],
             ),
-            Spacer(),
             SizedBox(height: 6),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Giống:',
+                  '${LocaleKeys.breed.tr}:',
                   style: Get.textTheme.bodyText2,
                   overflow: TextOverflow.ellipsis,
                   maxLines: 1,
@@ -240,44 +247,7 @@ class HealthRecordDetailView extends GetView<HealthRecordDetailController> {
                 SizedBox(height: 2),
               ],
             ),
-            Spacer(),
             _divider,
-            GestureDetector(
-              onTap: () => showSnackBar(
-                LocaleKeys.not_supported_yet.tr,
-              ),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Text(
-                      'Đặc điểm',
-                      style: Get.textTheme.headline4,
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
-                    ),
-                  ),
-                  Icon(Icons.keyboard_arrow_right),
-                ],
-              ),
-            ),
-            _divider,
-            GestureDetector(
-              onTap: () => showSnackBar(LocaleKeys.not_supported_yet.tr),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Text(
-                      'Sở thích',
-                      style: Get.textTheme.headline4,
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
-                    ),
-                  ),
-                  Icon(Icons.keyboard_arrow_right),
-                ],
-              ),
-            ),
-            SizedBox(height: 2),
           ],
         ),
       ),
@@ -415,7 +385,7 @@ class HealthRecordDetailView extends GetView<HealthRecordDetailController> {
             ),
             Expanded(
               child: Center(
-                child: Text('Sổ y bạ', style: Get.textTheme.subtitle2),
+                child: Text(LocaleKeys.medical_book.tr, style: Get.textTheme.subtitle2),
               ),
             ),
             SizedBox(width: 60),
@@ -516,7 +486,7 @@ class HealthRecordDetailView extends GetView<HealthRecordDetailController> {
                       Expanded(
                         child: TextButton(
                           onPressed: () => Get.back(),
-                          child: Text('Không xóa'),
+                          child: Text(LocaleKeys.decline_delete.tr),
                         ),
                       ),
                       SizedBox(width: 16),
@@ -526,7 +496,7 @@ class HealthRecordDetailView extends GetView<HealthRecordDetailController> {
                             Get.back();
                             onPress();
                           },
-                          child: Text('Xóa'),
+                          child: Text(LocaleKeys.delete.tr),
                           style: Get.theme.elevatedButtonTheme.style?.copyWith(
                             backgroundColor: MaterialStateProperty.all(red),
                           ),

@@ -13,5 +13,4 @@ class WelcomeController extends GetxController {
 
   @override
   void onClose() {}
-
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:petdo_k/generated/locales.g.dart';
 
 import '../../../../../../../../../common/const.dart';
 import '../../../../../../../../../views/loading_view.dart';
@@ -38,8 +39,8 @@ class ExaminationScheduleView extends GetView<ExaminationScheduleController> {
                     Expanded(
                       child: Center(
                         child: Text(
-                          'Lịch sử khám bệnh',
-                          style: Get.textTheme.subtitle2,
+                          LocaleKeys.history.tr,
+                          style: Get.textTheme.titleSmall,
                         ),
                       ),
                     ),
@@ -55,7 +56,7 @@ class ExaminationScheduleView extends GetView<ExaminationScheduleController> {
                   ),
                   style: _elevatedButton,
                   child: Text(
-                    'Thêm lịch khám',
+                    LocaleKeys.add_schedule.tr,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                   ),
@@ -67,11 +68,12 @@ class ExaminationScheduleView extends GetView<ExaminationScheduleController> {
                         onRefresh: () async => controller.onReady(),
                         child: ListView.builder(
                           padding: EdgeInsets.only(top: 12, bottom: 50),
-                          itemCount: 5,
-                          itemBuilder: (_, id) => _vaccineBuilder(
-                            index: 5 - id,
+                          itemCount: controller.vetMap.length,
+                          itemBuilder: (_, index) => _vaccineBuilder(
+                            index: index,
                             onTap: () {
-                              controller.selected.value = 5 - id;
+                              controller.vetCount.value = controller.vetMap.length - index;
+                              controller.selected.value = controller.vetMap[index];
                               HomeController.instance.changeMainView(
                                 MainView.examinationEdit,
                               );
@@ -100,7 +102,7 @@ class ExaminationScheduleView extends GetView<ExaminationScheduleController> {
             Padding(
               padding: const EdgeInsets.only(left: 40),
               child: Text(
-                'Lần $index',
+                '${LocaleKeys.number.tr} ${controller.vetMap.length - index}',
                 style: Get.textTheme.caption?.copyWith(color: Colors.black),
               ),
             ),
@@ -114,12 +116,12 @@ class ExaminationScheduleView extends GetView<ExaminationScheduleController> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Ngày khám:',
+                            '${LocaleKeys.time.tr}:',
                             style: Get.textTheme.bodyText1,
                           ),
                           SizedBox(height: 12),
                           Text(
-                            'Cơ sở khám:',
+                            '${LocaleKeys.location.tr}:',
                             style: Get.textTheme.bodyText1,
                           ),
                         ],
@@ -130,14 +132,14 @@ class ExaminationScheduleView extends GetView<ExaminationScheduleController> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              '19/10/2020',
+                              controller.vetMap.isNotEmpty ? controller.vetMap[index].values.first.date ?? '' : '',
                               overflow: TextOverflow.ellipsis,
-                              style: Get.textTheme.headline6,
+                              style: Get.textTheme.titleLarge,
                             ),
                             SizedBox(height: 12),
                             Text(
-                              'Thu Cúc',
-                              style: Get.textTheme.headline6,
+                              controller.vetMap.isNotEmpty ? controller.vetMap[index].values.first.location ?? '' : '',
+                              style: Get.textTheme.titleLarge,
                               overflow: TextOverflow.ellipsis,
                             ),
                           ],
