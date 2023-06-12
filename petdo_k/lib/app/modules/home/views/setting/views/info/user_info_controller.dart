@@ -4,6 +4,8 @@ import 'package:petdo_k/app/common/const.dart';
 import 'package:petdo_k/app/common/preferences.dart';
 import 'package:petdo_k/utils.dart';
 
+import '../../../../controllers/home_controller.dart';
+
 class UserInfoController extends GetxController {
   final hidePassword = true.obs;
   final name = ''.obs;
@@ -66,4 +68,6 @@ class UserInfoController extends GetxController {
     await documentInfo.set(map);
     return true;
   }
+
+  back() => HomeController.instance.back();
 }

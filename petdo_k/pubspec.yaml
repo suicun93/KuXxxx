@@ -71,6 +71,8 @@ dependencies:
   fl_paging: ^2.2.0
   firebase_storage: ^11.2.2
 
+  flutter_flavorizr: any
+
 dev_dependencies:
   lints: 2.0.1
   flutter_test:
@@ -158,3 +160,45 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+# Configuration for Flavors
+flavorizr:
+  instructions:
+    - assets:download
+    - assets:extract
+
+    #    Android
+    - android:androidManifest
+    - android:buildGradle
+    - android:dummyAssets
+    - android:icons
+
+    #     iOS
+    - ios:xcconfig
+    - ios:buildTargets
+    - ios:schema
+    - ios:dummyAssets
+    - ios:icons
+    - ios:plist
+
+    #     Google
+    - google:firebase
+
+    #     Cleanup
+    - assets:clean
+
+    #     IDE
+    - ide:config
+  flavors:
+    prod:
+      app:
+        name: "KuXxxx"
+        icon: "assets/logo_prod.jpeg"
+      android:
+        applicationId: "com.ducht.petdok.petdok"
+        firebase:
+          config: "config/prod/google-services.json"
+      ios:
+        bundleId: "com.ducht.petdok.petdok"
+        firebase:
+          config: "config/prod/GoogleService-Info.plist"

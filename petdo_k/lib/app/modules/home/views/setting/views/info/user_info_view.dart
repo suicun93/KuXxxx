@@ -13,51 +13,54 @@ class UserInfoView extends GetView<UserInfoController> {
   Widget build(BuildContext context) {
     final oversize = Get.height < 716;
 
-    return GestureDetector(
-      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-      child: Column(
-        children: [
-          AppBar(
-            title: Text(LocaleKeys.account_info.tr),
-            titleTextStyle: TextStyle(fontSize: 20),
-            toolbarHeight: toolbarHeight,
-            leading: InkWell(
-              onTap: () => HomeController.instance.back(),
-              child: Icon(CupertinoIcons.arrow_left),
+    return WillPopScope(
+      onWillPop: () => controller.back(),
+      child: GestureDetector(
+        onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+        child: Column(
+          children: [
+            AppBar(
+              title: Text(LocaleKeys.account_info.tr),
+              titleTextStyle: TextStyle(fontSize: 20),
+              toolbarHeight: toolbarHeight,
+              leading: InkWell(
+                onTap: () => HomeController.instance.back(),
+                child: Icon(CupertinoIcons.arrow_left),
+              ),
+              leadingWidth: 60,
             ),
-            leadingWidth: 60,
-          ),
-          Expanded(
-            child: Obx(() => controller.ready.value ? Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(16),
-                  topRight: Radius.circular(16),
-                ),
-              ),
-              child: SingleChildScrollView(
-                // keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-                padding: EdgeInsets.only(left: 40, right: 40),
-                child: oversize
-                    ? main(oversize: oversize, context: context)
-                    : ConstrainedBox(
-                  constraints: BoxConstraints.tightFor(
-                    height: Get.height -
-                        Get.mediaQuery.viewPadding.top -
-                        // ((Platform.isIOS && Get.mediaQuery.viewPadding.bottom > 0)
-                        //     ? 0
-                        //     : Get.mediaQuery.viewPadding.bottom) -
-                        toolbarHeight +
-                        20,
+            Expanded(
+              child: Obx(() => controller.ready.value ? Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(16),
+                    topRight: Radius.circular(16),
                   ),
-                  child:
-                  main(oversize: oversize, context: context),
                 ),
-              ),
-            ) : LoadingWidget()),
-          )
-        ],
+                child: SingleChildScrollView(
+                  // keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+                  padding: EdgeInsets.only(left: 40, right: 40),
+                  child: oversize
+                      ? main(oversize: oversize, context: context)
+                      : ConstrainedBox(
+                    constraints: BoxConstraints.tightFor(
+                      height: Get.height -
+                          Get.mediaQuery.viewPadding.top -
+                          // ((Platform.isIOS && Get.mediaQuery.viewPadding.bottom > 0)
+                          //     ? 0
+                          //     : Get.mediaQuery.viewPadding.bottom) -
+                          toolbarHeight +
+                          20,
+                    ),
+                    child:
+                    main(oversize: oversize, context: context),
+                  ),
+                ),
+              ) : LoadingWidget()),
+            )
+          ],
+        ),
       ),
     );
   }

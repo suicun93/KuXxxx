@@ -10,9 +10,7 @@ import 'generated/locales.g.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Firebase.initializeApp();
   /// Run app
   runApp(
     GetMaterialApp(
