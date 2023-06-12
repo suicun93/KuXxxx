@@ -195,10 +195,10 @@ flavorizr:
         name: "KuXxxx"
         icon: "assets/logo_prod.jpeg"
       android:
-        applicationId: "com.ducht.petdok.petdok"
+        applicationId: "com.ducht.petdok.kuxxxx"
         firebase:
           config: "config/prod/google-services.json"
       ios:
-        bundleId: "com.ducht.petdok.petdok"
+        bundleId: "com.ducht.petdok.kuxxxx"
         firebase:
           config: "config/prod/GoogleService-Info.plist"

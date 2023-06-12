@@ -36,7 +36,7 @@ android {
     productFlavors {
         prod {
             dimension "flavor-type"
-            applicationId "com.ducht.petdok.petdok"
+            applicationId "com.ducht.petdok.kuxxxx"
             resValue "string", "app_name", "KuXxxx"
         }
     }
@@ -51,7 +51,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.ducht.petdok.petdok"
+        applicationId "com.ducht.petdok.kuxxxx"
         minSdkVersion 23
         targetSdkVersion 33
         versionCode flutterVersionCode.toInteger()
