@@ -37,7 +37,7 @@ android {
         prod {
             dimension "flavor-type"
             applicationId "com.ducht.petdok.kuxxxx"
-            resValue "string", "app_name", "KuPet"
+            resValue "string", "app_name", "PetNotto"
         }
     }
 

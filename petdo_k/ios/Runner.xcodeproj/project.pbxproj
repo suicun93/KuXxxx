@@ -150,7 +150,7 @@
 			buildConfigurationList = 97C147051CF9000F007C117D /* Build configuration list for PBXNativeTarget "Runner" */;
 			buildPhases = (
 				85DF7E21A7F8E8928D957FB2 /* [CP] Check Pods Manifest.lock */,
-				372082704ACA8F518A7D753A /* Firebase Setup */,
+				3AF55039196AD21DEEEB6B1C /* Firebase Setup */,
 				9740EEB61CF901F6004384FC /* Run Script */,
 				97C146EA1CF9000F007C117D /* Sources */,
 				97C146EB1CF9000F007C117D /* Frameworks */,
@@ -220,7 +220,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		372082704ACA8F518A7D753A /* Firebase Setup */ = {
+		3AF55039196AD21DEEEB6B1C /* Firebase Setup */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (

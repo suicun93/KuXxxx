@@ -192,7 +192,7 @@ flavorizr:
   flavors:
     prod:
       app:
-        name: "KuPet"
+        name: "PetNotto"
         icon: "assets/logo_prod.jpeg"
       android:
         applicationId: "com.ducht.petdok.kuxxxx"
