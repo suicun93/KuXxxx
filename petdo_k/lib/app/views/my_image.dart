@@ -43,11 +43,7 @@ class MyImage extends StatelessWidget {
       errorBuilder: (context, error, stackTrace) => Container(
         width: double.infinity,
         height: double.infinity,
-        child: Icon(
-          Icons.error_outline,
-          color: Colors.red,
-          size: 50,
-        ),
+        child: Image.asset('assets/no_image.png', height: 30),
       ),
     );
   }
