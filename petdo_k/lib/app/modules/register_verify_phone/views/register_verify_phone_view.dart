@@ -254,7 +254,7 @@ class RegisterVerifyPhoneView extends GetView<RegisterVerifyPhoneController> {
               ),
               textAlign: TextAlign.center,
             ),
-            SizedBox(height: 22),
+            SizedBox(height: 300),
           ],
         ),
       ),

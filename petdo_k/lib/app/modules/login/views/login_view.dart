@@ -355,10 +355,8 @@ class LoginView extends GetView<LoginController> {
               ),
               textAlign: TextAlign.center,
             ),
-            SizedBox(height: 22),
 
-            /// Sos
-            sosCall,
+            SizedBox(height: 150),
           ],
         ),
       ),

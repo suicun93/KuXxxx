@@ -213,6 +213,8 @@ class UserInfoView extends GetView<UserInfoController> {
               // onPressed: null,
             ),
           ),
+
+        SizedBox(height: 100),
       ],
     );
   }

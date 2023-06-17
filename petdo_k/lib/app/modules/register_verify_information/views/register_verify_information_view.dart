@@ -75,7 +75,7 @@ class RegisterVerifyInformationView
                   validator: (v) => !(v?.isPhoneNumber ?? false)
                       ? LocaleKeys.phone_number_invalid.tr
                       : null,
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  autovalidateMode: AutovalidateMode.always,
                   style: Get.textTheme.headline6,
                   cursorColor: subPrimaryColor,
                   keyboardType: TextInputType.phone,
@@ -91,7 +91,7 @@ class RegisterVerifyInformationView
                   validator: (v) => !(v?.isEmail ?? false)
                       ? LocaleKeys.email_invalid.tr
                       : null,
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  autovalidateMode: AutovalidateMode.always,
                   style: Get.textTheme.headline6,
                   cursorColor: subPrimaryColor,
                   keyboardType: TextInputType.emailAddress,
@@ -242,7 +242,7 @@ class RegisterVerifyInformationView
             ),
             textAlign: TextAlign.center,
           ),
-          SizedBox(height: 200),
+          SizedBox(height: 300),
         ],
       ),
     );
@@ -251,17 +251,16 @@ class RegisterVerifyInformationView
   VoidCallback? checkRegister(BuildContext context) {
     if (controller.validToSubmit) {
       return () {
-      context.loaderOverlay.show();
-      controller.submit.then((done) {
-        context.loaderOverlay.hide();
-        if (done) {
-          Fluttertoast.showToast(msg: 'Create account succeed');
-          Get.offNamed(Routes.LOGIN);
-        } else {
-          Fluttertoast.showToast(
-              msg: 'Something wrong, please try again');
-        }
-      });
+        context.loaderOverlay.show();
+        controller.submit.then((done) {
+          context.loaderOverlay.hide();
+          if (done) {
+            Fluttertoast.showToast(msg: 'Create account succeed');
+            Get.offNamed(Routes.LOGIN);
+          } else {
+            Fluttertoast.showToast(msg: 'Something wrong, please try again');
+          }
+        });
       };
     } else {
       return null;

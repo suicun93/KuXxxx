@@ -40,10 +40,12 @@ class MyImage extends StatelessWidget {
                         : null,
                   ),
                 ),
-      errorBuilder: (context, error, stackTrace) => Container(
-        width: double.infinity,
-        height: double.infinity,
-        child: Image.asset('assets/no_image.png', height: 30),
+      errorBuilder: (context, error, stackTrace) => Center(
+        child: Container(
+          width: 70,
+          height: 70,
+          child: Image.asset('assets/no_image.png'),
+        ),
       ),
     );
   }
