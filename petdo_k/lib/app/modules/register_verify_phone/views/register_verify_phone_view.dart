@@ -14,56 +14,38 @@ import '../controllers/register_verify_phone_controller.dart';
 class RegisterVerifyPhoneView extends GetView<RegisterVerifyPhoneController> {
   @override
   Widget build(BuildContext context) {
-    final oversize = Get.height < 698;
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: AnnotatedRegion<SystemUiOverlayStyle>(
         value: defaultSystemUiOverlayStyle,
         child: Scaffold(
-          resizeToAvoidBottomInset: oversize,
-          body: oversize
-              ? ListView(
-                  keyboardDismissBehavior:
-                      ScrollViewKeyboardDismissBehavior.onDrag,
-                  padding: EdgeInsets.only(
-                    top: Get.mediaQuery.viewPadding.top,
+          body: ListView(
+            keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+            padding: EdgeInsets.only(
+              top: Get.mediaQuery.viewPadding.top,
+            ),
+            children: [
+              Container(
+                color: primaryColor,
+                alignment: Alignment.center,
+                padding: EdgeInsets.symmetric(vertical: size * 0.11),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(16),
+                  child: Image.asset(
+                    'assets/logo_prod.jpeg',
+                    width: size * 0.3,
                   ),
-                  children: [
-                    Container(
-                      color: primaryColor,
-                      alignment: Alignment.center,
-                      padding: EdgeInsets.symmetric(vertical: size * 0.11),
-                      child: Image.asset(
-                        'images/splash_logo.png',
-                        width: size * 0.3,
-                      ),
-                    ),
-                    main(oversize: oversize),
-                  ],
-                )
-              : Column(
-                  children: [
-                    Container(
-                      color: primaryColor,
-                      alignment: Alignment.center,
-                      margin: EdgeInsets.only(
-                        top: Get.mediaQuery.viewPadding.top,
-                      ),
-                      padding: EdgeInsets.symmetric(vertical: size * 0.11),
-                      child: Image.asset(
-                        'images/splash_logo.png',
-                        width: size * 0.3,
-                      ),
-                    ),
-                    Expanded(child: main(oversize: oversize)),
-                  ],
                 ),
+              ),
+              main(),
+            ],
+          ),
         ),
       ),
     );
   }
 
-  Widget main({required bool oversize}) {
+  Widget main() {
     return Obx(
       () => Container(
         padding: const EdgeInsets.symmetric(horizontal: 40),
@@ -271,10 +253,11 @@ class RegisterVerifyPhoneView extends GetView<RegisterVerifyPhoneController> {
               ),
               textAlign: TextAlign.center,
             ),
-            oversize ? SizedBox(height: 22) : Spacer(),
+            SizedBox(height: 22),
 
             /// sos call
             sosCall,
+            SizedBox(height: 200),
           ],
         ),
       ),

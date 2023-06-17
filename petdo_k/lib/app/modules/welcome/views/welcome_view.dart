@@ -23,10 +23,27 @@ class WelcomeView extends GetView<WelcomeController> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset('images/splash_logo.png', width: size * 0.3),
+                  Container(
+                    width: size * 0.3 + 10,
+                    decoration: BoxDecoration(
+                      color: Colors.yellow,
+                      borderRadius: BorderRadius.circular(16),
+                      border: Border.all(
+                        color: primaryColor,
+                        width: 4,
+                      ),
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(16),
+                      child: Image.asset(
+                        'assets/logo_prod.jpeg',
+                        width: size * 0.3,
+                      ),
+                    ),
+                  ),
                   SizedBox(height: 20),
                   Text(
-                    'PetdoK',
+                    'PetNottoKu',
                     style: TextStyle(
                       color: subPrimaryColor,
                       fontWeight: FontWeight.w800,

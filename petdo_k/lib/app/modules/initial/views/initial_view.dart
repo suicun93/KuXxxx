@@ -20,14 +20,17 @@ class InitialView extends GetView<InitialController> {
               Expanded(child: Container()),
             ],
           ),
-          Image.asset('images/splash_logo.png', width: size * 0.7),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(32),
+            child: Image.asset('assets/logo_prod.jpeg', width: size * 0.7),
+          ),
           SizedBox(height: size * 0.03),
           Text(
-            'PetdoK',
+            'PetNottoKu',
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.w800,
-              fontSize: 70,
+              fontSize: 45,
               fontFamily: 'Nunito',
             ),
           ),

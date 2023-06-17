@@ -61,7 +61,7 @@ void main() async{
         // );
       },
       color: primaryColor,
-      title: "PetdoK",
+      title: "PetNottoKu",
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
       debugShowCheckedModeBanner: false,

@@ -14,51 +14,39 @@ class RegisterVerifyInformationView
     extends GetView<RegisterVerifyInformationController> {
   @override
   Widget build(BuildContext context) {
-    final oversize = Get.height < 716;
-
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-      child: LoaderOverlay(child: Scaffold(
-        appBar: AppBar(
-          title: Text(LocaleKeys.register_btn.tr),
-          toolbarHeight: toolbarHeight,
-          leading: InkWell(
-            onTap: () => Get.back(),
-            child: Icon(CupertinoIcons.arrow_left),
-          ),
-          leadingWidth: 60,
-        ),
-        body: Container(
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(16),
-              topRight: Radius.circular(16),
+      child: LoaderOverlay(
+        child: Scaffold(
+          appBar: AppBar(
+            title: Text(LocaleKeys.register_btn.tr),
+            toolbarHeight: toolbarHeight,
+            leading: InkWell(
+              onTap: () => Get.back(),
+              child: Icon(CupertinoIcons.arrow_left),
             ),
+            leadingWidth: 60,
           ),
-          child: SingleChildScrollView(
-            // keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-            padding: EdgeInsets.only(left: 40, right: 40),
-            child: oversize
-                ? main(oversize: oversize, context: context)
-                : ConstrainedBox(
-              constraints: BoxConstraints.tightFor(
-                height: Get.height -
-                    Get.mediaQuery.viewPadding.top -
-                    // ((Platform.isIOS && Get.mediaQuery.viewPadding.bottom > 0)
-                    //     ? 0
-                    //     : Get.mediaQuery.viewPadding.bottom) -
-                    toolbarHeight + 20,
+          body: Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(16),
+                topRight: Radius.circular(16),
               ),
-              child: main(oversize: oversize, context: context),
+            ),
+            child: SingleChildScrollView(
+              // keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+              padding: EdgeInsets.only(left: 40, right: 40),
+              child: main(context: context),
             ),
           ),
         ),
-      ),),
+      ),
     );
   }
 
-  Widget main({required bool oversize, required BuildContext context}) {
+  Widget main({required BuildContext context}) {
     return Obx(
       () => Column(
         children: [
@@ -249,7 +237,8 @@ class RegisterVerifyInformationView
                     Fluttertoast.showToast(msg: 'Create account succeed');
                     Get.offNamed(Routes.LOGIN);
                   } else {
-                    Fluttertoast.showToast(msg: 'Something wrong, please try again');
+                    Fluttertoast.showToast(
+                        msg: 'Something wrong, please try again');
                   }
                 });
               },
@@ -278,10 +267,12 @@ class RegisterVerifyInformationView
             ),
             textAlign: TextAlign.center,
           ),
-          oversize ? SizedBox(height: 22) : Spacer(),
+          SizedBox(height: 22),
 
           /// SosCall
           sosCall,
+
+          SizedBox(height: 100),
         ],
       ),
     );

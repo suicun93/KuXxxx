@@ -11,8 +11,6 @@ import 'package:petdo_k/generated/locales.g.dart';
 class UserInfoView extends GetView<UserInfoController> {
   @override
   Widget build(BuildContext context) {
-    final oversize = Get.height < 716;
-
     return WillPopScope(
       onWillPop: () => controller.back(),
       child: GestureDetector(
@@ -30,34 +28,22 @@ class UserInfoView extends GetView<UserInfoController> {
               leadingWidth: 60,
             ),
             Expanded(
-              child: Obx(() => controller.ready.value ? Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(16),
-                    topRight: Radius.circular(16),
-                  ),
-                ),
-                child: SingleChildScrollView(
-                  // keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-                  padding: EdgeInsets.only(left: 40, right: 40),
-                  child: oversize
-                      ? main(oversize: oversize, context: context)
-                      : ConstrainedBox(
-                    constraints: BoxConstraints.tightFor(
-                      height: Get.height -
-                          Get.mediaQuery.viewPadding.top -
-                          // ((Platform.isIOS && Get.mediaQuery.viewPadding.bottom > 0)
-                          //     ? 0
-                          //     : Get.mediaQuery.viewPadding.bottom) -
-                          toolbarHeight +
-                          20,
-                    ),
-                    child:
-                    main(oversize: oversize, context: context),
-                  ),
-                ),
-              ) : LoadingWidget()),
+              child: Obx(() => controller.ready.value
+                  ? Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(16),
+                          topRight: Radius.circular(16),
+                        ),
+                      ),
+                      child: SingleChildScrollView(
+                        // keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+                        padding: EdgeInsets.only(left: 40, right: 40),
+                        child: main(context: context),
+                      ),
+                    )
+                  : LoadingWidget()),
             )
           ],
         ),
@@ -65,7 +51,7 @@ class UserInfoView extends GetView<UserInfoController> {
     );
   }
 
-  Widget main({required bool oversize, required BuildContext context}) {
+  Widget main({required BuildContext context}) {
     return Column(
       children: [
         SizedBox(height: 40),

@@ -24,7 +24,8 @@ class DictionaryView extends GetView<DictionaryController> {
                 child: controller.ready.value
                     ? RefreshIndicator(
                         onRefresh: () async {
-                          if (controller.selectedType.value != controller.animalType[0]){
+                          if (controller.selectedType.value !=
+                              controller.animalType[0]) {
                             controller.onReady();
                           } else {
                             controller.clearData();
@@ -44,13 +45,25 @@ class DictionaryView extends GetView<DictionaryController> {
                                   const EdgeInsets.only(right: 24, left: 24),
                               child: Row(
                                 children: [
-                                  Padding(
-                                    padding: const EdgeInsets.all(5.0),
-                                    child: Image.asset('images/splash_logo.png',
-                                        width: 30),
+                                  Container(
+                                    width: 36,
+                                    decoration: BoxDecoration(
+                                      color: Colors.yellow,
+                                      borderRadius: BorderRadius.circular(4),
+                                      border: Border.all(
+                                        color: primaryColor,
+                                        width: 2,
+                                      ),
+                                    ),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(4),
+                                      child:
+                                          Image.asset('assets/logo_prod.jpeg'),
+                                    ),
                                   ),
+                                  SizedBox(width: 5),
                                   Text(
-                                    'PetdoK',
+                                    'PetNottoKu',
                                     style: TextStyle(
                                       color: subPrimaryColor,
                                       fontWeight: FontWeight.w700,
@@ -136,10 +149,10 @@ class DictionaryView extends GetView<DictionaryController> {
                                 url: controller.response[index].imageUrl,
                                 name: controller.response[index].name,
                                 origin: controller.response[index].origin,
-                                temperament: controller.response[index].temperament,
-                                onTap: () => controller.toSummary(
-                                    controller.response[index].name
-                                ),
+                                temperament:
+                                    controller.response[index].temperament,
+                                onTap: () => controller
+                                    .toSummary(controller.response[index].name),
                               ),
                               itemCount: controller.response.length,
                               addRepaintBoundaries: true,
