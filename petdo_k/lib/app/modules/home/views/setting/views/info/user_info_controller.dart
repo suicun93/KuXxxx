@@ -11,7 +11,6 @@ class UserInfoController extends GetxController {
   final name = ''.obs;
   final phone = ''.obs;
   final email = ''.obs;
-  final address = ''.obs;
   final password = ''.obs;
   final newPassword = ''.obs;
   final confirmPassword = ''.obs;
@@ -22,7 +21,6 @@ class UserInfoController extends GetxController {
   final emailController = TextEditingController();
 
   bool get validToSubmit =>
-      name.value.isNotEmpty &&
       password.value.isPassword == null &&
       confirmPassword.value.isNotEmpty &&
       password.value == confirmPassword.value;
@@ -51,7 +49,6 @@ class UserInfoController extends GetxController {
             : emailController.text)
         .get();
     name.value = documentResult.data()?['name'] ?? '';
-    address.value = documentResult.data()?['address'] ?? '';
     phoneController.text.isNotEmpty ? (emailController.text = documentResult.data()?['email'] ?? '') : (phoneController.text = documentResult.data()?['phone'] ?? '');
     ready.value = true;
   }
@@ -63,7 +60,7 @@ class UserInfoController extends GetxController {
         .doc(infoDocument)
         .collection(phonePref.isNotEmpty ? phoneCollection : emailCollection)
         .doc(phonePref.isNotEmpty ? phonePref : emailPref);
-    final map = {'name': name.value, 'address': address.value};
+    final map = {'name': name.value};
     phonePref.isNotEmpty ? map['email'] = emailController.text : map['phone'] = phoneController.text;
     await documentInfo.set(map);
     return true;

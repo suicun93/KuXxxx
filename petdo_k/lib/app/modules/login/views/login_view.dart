@@ -320,15 +320,7 @@ class LoginView extends GetView<LoginController> {
               width: double.infinity,
               child: ElevatedButton(
                 child: Text(LocaleKeys.login_btn.tr),
-                onPressed: () {
-                  context.loaderOverlay.show();
-                  controller.submit.then((isOk) {
-                    context.loaderOverlay.hide();
-                    if (isOk) {
-                      Get.offAndToNamed(Routes.HOME);
-                    }
-                  });
-                },
+                onPressed: checkLogin(context),
               ),
             ),
             SizedBox(height: 10),
@@ -371,5 +363,21 @@ class LoginView extends GetView<LoginController> {
         ),
       ),
     );
+  }
+
+  VoidCallback? checkLogin(BuildContext context) {
+    if (controller.validToSubmit) {
+      return () {
+        context.loaderOverlay.show();
+        controller.submit.then((isOk) {
+          context.loaderOverlay.hide();
+          if (isOk) {
+            Get.offAndToNamed(Routes.HOME);
+          }
+        });
+      };
+    } else {
+      return null;
+    }
   }
 }

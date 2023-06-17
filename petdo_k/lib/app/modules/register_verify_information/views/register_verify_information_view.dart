@@ -106,19 +106,6 @@ class RegisterVerifyInformationView
 
           SizedBox(height: 24),
 
-          /// Address
-          TextFormField(
-            style: Get.textTheme.headline6,
-            cursorColor: subPrimaryColor,
-            keyboardType: TextInputType.streetAddress,
-            onChanged: (_) => controller.address.value = _,
-            decoration: InputDecoration(
-              labelText: LocaleKeys.address.tr,
-              contentPadding: EdgeInsets.only(left: 21),
-            ),
-          ),
-          SizedBox(height: 24),
-
           /// Password
           TextFormField(
             validator: (v) => v.isPassword,
@@ -229,19 +216,7 @@ class RegisterVerifyInformationView
             width: double.infinity,
             child: ElevatedButton(
               child: Text(LocaleKeys.continue_btn.tr),
-              onPressed: () {
-                context.loaderOverlay.show();
-                controller.submit.then((done) {
-                  context.loaderOverlay.hide();
-                  if (done) {
-                    Fluttertoast.showToast(msg: 'Create account succeed');
-                    Get.offNamed(Routes.LOGIN);
-                  } else {
-                    Fluttertoast.showToast(
-                        msg: 'Something wrong, please try again');
-                  }
-                });
-              },
+              onPressed: checkRegister(context),
               // onPressed: null,
             ),
           ),
@@ -267,14 +242,29 @@ class RegisterVerifyInformationView
             ),
             textAlign: TextAlign.center,
           ),
-          SizedBox(height: 22),
-
-          /// SosCall
-          sosCall,
-
-          SizedBox(height: 100),
+          SizedBox(height: 200),
         ],
       ),
     );
+  }
+
+  VoidCallback? checkRegister(BuildContext context) {
+    if (controller.validToSubmit) {
+      return () {
+      context.loaderOverlay.show();
+      controller.submit.then((done) {
+        context.loaderOverlay.hide();
+        if (done) {
+          Fluttertoast.showToast(msg: 'Create account succeed');
+          Get.offNamed(Routes.LOGIN);
+        } else {
+          Fluttertoast.showToast(
+              msg: 'Something wrong, please try again');
+        }
+      });
+      };
+    } else {
+      return null;
+    }
   }
 }

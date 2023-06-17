@@ -64,12 +64,14 @@ class HealthRecordView extends GetView<HealthRecordController> {
                         margin: EdgeInsets.only(
                           top: Get.mediaQuery.viewPadding.top + 16,
                           bottom: 16,
+                          right: 24,
+                          left: 40
                         ),
                         alignment: Alignment.bottomCenter,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            SizedBox(width: 84),
+                            SizedBox(width: 50),
                             Text(
                               LocaleKeys.medical_book.tr,
                               style: Get.textTheme.subtitle2,
@@ -96,7 +98,6 @@ class HealthRecordView extends GetView<HealthRecordController> {
                                         color: subPrimaryColor,
                                       ),
                                     ),
-                                    SizedBox(width: 24),
                                   ],
                                 ),
                               ),

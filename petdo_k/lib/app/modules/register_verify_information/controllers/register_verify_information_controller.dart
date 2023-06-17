@@ -12,7 +12,6 @@ class RegisterVerifyInformationController extends GetxController {
   final name = ''.obs;
   final phone = ''.obs;
   final email = ''.obs;
-  final address = ''.obs;
   final password = ''.obs;
   final confirmPassword = ''.obs;
   final agreeWithTermAndCondition = false.obs;
@@ -49,7 +48,6 @@ class RegisterVerifyInformationController extends GetxController {
   void onClose() {}
 
   bool get validToSubmit =>
-      name.value.isNotEmpty &&
           ((registerPhone && phone.value.isPhoneNumber) ||
               (registerEmail && email.value.isEmail)) &&
           password.value.isPassword == null &&
@@ -65,7 +63,6 @@ class RegisterVerifyInformationController extends GetxController {
         phone.value.isPhoneNumber ? phone.value : email.value);
     await documentInfo.set({
       'name': name.value,
-      'address': address.value
     });
     final documentLogin = dbWelCome.doc(loginDocument).collection(phone.value.isPhoneNumber ? phoneCollection : emailCollection).doc(
         phone.value.isPhoneNumber ? phone.value : email.value);

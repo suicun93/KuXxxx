@@ -114,22 +114,6 @@ class UserInfoView extends GetView<UserInfoController> {
         ),
         SizedBox(height: 24),
 
-        /// Address
-        TextFormField(
-          style: Get.textTheme.headline6,
-          cursorColor: subPrimaryColor,
-          readOnly: !controller.editMode.value,
-          enabled: controller.editMode.value,
-          initialValue: controller.address.value,
-          keyboardType: TextInputType.streetAddress,
-          onChanged: (_) => controller.address.value = _,
-          decoration: InputDecoration(
-            labelText: LocaleKeys.address.tr,
-            contentPadding: EdgeInsets.only(left: 21),
-          ),
-        ),
-        SizedBox(height: 24),
-
         /// Password
         TextFormField(
           validator: (v) => v.isPassword,
@@ -211,15 +195,7 @@ class UserInfoView extends GetView<UserInfoController> {
               SizedBox(width: 16),
               Expanded(
                 child: ElevatedButton(
-                  onPressed: () {
-                    controller.submit.then((value) {
-                      if (value) {
-                        controller.onReady();
-                      } else {
-                        Fluttertoast.showToast(msg: LocaleKeys.error.tr);
-                      }
-                    });
-                  },
+                  onPressed: checkEdit(context),
                   child: Text(LocaleKeys.finish_btn.tr),
                 ),
               ),
@@ -239,5 +215,21 @@ class UserInfoView extends GetView<UserInfoController> {
           ),
       ],
     );
+  }
+
+  VoidCallback? checkEdit(BuildContext context) {
+    if (controller.validToSubmit) {
+      return () {
+        controller.submit.then((value) {
+          if (value) {
+            controller.onReady();
+          } else {
+            Fluttertoast.showToast(msg: LocaleKeys.error.tr);
+          }
+        });
+      };
+    } else {
+      return null;
+    }
   }
 }
