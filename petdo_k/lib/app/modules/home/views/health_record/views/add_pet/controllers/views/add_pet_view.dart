@@ -213,7 +213,7 @@ class AddPetView extends GetView<AddPetController> {
                               ),
                               child: ElevatedButton(
                                 onPressed: controller.add,
-                                child: Text(LocaleKeys.add),
+                                child: Text(LocaleKeys.add.tr),
                               ),
                             ),
                             SizedBox(height: 50),

@@ -46,6 +46,23 @@ class AddPetController extends GetxController {
               backController.onReady();
               back();
             });
+          } else {
+            final petInfo =
+            dbHealth.doc(DateTime.now().millisecondsSinceEpoch.toString());
+            petInfo
+                .set(PetHealth(
+                imageUrl: '',
+                imageId: '',
+                type: type.value,
+                name: petName.value,
+                birthDay: birthdayController.text,
+                isMale: gender.value ?? false,
+                weight: petWeight.value)
+                .toJson())
+                .whenComplete(() {
+              backController.onReady();
+              back();
+            });
           }
         };
 
