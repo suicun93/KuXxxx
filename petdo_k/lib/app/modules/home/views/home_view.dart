@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:petdo_k/utils.dart';
 
 import '../../../../generated/locales.g.dart';
 import '../../../common/const.dart';
@@ -10,6 +11,7 @@ import 'dictionary/views/dictionary_view.dart';
 class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
+    checkRemoteConfig(context);
     return Obx(
       () => Scaffold(
         resizeToAvoidBottomInset: false,
