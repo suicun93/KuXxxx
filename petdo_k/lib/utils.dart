@@ -22,4 +22,6 @@ final dbWelCome = FirebaseFirestore.instance.collection(welcomeCollection);
 final dbHealth = FirebaseFirestore.instance.collection(healthCollection);
 final storageRef = FirebaseStorage.instance.ref();
 
+var isImageUploading = false;
+
 

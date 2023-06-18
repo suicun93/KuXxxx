@@ -12,7 +12,7 @@ import '../../../../../../controllers/home_controller.dart';
 class AddPetController extends GetxController {
   final ready = true.obs;
   final isDog = true.obs;
-  final RxnBool gender = RxnBool();
+  final RxnBool gender = RxnBool(false);
   final birthdayController = TextEditingController();
   final date = ''.obs;
   final Rxn<XFile> image = Rxn();
@@ -37,6 +37,7 @@ class AddPetController extends GetxController {
                         imageUrl: imageUrl,
                         imageId: imageId,
                         type: type.value,
+                        isDog: isDog.value,
                         name: petName.value,
                         birthDay: birthdayController.text,
                         isMale: gender.value ?? false,
@@ -54,6 +55,7 @@ class AddPetController extends GetxController {
                 imageUrl: '',
                 imageId: '',
                 type: type.value,
+                isDog: isDog.value,
                 name: petName.value,
                 birthDay: birthdayController.text,
                 isMale: gender.value ?? false,

@@ -28,5 +28,8 @@ class VaccineScheduleController extends GetxController {
     ready.value = true;
   }
 
-  back() => HomeController.instance.back();
+  back()  {
+    HomeController.instance.back();
+    healthDetailController.onReady();
+  }
 }

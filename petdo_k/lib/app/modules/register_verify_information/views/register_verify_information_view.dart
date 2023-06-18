@@ -255,10 +255,10 @@ class RegisterVerifyInformationView
         controller.submit.then((done) {
           context.loaderOverlay.hide();
           if (done) {
-            Fluttertoast.showToast(msg: 'Create account succeed');
+            Fluttertoast.showToast(msg: LocaleKeys.create_account_success.tr);
             Get.offNamed(Routes.LOGIN);
           } else {
-            Fluttertoast.showToast(msg: 'Something wrong, please try again');
+            Fluttertoast.showToast(msg: LocaleKeys.something_wrong.tr);
           }
         });
       };

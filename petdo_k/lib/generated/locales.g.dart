@@ -26,7 +26,13 @@ class LocaleKeys {
   static const name = 'name';
   static const address = 'address';
   static const search = 'search';
+  static const profile = 'profile';
+  static const about_us = 'about_us';
+  static const policy_and_terms = 'policy_and_terms';
   static const invalid = 'invalid';
+  static const add_new_pet = 'add_new_pet';
+  static const edit_pet = 'edit_pet';
+  static const login_to_use = 'login_to_use';
   static const password_hint = 'password_hint';
   static const password_invalid = 'password_invalid';
   static const password_not_match = 'password_not_match';
@@ -79,6 +85,15 @@ class LocaleKeys {
   static const history = 'history';
   static const select = 'select';
   static const exit = 'exit';
+  static const change_password = 'change_password';
+  static const edit_info = 'edit_info';
+  static const guest = 'guest';
+  static const create_account_success = 'create_account_success';
+  static const something_wrong = 'something_wrong';
+  static const change_password_success = 'change_password_success';
+  static const old_password = 'old_password';
+  static const old_password_wrong = 'old_password_wrong';
+  static const new_password = 'new_password';
   static const enter = 'enter';
   static const error = 'error';
   static const show_more = 'show_more';
@@ -110,6 +125,7 @@ class LocaleKeys {
   static const forgot_password_enter_email_phone =
       'forgot_password_enter_email_phone';
   static const forgot_password_email_phone = 'forgot_password_email_phone';
+  static const forgot_password_wrong_code = 'forgot_password_wrong_code';
   static const forgot_password_enter_email_phone_registered =
       'forgot_password_enter_email_phone_registered';
   static const forgot_password_send_otp = 'forgot_password_send_otp';
@@ -132,7 +148,13 @@ class Locales {
     'name': 'Name',
     'address': 'Address',
     'search': 'Search',
+    'profile': 'Profile',
+    'about_us': 'About us',
+    'policy_and_terms': 'Policy and terms',
     'invalid': 'Invalid',
+    'add_new_pet': 'Add New Pet',
+    'edit_pet': '\'Edit Pet',
+    'login_to_use': 'Please login to use this feature',
     'password_hint': '6 characters(number, lower, upper)',
     'password_invalid':
         'Please enter 6 or more characters (within Number, Upper and Lowercase)',
@@ -186,6 +208,15 @@ class Locales {
     'history': 'History',
     'select': 'Select',
     'exit': 'Exit',
+    'change_password': 'Change Password',
+    'edit_info': 'Edit Information',
+    'guest': 'Guest',
+    'create_account_success': 'Create account succeed',
+    'something_wrong': 'Something wrong, please try again',
+    'change_password_success': 'Change password success',
+    'old_password': 'Old Password',
+    'old_password_wrong': 'Old Password is Wrong',
+    'new_password': 'New Password',
     'enter': 'Enter',
     'error': 'error',
     'show_more': 'Show more',
@@ -213,6 +244,7 @@ class Locales {
     'forgot_password_enter_new_password': 'Enter new password',
     'forgot_password_enter_email_phone': 'Enter Email or Phone',
     'forgot_password_email_phone': 'Email/Phone',
+    'forgot_password_wrong_code': 'Wrong code',
     'forgot_password_enter_email_phone_registered':
         'Enter registered Email or Phone',
     'forgot_password_send_otp': 'Send OTP',
@@ -229,8 +261,23 @@ class Locales {
     'enter_your_mail': 'Nhập email',
     'phone': 'Điện thoại',
     'phone_number': 'số',
+    'profile': 'Hồ sơ',
     'email': 'Email',
     'name': 'Tên',
+    'create_account_success': 'Tạo tài khoản thành công',
+    'something_wrong': 'Có lỗi xảy ra, vui lòng thử lại',
+    'old_password': 'Mật khẩu cũ',
+    'change_password_success': 'Đổi mật khẩu thành công',
+    'old_password_wrong': 'Mật khẩu cũ sai',
+    'new_password': 'Mật khẩu mới',
+    'change_password': 'Đổi mật khẩu',
+    'edit_info': 'Chỉnh sửa thông tin',
+    'guest': 'Khách',
+    'about_us': 'Về chúng tôi',
+    'policy_and_terms': 'Chính sách và điều khoản',
+    'add_new_pet': 'Thêm thú cưng',
+    'edit_pet': 'Chỉnh sửa thú cưng',
+    'login_to_use': 'Đăng nhập để sử dụng tính năng này',
     'address': 'Địa chỉ',
     'search': 'Tìm kiếm',
     'invalid': 'Không hợp lệ',
@@ -314,6 +361,7 @@ class Locales {
     'forgot_password_enter_new_password': 'Mật khẩu mới',
     'forgot_password_enter_email_phone': 'Nhập Email/SĐT',
     'forgot_password_email_phone': 'Email/SĐT',
+    'forgot_password_wrong_code': 'Sai code',
     'forgot_password_enter_email_phone_registered':
         'Nhập Email hoặc SĐT đã đăng ký',
     'forgot_password_send_otp': 'Gửi OTP',

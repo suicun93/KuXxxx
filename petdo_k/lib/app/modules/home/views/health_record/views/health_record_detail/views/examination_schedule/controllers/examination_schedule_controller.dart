@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:petdo_k/app/model/pet_vet.dart';
 import 'package:petdo_k/app/modules/home/views/health_record/controllers/health_record_controller.dart';
+import 'package:petdo_k/app/modules/home/views/health_record/views/health_record_detail/controllers/health_record_detail_controller.dart';
 import 'package:petdo_k/utils.dart';
 
 import '../../../../../../../controllers/home_controller.dart';
@@ -10,6 +11,7 @@ class ExaminationScheduleController extends GetxController {
   final selected = <String, PetVet>{}.obs;
   final vetCount = 0.obs;
   final vetMap = <Map<String, PetVet>>[].obs;
+  final healthDetailController = Get.find<HealthRecordDetailController>();
 
   @override
   void onReady() {
@@ -29,5 +31,8 @@ class ExaminationScheduleController extends GetxController {
   @override
   void onClose() {}
 
-  back() => HomeController.instance.back();
+  back() {
+    HomeController.instance.back();
+    healthDetailController.onReady();
+  }
 }

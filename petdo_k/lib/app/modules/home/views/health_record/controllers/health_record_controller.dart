@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:petdo_k/app/common/preferences.dart';
 import 'package:petdo_k/app/model/health.dart';
 import 'package:petdo_k/utils.dart';
 
@@ -17,9 +18,7 @@ class HealthRecordController extends GetxController {
   @override
   void onReady() async {
     super.onReady();
-    // token.value = await Preference.getToken();
-    // Preference.getToken();
-    token.value = 'abc';
+    token.value = await Preference.getEmail();
     ready.value = false;
     _getAllHealthRecord();
   }
@@ -39,13 +38,19 @@ class HealthRecordController extends GetxController {
 
   Future<void> deletePet() async {
     final petIndex = pets.indexOf(selectedPet.value);
-   await dbHealth.doc(ids[petIndex]).delete();
+    await dbHealth.doc(ids[petIndex]).delete();
    if (selectedPet.value?.imageId.isNotEmpty == true) {
      await storageRef.child(selectedPet.value?.imageId ?? '').delete();
    }
    ids.removeAt(petIndex);
    pets.removeAt(petIndex);
    noPet.value = pets.isNotEmpty;
+  }
+
+  Future<void> editPet(PetHealth petHealth) async{
+    final petIndex = pets.indexOf(selectedPet.value);
+    final petRef = dbHealth.doc(ids[petIndex]);
+    await petRef.update(petHealth.toJson());
   }
 
   void toDetail({required PetHealth pet}) {

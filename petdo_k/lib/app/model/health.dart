@@ -11,6 +11,7 @@ class PetHealth {
   final String name;
   final String birthDay;
   final bool isMale;
+  final bool isDog;
   final double weight;
 
   PetHealth(
@@ -20,6 +21,7 @@ class PetHealth {
         required this.name,
         required this.birthDay,
         required this.isMale,
+        required this.isDog,
         required this.weight});
 
   factory PetHealth.fromJson(Map<String, dynamic> json) => PetHealth(
@@ -28,7 +30,8 @@ class PetHealth {
     type: json["type"],
     name: json["name"],
     birthDay: json["birthDay"],
-    isMale: json["isMale"],
+    isMale: json["isMale"] ?? false,
+    isDog: json["isDog"] ?? false,
     weight: json["weight"],
   );
 
@@ -39,6 +42,7 @@ class PetHealth {
     "name": name,
     "birthDay": birthDay,
     "isMale": isMale,
+    "isDog": isDog,
     "weight": weight,
   };
 }

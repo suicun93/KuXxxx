@@ -26,7 +26,7 @@ class ExaminationScheduleView extends GetView<ExaminationScheduleController> {
                 child: Row(
                   children: [
                     GestureDetector(
-                      onTap: () => HomeController.instance.back(),
+                      onTap: () => controller.back(),
                       child: SizedBox(
                         width: 60,
                         child: Image.asset(

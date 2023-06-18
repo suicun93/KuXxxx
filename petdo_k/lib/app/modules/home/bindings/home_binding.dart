@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:petdo_k/app/modules/home/views/health_record/views/edit_pet/controllers/controllers/edit_pet_controller.dart';
 
 import '../controllers/home_controller.dart';
 import '../views/dictionary/controllers/dictionary_controller.dart';
@@ -17,7 +18,7 @@ import '../views/health_record/views/health_record_detail/views/vaccine_add/cont
 import '../views/health_record/views/health_record_detail/views/vaccine_edit/controllers/vaccine_edit_controller.dart';
 import '../views/health_record/views/health_record_detail/views/vaccine_schedule/controllers/vaccine_schedule_controller.dart';
 import '../views/setting/controllers/setting_controller.dart';
-import '../views/setting/views/info/user_info_controller.dart';
+import '../views/setting/views/password/password_controller.dart';
 
 class HomeBinding extends Bindings {
   @override
@@ -53,6 +54,9 @@ class HomeBinding extends Bindings {
     Get.lazyPut<AddPetController>(
       () => AddPetController(),
     );
+    Get.lazyPut<EditPetController>(
+      () => EditPetController(),
+    );
     Get.lazyPut<HealthRecordDetailController>(
       () => HealthRecordDetailController(),
     );
@@ -79,8 +83,8 @@ class HomeBinding extends Bindings {
     Get.lazyPut<SettingController>(
       () => SettingController(),
     );
-    Get.lazyPut<UserInfoController>(
-          () => UserInfoController(),
+    Get.lazyPut<PasswordController>(
+      () => PasswordController(),
     );
   }
 }

@@ -114,3 +114,43 @@ extension RemoveZero on String? {
     return this;
   }
 }
+
+const termsAndPolicy = "Terms and Policy for Mobile Application\n\n" +
+    "Welcome to our mobile application! These Terms and Policies outline the rules and guidelines for the use of our app and related services. By downloading, installing, accessing, or using our app, you agree to comply with these terms. Please read them carefully before proceeding.\n\n" +
+
+    "1. Definitions\n\n" +
+    "1.1 \"App\" refers to our mobile application and any related services provided therein.\n" +
+    "1.2 \"User\" refers to any individual who downloads, installs, accesses, or uses the app.\n\n" +
+
+    "2. Acceptance of Terms\n\n" +
+    "By using our app, you agree to these Terms and Policies, and any future updates or modifications that may occur. If you do not agree with these terms, please refrain from using the app.\n\n" +
+
+    "3. User Accounts\n\n" +
+    "Users may be required to create an account to access certain features and services of the app. You are responsible for maintaining the confidentiality of your account credentials and are liable for all activities that occur under your account.\n\n" +
+    "You must provide accurate, complete, and up-to-date information when creating an account. You agree to promptly update any changes to your account information.\n\n" +
+
+    "4. User Conduct\n\n" +
+    "Users of the app must comply with all applicable laws and regulations and are responsible for their actions within the app.\n\n" +
+    "Users shall not engage in any activities that may:\n" +
+    "   a. Violate the rights of others or infringe upon any intellectual property rights.\n" +
+    "   b. Transmit any harmful or malicious code, viruses, or disruptive content.\n" +
+    "   c. Attempt to gain unauthorized access to the app or any other user's account.\n" +
+    "   d. Use the app for any illegal, harmful, or unethical purposes.\n" +
+    "   e. Engage in any form of harassment, discrimination, or offensive behavior.\n\n" +
+
+    "5. Intellectual Property\n\n" +
+    "The app and its associated content, including but not limited to logos, graphics, text, and software, are protected by intellectual property rights. Users may not reproduce, modify, distribute, or exploit any part of the app without explicit permission.\n\n" +
+
+    "6. Privacy\n\n" +
+    "We are committed to protecting your privacy. Our Privacy Policy outlines how we collect, use, and disclose personal information.\n\n" +
+
+    "Please note that these Terms and Policies may be subject to change. It is your responsibility to review them periodically for any updates or modifications.\n\n";
+
+String aboutUs = "Welcome to our application! We are a dedicated team of professionals who are passionate about creating innovative solutions to enhance your everyday life. Our mission is to provide you with a seamless and intuitive user experience that simplifies complex tasks and brings convenience to your fingertips. Whether you're looking for a productivity tool, a fitness companion, or a source of inspiration, our application is designed to cater to your needs.\n\n"
+    + "With a strong focus on user-centric design, we strive to deliver an application that not only meets but exceeds your expectations. We listen to your feedback and continuously iterate on our features to ensure they align with your evolving requirements. Our commitment to excellence drives us to push boundaries, explore new technologies, and stay ahead of the curve in an ever-changing digital landscape.\n\n"
+    + "Security and privacy are paramount to us. We employ robust measures to safeguard your personal information, ensuring that your data is protected at all times. Trust and transparency are at the core of our values, and we work tirelessly to maintain your confidence in our application.\n\n"
+    + "Collaboration and inclusivity are integral to our philosophy. We believe in building a vibrant community where users can connect, share ideas, and inspire one another. Through our application, we aim to foster meaningful connections and empower you to reach your goals, whatever they may be.\n\n"
+    + "Thank you for choosing our application. We are thrilled to have you on board and look forward to embarking on this journey together. Join us as we revolutionize the way you live, work, and play. Together, let's make every moment extraordinary.";
+
+
+

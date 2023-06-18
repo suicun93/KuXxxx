@@ -9,9 +9,9 @@ import '../../../../../../../../common/const.dart';
 import '../../../../../../../../views/date_picker.dart';
 import '../../../../../../../../views/loading_view.dart';
 import '../../../../../../controllers/home_controller.dart';
-import '../controllers/add_pet_controller.dart';
+import '../controllers/edit_pet_controller.dart';
 
-class AddPetView extends GetView<AddPetController> {
+class EditPetView extends GetView<EditPetController> {
   @override
   Widget build(BuildContext context) {
     return Obx(
@@ -40,21 +40,29 @@ class AddPetView extends GetView<AddPetController> {
                                         ClipRRect(
                                           borderRadius:
                                               BorderRadius.circular(8),
-                                          child: controller.image.value == null
-                                              ? Image.asset(
-                                                  'images/logo.png',
-                                                  width: 156,
-                                                  height: 156,
-                                                )
-                                              : Image.file(
-                                                  File(
-                                                    controller
-                                                        .image.value!.path,
-                                                  ),
+                                          child: controller
+                                                  .imageUrl.value.isNotEmpty
+                                              ? Image.network(
+                                                  controller.imageUrl.value,
                                                   width: 156,
                                                   height: 156,
                                                   fit: BoxFit.cover,
-                                                ),
+                                                )
+                                              : controller.image.value == null
+                                                  ? Image.asset(
+                                                      'images/logo.png',
+                                                      width: 156,
+                                                      height: 156,
+                                                    )
+                                                  : Image.file(
+                                                      File(
+                                                        controller
+                                                            .image.value!.path,
+                                                      ),
+                                                      width: 156,
+                                                      height: 156,
+                                                      fit: BoxFit.cover,
+                                                    ),
                                         ),
                                         SizedBox(height: 16),
                                       ],
@@ -111,6 +119,7 @@ class AddPetView extends GetView<AddPetController> {
                                   SizedBox(height: 24),
                                   _buildTextFormField(
                                       title: LocaleKeys.name.tr,
+                                      textController: controller.nameController,
                                       onChange: (_) =>
                                           controller.petName.value = _),
                                   SizedBox(height: 24),
@@ -158,7 +167,10 @@ class AddPetView extends GetView<AddPetController> {
                                                     value: item,
                                                     child: Container(
                                                       child: Text(
-                                                        item ? LocaleKeys.male.tr : LocaleKeys.female.tr,
+                                                        item
+                                                            ? LocaleKeys.male.tr
+                                                            : LocaleKeys
+                                                                .female.tr,
                                                         style: Get.textTheme
                                                             .headline6,
                                                       ),
@@ -172,7 +184,10 @@ class AddPetView extends GetView<AddPetController> {
                                                       DropdownMenuItem<bool>(
                                                     value: item,
                                                     child: Text(
-                                                      item ? LocaleKeys.male.tr : LocaleKeys.female.tr,
+                                                      item
+                                                          ? LocaleKeys.male.tr
+                                                          : LocaleKeys
+                                                              .female.tr,
                                                       style: Get
                                                           .textTheme.headline6,
                                                     ),
@@ -195,10 +210,15 @@ class AddPetView extends GetView<AddPetController> {
                                     controller.birthdayController,
                                   ),
                                   SizedBox(height: 24),
-                                  _buildTextFormField(title: LocaleKeys.breed.tr, onChange: (_) => controller.type.value = _),
+                                  _buildTextFormField(
+                                      title: LocaleKeys.breed.tr,
+                                      textController: controller.typeController,
+                                      onChange: (_) =>
+                                          controller.type.value = _),
                                   SizedBox(height: 24),
                                   _buildTextFormField(
                                       title: '${LocaleKeys.weight.tr} (kg)',
+                                      textController: controller.weightController,
                                       textInputType:
                                           TextInputType.numberWithOptions(
                                               decimal: true),
@@ -212,8 +232,8 @@ class AddPetView extends GetView<AddPetController> {
                                 horizontal: 40,
                               ),
                               child: ElevatedButton(
-                                onPressed: controller.add,
-                                child: Text(LocaleKeys.add.tr),
+                                onPressed: controller.edit,
+                                child: Text(LocaleKeys.edit.tr),
                               ),
                             ),
                             SizedBox(height: 50),
@@ -247,7 +267,8 @@ class AddPetView extends GetView<AddPetController> {
             ),
             Expanded(
               child: Center(
-                child: Text(LocaleKeys.add_new_pet.tr, style: Get.textTheme.titleSmall),
+                child: Text(LocaleKeys.edit_pet.tr,
+                    style: Get.textTheme.titleSmall),
               ),
             ),
             SizedBox(width: 60),
@@ -269,6 +290,7 @@ class AddPetView extends GetView<AddPetController> {
   TextFormField _buildTextFormField({
     required String title,
     ValueChanged<String>? onChange,
+    TextEditingController? textController,
     TextInputType? textInputType,
   }) =>
       TextFormField(
@@ -276,6 +298,7 @@ class AddPetView extends GetView<AddPetController> {
         cursorColor: subPrimaryColor,
         keyboardType: textInputType ?? TextInputType.streetAddress,
         onChanged: onChange,
+        controller: textController,
         decoration: InputDecoration(
           labelText: title,
           contentPadding: EdgeInsets.only(left: 21),

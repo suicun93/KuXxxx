@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loader_overlay/loader_overlay.dart';
+import 'package:petdo_k/app/routes/app_pages.dart';
 
 import '../../../../../../../../generated/locales.g.dart';
 import '../../../../../../../common/const.dart';
@@ -220,7 +221,10 @@ class HealthRecordDetailView extends GetView<HealthRecordDetailController> {
                           maxLines: 1,
                         ),
                       ),
-                      // Image.asset('images/ic_edit.png', width: 18, height: 18),
+                      GestureDetector(
+                        child: Image.asset('images/ic_edit.png', width: 18, height: 18),
+                        onTap: () => HomeController.instance.changeMainView(MainView.editPet),
+                      ),
                     ],
                   ),
                 ),

@@ -21,6 +21,7 @@ class VaccineAddController extends GetxController {
   final location = ''.obs;
 
   final healthController = Get.find<HealthRecordController>();
+  final healthDetailController = Get.find<HealthRecordDetailController>();
 
   get submit => date.value.isEmpty ? null : () => addVaccine();
 
@@ -60,6 +61,7 @@ class VaccineAddController extends GetxController {
         HomeController.instance.changeMainView(MainView.vaccineSchedule);
       }
       HomeController.instance.back();
+      healthDetailController.onReady();
     });
   }
 }

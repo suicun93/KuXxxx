@@ -30,9 +30,9 @@ class HealthRecordView extends GetView<HealthRecordController> {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 30),
                         child: Text(
-                          'Đăng nhập để sử dụng tính năng này',
+                          LocaleKeys.login_to_use.tr,
                           textAlign: TextAlign.center,
-                          style: Get.textTheme.subtitle1?.copyWith(
+                          style: Get.textTheme.titleMedium?.copyWith(
                             fontWeight: FontWeight.bold,
                             color: textColorDefault,
                           ),
@@ -47,13 +47,13 @@ class HealthRecordView extends GetView<HealthRecordController> {
                           child: Text(LocaleKeys.login_btn.tr),
                         ),
                       ),
-                      SizedBox(height: 30),
+                      SizedBox(height: 15),
                       Container(
                         width: double.infinity,
                         padding: EdgeInsets.symmetric(horizontal: 40),
                         child: TextButton(
-                          onPressed: () => controller.token.value = 'something',
-                          child: Text('Switch Logged In'),
+                          onPressed: () => Get.offAllNamed(Routes.REGISTER_VERIFY_PHONE),
+                          child: Text(LocaleKeys.register_btn.tr),
                         ),
                       ),
                     ],
@@ -74,7 +74,7 @@ class HealthRecordView extends GetView<HealthRecordController> {
                             SizedBox(width: 50),
                             Text(
                               LocaleKeys.medical_book.tr,
-                              style: Get.textTheme.subtitle2,
+                              style: Get.textTheme.titleSmall,
                             ),
                             GestureDetector(
                               onTap: () =>

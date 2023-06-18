@@ -6,6 +6,7 @@ import 'package:petdo_k/utils.dart';
 
 import '../../../../../../../../../common/const.dart';
 import '../../../../../../../controllers/home_controller.dart';
+import '../../../controllers/health_record_detail_controller.dart';
 import '../../examination_schedule/controllers/examination_schedule_controller.dart';
 
 class ExaminationAddController extends GetxController {
@@ -23,6 +24,7 @@ class ExaminationAddController extends GetxController {
   final location = ''.obs;
 
   final healthController = Get.find<HealthRecordController>();
+  final healthDetailController = Get.find<HealthRecordDetailController>();
 
   get submit => date.value.isEmpty ? null : () => addExam();
 
@@ -65,6 +67,7 @@ class ExaminationAddController extends GetxController {
         HomeController.instance.changeMainView(MainView.examinationSchedule);
       }
       HomeController.instance.back();
+      healthDetailController.onReady();
     });
   }
 }

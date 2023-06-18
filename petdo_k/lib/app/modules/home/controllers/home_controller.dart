@@ -3,8 +3,12 @@ import 'dart:collection';
 import 'package:get/get.dart';
 import 'package:petdo_k/app/model/cat_response.dart';
 import 'package:petdo_k/app/model/dog_response.dart';
-import 'package:petdo_k/app/modules/home/views/setting/views/info/user_info_controller.dart';
-import 'package:petdo_k/app/modules/home/views/setting/views/info/user_info_view.dart';
+import 'package:petdo_k/app/modules/home/views/health_record/views/edit_pet/controllers/controllers/edit_pet_controller.dart';
+import 'package:petdo_k/app/modules/home/views/health_record/views/edit_pet/controllers/views/edit_pet_view.dart';
+import 'package:petdo_k/app/modules/home/views/setting/views/password/password_controller.dart';
+import 'package:petdo_k/app/modules/home/views/setting/views/password/password_info_view.dart';
+import 'package:petdo_k/app/modules/home/views/setting/views/text_app_view.dart';
+import 'package:petdo_k/utils.dart';
 
 import '../views/dictionary/controllers/dictionary_controller.dart';
 import '../views/dictionary/views/dictionary_summary/controllers/dictionary_summary_controller.dart';
@@ -63,6 +67,7 @@ class HomeController extends GetxController {
     /// Health record
     MainView.healthRecord: HealthRecordView(),
     MainView.addPet: AddPetView(),
+    MainView.editPet: EditPetView(),
     MainView.healthRecordDetail: HealthRecordDetailView(),
     MainView.vaccineSchedule: VaccineScheduleView(),
     MainView.vaccineAdd: VaccineAddView(),
@@ -73,7 +78,7 @@ class HomeController extends GetxController {
 
     /// Setting
     MainView.setting: SettingView(),
-    MainView.userInfoView: UserInfoView(),
+    MainView.passwordInfo: PasswordInfoView(),
   };
 
   GetView? get view => _mapViews[_currentView.value];
@@ -120,6 +125,9 @@ class HomeController extends GetxController {
         case MainView.addPet:
           Get.reload<AddPetController>();
           break;
+          case MainView.editPet:
+          Get.reload<EditPetController>();
+          break;
         case MainView.healthRecordDetail:
           Get.reload<HealthRecordDetailController>();
           break;
@@ -141,8 +149,8 @@ class HomeController extends GetxController {
         case MainView.examinationEdit:
           Get.reload<ExaminationEditController>();
           break;
-        case MainView.userInfoView:
-          Get.reload<UserInfoController>();
+        case MainView.passwordInfo:
+          Get.reload<PasswordController>();
           break;
 
         /// Setting
@@ -158,7 +166,7 @@ class HomeController extends GetxController {
 
   void changeTab(TabType tab) {
     // Người dùng ấn lại vào tab đang chọn
-    if (tab != currentTab) {
+    if (tab != currentTab && !isImageUploading) {
       // Chuyển sang view của tab được chọn
       changeMainView(_mapStackView[tab]!.last);
     }
@@ -191,6 +199,7 @@ enum MainView {
   /// Health Record
   healthRecord,
   addPet,
+  editPet,
   healthRecordDetail,
   vaccineSchedule,
   vaccineAdd,
@@ -198,7 +207,7 @@ enum MainView {
   examinationSchedule,
   examinationAdd,
   examinationEdit,
-  userInfoView,
+  passwordInfo,
 
   /// Setting
   setting,
@@ -220,6 +229,7 @@ extension Tab on MainView {
       ///
       case MainView.healthRecord:
       case MainView.addPet:
+      case MainView.editPet:
       case MainView.healthRecordDetail:
       case MainView.vaccineSchedule:
       case MainView.vaccineAdd:
@@ -231,7 +241,7 @@ extension Tab on MainView {
 
       ///
       case MainView.setting:
-      case MainView.userInfoView:
+      case MainView.passwordInfo:
         return TabType.setting;
     }
   }
