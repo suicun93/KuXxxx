@@ -29,20 +29,22 @@ class InitialController extends GetxController {
     final phoneNumber = await Preference.getPhoneNumber();
     final email = await Preference.getEmail();
     final password = await Preference.getPassword();
-    if (phoneNumber.isNotEmpty || email.isNotEmpty){
+    if (phoneNumber.isNotEmpty || email.isNotEmpty) {
       final result = await dbWelCome
           .doc(loginDocument)
           .collection(
-          phoneNumber.isNotEmpty ? phoneCollection : emailCollection).doc(phoneNumber.isNotEmpty ? phoneNumber : email)
+              phoneNumber.isNotEmpty ? phoneCollection : emailCollection)
+          .doc(phoneNumber.isNotEmpty ? phoneNumber : email)
           .get();
       if (result.data()?[passwordField] == password) {
         Get.offAndToNamed(Routes.HOME);
       } else {
-        Future.delayed(Duration(seconds: 1), () => Get.offAndToNamed(Routes.WELCOME));
+        Future.delayed(
+            Duration(seconds: 1), () => Get.offAndToNamed(Routes.WELCOME));
       }
-    }else {
-      Future.delayed(Duration(seconds: 1), () => Get.offAndToNamed(Routes.WELCOME));
+    } else {
+      Future.delayed(
+          Duration(seconds: 1), () => Get.offAndToNamed(Routes.WELCOME));
     }
   }
-
 }

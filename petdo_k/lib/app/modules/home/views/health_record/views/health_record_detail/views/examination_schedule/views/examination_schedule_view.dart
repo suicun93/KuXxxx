@@ -72,8 +72,10 @@ class ExaminationScheduleView extends GetView<ExaminationScheduleController> {
                           itemBuilder: (_, index) => _vaccineBuilder(
                             index: index,
                             onTap: () {
-                              controller.vetCount.value = controller.vetMap.length - index;
-                              controller.selected.value = controller.vetMap[index];
+                              controller.vetCount.value =
+                                  controller.vetMap.length - index;
+                              controller.selected.value =
+                                  controller.vetMap[index];
                               HomeController.instance.changeMainView(
                                 MainView.examinationEdit,
                               );
@@ -132,13 +134,21 @@ class ExaminationScheduleView extends GetView<ExaminationScheduleController> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              controller.vetMap.isNotEmpty ? controller.vetMap[index].values.first.date ?? '' : '',
+                              controller.vetMap.isNotEmpty
+                                  ? controller
+                                          .vetMap[index].values.first.date ??
+                                      ''
+                                  : '',
                               overflow: TextOverflow.ellipsis,
                               style: Get.textTheme.titleLarge,
                             ),
                             SizedBox(height: 12),
                             Text(
-                              controller.vetMap.isNotEmpty ? controller.vetMap[index].values.first.location ?? '' : '',
+                              controller.vetMap.isNotEmpty
+                                  ? controller.vetMap[index].values.first
+                                          .location ??
+                                      ''
+                                  : '',
                               style: Get.textTheme.titleLarge,
                               overflow: TextOverflow.ellipsis,
                             ),

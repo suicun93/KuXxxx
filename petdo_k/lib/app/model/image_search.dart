@@ -4,9 +4,11 @@
 
 import 'dart:convert';
 
-List<ImageSearch> imageSearchFromJson(List list) => list.map((x) => ImageSearch.fromJson(x)).toList();
+List<ImageSearch> imageSearchFromJson(List list) =>
+    list.map((x) => ImageSearch.fromJson(x)).toList();
 
-String imageSearchToJson(List<ImageSearch> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+String imageSearchToJson(List<ImageSearch> data) =>
+    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class ImageSearch {
   final String id;
@@ -22,16 +24,16 @@ class ImageSearch {
   });
 
   factory ImageSearch.fromJson(Map<String, dynamic> json) => ImageSearch(
-    id: json["id"],
-    url: json["url"],
-    width: json["width"],
-    height: json["height"],
-  );
+        id: json["id"],
+        url: json["url"],
+        width: json["width"],
+        height: json["height"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "url": url,
-    "width": width,
-    "height": height,
-  };
+        "id": id,
+        "url": url,
+        "width": width,
+        "height": height,
+      };
 }

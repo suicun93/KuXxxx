@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:petdo_k/utils.dart';
 
 import '../../../common/const.dart';
-import '../../../routes/app_pages.dart';
 import '../../register_verify_phone/controllers/register_verify_phone_controller.dart';
 
 class RegisterVerifyInformationController extends GetxController {
@@ -36,11 +35,9 @@ class RegisterVerifyInformationController extends GetxController {
     registerByPhone.value =
         params[RegisterVerifyPhoneController.registerTypeKey] ==
             RegisterVerifyPhoneController.phoneKey;
-    phoneController.text =
-        params[RegisterVerifyPhoneController.phoneKey] ?? '';
+    phoneController.text = params[RegisterVerifyPhoneController.phoneKey] ?? '';
     phone.value = phoneController.text.toString();
-    emailController.text =
-        params[RegisterVerifyPhoneController.emailKey] ?? '';
+    emailController.text = params[RegisterVerifyPhoneController.emailKey] ?? '';
     email.value = emailController.text.toString();
   }
 
@@ -48,24 +45,29 @@ class RegisterVerifyInformationController extends GetxController {
   void onClose() {}
 
   bool get validToSubmit =>
-          ((registerPhone && phone.value.isPhoneNumber) ||
-              (registerEmail && email.value.isEmail)) &&
-          password.value.isPassword == null &&
-          confirmPassword.value.isNotEmpty &&
-          password.value == confirmPassword.value &&
-          agreeWithTermAndCondition.isTrue;
+      ((registerPhone && phone.value.isPhoneNumber) ||
+          (registerEmail && email.value.isEmail)) &&
+      password.value.isPassword == null &&
+      confirmPassword.value.isNotEmpty &&
+      password.value == confirmPassword.value &&
+      agreeWithTermAndCondition.isTrue;
 
   Future<bool> get submit => validToSubmit ? tiepTuc() : Future.value(false);
 
   Future<bool> tiepTuc() async {
-    final documentInfo = dbWelCome.doc(infoDocument).collection(
-        phone.value.isPhoneNumber ? phoneCollection : emailCollection).doc(
-        phone.value.isPhoneNumber ? phone.value : email.value);
+    final documentInfo = dbWelCome
+        .doc(infoDocument)
+        .collection(
+            phone.value.isPhoneNumber ? phoneCollection : emailCollection)
+        .doc(phone.value.isPhoneNumber ? phone.value : email.value);
     await documentInfo.set({
       'name': name.value,
     });
-    final documentLogin = dbWelCome.doc(loginDocument).collection(phone.value.isPhoneNumber ? phoneCollection : emailCollection).doc(
-        phone.value.isPhoneNumber ? phone.value : email.value);
+    final documentLogin = dbWelCome
+        .doc(loginDocument)
+        .collection(
+            phone.value.isPhoneNumber ? phoneCollection : emailCollection)
+        .doc(phone.value.isPhoneNumber ? phone.value : email.value);
     await documentLogin.set({'password': password.value});
     return true;
   }

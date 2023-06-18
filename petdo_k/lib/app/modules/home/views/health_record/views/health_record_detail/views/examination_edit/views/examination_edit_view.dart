@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:petdo_k/generated/locales.g.dart';
@@ -153,7 +152,9 @@ class ExaminationEditView extends GetView<ExaminationEditController> {
                                     onPressed: controller
                                         .deleteButton((_) => _showDialog(_)),
                                     child: Text(
-                                      controller.editMode.value ? LocaleKeys.cancel.tr : LocaleKeys.delete.tr,
+                                      controller.editMode.value
+                                          ? LocaleKeys.cancel.tr
+                                          : LocaleKeys.delete.tr,
                                     ),
                                     style: controller.editMode.value
                                         ? Get.theme.textButtonTheme.style

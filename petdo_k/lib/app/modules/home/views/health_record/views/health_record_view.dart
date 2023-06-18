@@ -52,7 +52,8 @@ class HealthRecordView extends GetView<HealthRecordController> {
                         width: double.infinity,
                         padding: EdgeInsets.symmetric(horizontal: 40),
                         child: TextButton(
-                          onPressed: () => Get.offAllNamed(Routes.REGISTER_VERIFY_PHONE),
+                          onPressed: () =>
+                              Get.offAllNamed(Routes.REGISTER_VERIFY_PHONE),
                           child: Text(LocaleKeys.register_btn.tr),
                         ),
                       ),
@@ -62,11 +63,10 @@ class HealthRecordView extends GetView<HealthRecordController> {
                     children: [
                       Container(
                         margin: EdgeInsets.only(
-                          top: Get.mediaQuery.viewPadding.top + 16,
-                          bottom: 16,
-                          right: 24,
-                          left: 40
-                        ),
+                            top: Get.mediaQuery.viewPadding.top + 16,
+                            bottom: 16,
+                            right: 24,
+                            left: 40),
                         alignment: Alignment.bottomCenter,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -116,11 +116,15 @@ class HealthRecordView extends GetView<HealthRecordController> {
                                         padding: EdgeInsets.only(
                                             top: 12, bottom: 50),
                                         itemBuilder: (_, index) => _pet(
-                                          image: controller.pets[index].imageUrl,
+                                          image:
+                                              controller.pets[index].imageUrl,
                                           name: controller.pets[index].name,
-                                          gender: controller.pets[index].isMale ? LocaleKeys.male.tr : LocaleKeys.female.tr,
+                                          gender: controller.pets[index].isMale
+                                              ? LocaleKeys.male.tr
+                                              : LocaleKeys.female.tr,
                                           age: '${index + 1} tháng tuổi',
-                                          onTap: () => controller.toDetail(pet: controller.pets[index]),
+                                          onTap: () => controller.toDetail(
+                                              pet: controller.pets[index]),
                                         ),
                                         itemCount: controller.pets.length,
                                       )

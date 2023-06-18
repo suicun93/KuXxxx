@@ -1,9 +1,6 @@
-import 'dart:io';
-
 import 'package:flutter/widgets.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:petdo_k/app/common/const.dart';
 import 'package:petdo_k/app/common/preferences.dart';
 import 'package:petdo_k/generated/locales.g.dart';
@@ -22,7 +19,8 @@ class PasswordController extends GetxController {
 
   bool get validToSubmit =>
       password.value.isPassword == null &&
-      confirmPassword.value.isNotEmpty && newPassword.value == confirmPassword.value;
+      confirmPassword.value.isNotEmpty &&
+      newPassword.value == confirmPassword.value;
 
   Future<bool> get submit =>
       validToSubmit ? callApiEdit() : Future.value(false);
@@ -30,7 +28,7 @@ class PasswordController extends GetxController {
   Future<bool> callApiEdit() async {
     final phonePref = await Preference.getPhoneNumber();
     final emailPref = await Preference.getEmail();
-    final documentInfo =  dbWelCome
+    final documentInfo = dbWelCome
         .doc(loginDocument)
         .collection(phonePref.isNotEmpty ? phoneCollection : emailCollection)
         .doc(phonePref.isNotEmpty ? phonePref : emailPref);
@@ -43,7 +41,6 @@ class PasswordController extends GetxController {
       return true;
     }
   }
-
 
   back() => HomeController.instance.back();
 }

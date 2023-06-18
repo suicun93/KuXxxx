@@ -21,14 +21,19 @@ class VaccineScheduleController extends GetxController {
     getAllVaccine();
   }
 
-  Future<void> getAllVaccine() async{
-    final dbVaccine = await dbHealth.doc(Get.find<HealthRecordController>().selectedId.value).collection(vaccineCollection).get();
-    final List<Map<String, PetVaccine>> data = dbVaccine.docs.map((snapshot) => {snapshot.id: PetVaccine.fromJson(snapshot.data())}).toList();
+  Future<void> getAllVaccine() async {
+    final dbVaccine = await dbHealth
+        .doc(Get.find<HealthRecordController>().selectedId.value)
+        .collection(vaccineCollection)
+        .get();
+    final List<Map<String, PetVaccine>> data = dbVaccine.docs
+        .map((snapshot) => {snapshot.id: PetVaccine.fromJson(snapshot.data())})
+        .toList();
     vaccineMap.addAll(data.reversed);
     ready.value = true;
   }
 
-  back()  {
+  back() {
     HomeController.instance.back();
     healthDetailController.onReady();
   }

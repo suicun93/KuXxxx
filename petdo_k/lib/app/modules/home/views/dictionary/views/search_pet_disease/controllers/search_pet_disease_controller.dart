@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
-import '../../../../../../../views/dropdown_list.dart';
 import '../../../../../controllers/home_controller.dart';
 
 class SearchPetDiseaseController extends GetxController {

@@ -158,7 +158,10 @@ class AddPetView extends GetView<AddPetController> {
                                                     value: item,
                                                     child: Container(
                                                       child: Text(
-                                                        item ? LocaleKeys.male.tr : LocaleKeys.female.tr,
+                                                        item
+                                                            ? LocaleKeys.male.tr
+                                                            : LocaleKeys
+                                                                .female.tr,
                                                         style: Get.textTheme
                                                             .headline6,
                                                       ),
@@ -172,7 +175,10 @@ class AddPetView extends GetView<AddPetController> {
                                                       DropdownMenuItem<bool>(
                                                     value: item,
                                                     child: Text(
-                                                      item ? LocaleKeys.male.tr : LocaleKeys.female.tr,
+                                                      item
+                                                          ? LocaleKeys.male.tr
+                                                          : LocaleKeys
+                                                              .female.tr,
                                                       style: Get
                                                           .textTheme.headline6,
                                                     ),
@@ -195,7 +201,10 @@ class AddPetView extends GetView<AddPetController> {
                                     controller.birthdayController,
                                   ),
                                   SizedBox(height: 24),
-                                  _buildTextFormField(title: LocaleKeys.breed.tr, onChange: (_) => controller.type.value = _),
+                                  _buildTextFormField(
+                                      title: LocaleKeys.breed.tr,
+                                      onChange: (_) =>
+                                          controller.type.value = _),
                                   SizedBox(height: 24),
                                   _buildTextFormField(
                                       title: '${LocaleKeys.weight.tr} (kg)',
@@ -247,7 +256,8 @@ class AddPetView extends GetView<AddPetController> {
             ),
             Expanded(
               child: Center(
-                child: Text(LocaleKeys.add_new_pet.tr, style: Get.textTheme.titleSmall),
+                child: Text(LocaleKeys.add_new_pet.tr,
+                    style: Get.textTheme.titleSmall),
               ),
             ),
             SizedBox(width: 60),

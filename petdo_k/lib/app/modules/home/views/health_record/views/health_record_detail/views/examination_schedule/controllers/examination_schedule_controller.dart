@@ -20,10 +20,15 @@ class ExaminationScheduleController extends GetxController {
     getAllExam();
   }
 
-  Future<void> getAllExam() async{
+  Future<void> getAllExam() async {
     vetMap.clear();
-    final dbVaccine = await dbHealth.doc(Get.find<HealthRecordController>().selectedId.value).collection(vetCollection).get();
-    final List<Map<String, PetVet>> data = dbVaccine.docs.map((snapshot) => {snapshot.id: PetVet.fromJson(snapshot.data())}).toList();
+    final dbVaccine = await dbHealth
+        .doc(Get.find<HealthRecordController>().selectedId.value)
+        .collection(vetCollection)
+        .get();
+    final List<Map<String, PetVet>> data = dbVaccine.docs
+        .map((snapshot) => {snapshot.id: PetVet.fromJson(snapshot.data())})
+        .toList();
     vetMap.addAll(data.reversed);
     ready.value = true;
   }

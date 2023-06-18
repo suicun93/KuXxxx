@@ -25,6 +25,6 @@ class DictionarySummaryProvider extends GetConnect {
   Future<Response<List<ImageSearch>>> getCatImages(String breedId) {
     return ApiUtils.getCatData<List<ImageSearch>>(
         'images/search?limit=20&breed_id=$breedId',
-            (data) => imageSearchFromJson(data));
+        (data) => imageSearchFromJson(data));
   }
 }

@@ -2,8 +2,8 @@ import 'dart:ui';
 
 import 'package:get/get.dart';
 
-import '../../../routes/app_pages.dart';
 import '../../../common/const.dart';
+import '../../../routes/app_pages.dart';
 
 class ForgotPasswordInputNewController extends GetxController {
   final hidePassword = true.obs;

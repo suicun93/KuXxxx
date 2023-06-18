@@ -150,9 +150,12 @@ class SettingView extends GetView<SettingController> {
                                             ),
                                           ),
                                           bottom: 30,
-                                          right: (controller.image.value != null || controller.imageUrl.isNotEmpty)
-                                              ? (size - 126) / 2 - 16
-                                              : (size - 120) / 2,
+                                          right:
+                                              (controller.image.value != null ||
+                                                      controller
+                                                          .imageUrl.isNotEmpty)
+                                                  ? (size - 126) / 2 - 16
+                                                  : (size - 120) / 2,
                                         ),
                                       ],
                                     ),
@@ -196,11 +199,16 @@ class SettingView extends GetView<SettingController> {
                                   SizedBox(
                                     height: 20,
                                   ),
-                                  _settingSection(context,
+                                  _settingSection(
+                                      context,
                                       LocaleKeys.policy_and_terms.tr,
-                                      'images/ic_terms.png', termsAndPolicy),
-                                  _settingSection(context, LocaleKeys.about_us.tr,
-                                      'images/ic_about_us.png', aboutUs),
+                                      'images/ic_terms.png',
+                                      termsAndPolicy),
+                                  _settingSection(
+                                      context,
+                                      LocaleKeys.about_us.tr,
+                                      'images/ic_about_us.png',
+                                      aboutUs),
                                 ],
                               ),
                             ),
@@ -232,7 +240,8 @@ class SettingView extends GetView<SettingController> {
     );
   }
 
-  _settingSection(BuildContext context, String title, String iconUrl, String content) {
+  _settingSection(
+      BuildContext context, String title, String iconUrl, String content) {
     return GestureDetector(
       child: Container(
         padding: EdgeInsets.all(20),
@@ -247,15 +256,19 @@ class SettingView extends GetView<SettingController> {
             SizedBox(width: 20),
             Expanded(
                 child: Text(
-                  title,
-                  style: Get.textTheme.labelLarge,
-                )),
+              title,
+              style: Get.textTheme.labelLarge,
+            )),
             Icon(Icons.arrow_forward_ios),
           ],
         ),
       ),
       onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => TextAppView(title: title, content: content)));
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) =>
+                    TextAppView(title: title, content: content)));
       },
     );
   }

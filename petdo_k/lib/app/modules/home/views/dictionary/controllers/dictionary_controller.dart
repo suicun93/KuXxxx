@@ -49,11 +49,11 @@ class DictionaryController extends GetxController {
   }
 
   void listenTypeSelected() {
-    selectedType.listen((type) async{
+    selectedType.listen((type) async {
       response.clear();
       _dogResponse.clear();
       _catResponse.clear();
-      if (type == animalType[1]){
+      if (type == animalType[1]) {
         final dogResponse = (await provider.getDogsByBreed()).body ?? [];
         response.addAll(dogResponse.map((e) => AnimalResponse(
             e.image?.url ?? '',
@@ -73,7 +73,7 @@ class DictionaryController extends GetxController {
     });
   }
 
-  void getCatsAndDogs(int dogPage,int catPage) async {
+  void getCatsAndDogs(int dogPage, int catPage) async {
     final catResponse =
         (await provider.getCatsByBreed(page: catPage)).body ?? [];
     final dogResponse =
@@ -115,8 +115,8 @@ class DictionaryController extends GetxController {
         return;
       }
     }
-    for (final dog in _dogResponse){
-      if(dog.name == animalName) {
+    for (final dog in _dogResponse) {
+      if (dog.name == animalName) {
         HomeController.instance.selectedDog = dog;
         HomeController.instance.selectedCat = null;
         HomeController.instance.changeMainView(MainView.dictionarySummary);

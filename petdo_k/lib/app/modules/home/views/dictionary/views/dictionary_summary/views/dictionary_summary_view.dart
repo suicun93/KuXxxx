@@ -1,15 +1,12 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../../../../../generated/locales.g.dart';
 import '../../../../../../../common/const.dart';
-import '../../../../../../../views/disease_item.dart';
 import '../../../../../../../views/my_app_bar.dart';
 import '../../../../../../../views/my_flexible_space_bar.dart';
 import '../../../../../../../views/my_image.dart';
@@ -42,7 +39,9 @@ class DictionarySummaryView extends GetView<DictionarySummaryController> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        controller.catResponse.value.name ?? controller.dogResponse.value.name ?? '',
+                        controller.catResponse.value.name ??
+                            controller.dogResponse.value.name ??
+                            '',
                         style: Get.textTheme.titleSmall?.copyWith(
                           fontSize: 20,
                           color: Colors.white,
@@ -50,7 +49,9 @@ class DictionarySummaryView extends GetView<DictionarySummaryController> {
                       ),
                       SizedBox(height: 3),
                       Text(
-                        controller.catResponse.value.temperament ?? controller.dogResponse.value.temperament ?? '',
+                        controller.catResponse.value.temperament ??
+                            controller.dogResponse.value.temperament ??
+                            '',
                         overflow: TextOverflow.ellipsis,
                         style: Get.textTheme.bodyLarge?.copyWith(
                           color: Colors.white,
@@ -110,7 +111,9 @@ class DictionarySummaryView extends GetView<DictionarySummaryController> {
                         child: Column(
                           children: [
                             Text(
-                              controller.dogResponse.value.description ?? controller.catResponse.value.description ?? '',
+                              controller.dogResponse.value.description ??
+                                  controller.catResponse.value.description ??
+                                  '',
                               style: Get.textTheme.bodyLarge,
                               maxLines: !controller.expanding.value ? 1 : 200,
                               overflow: !controller.expanding.value
@@ -143,13 +146,16 @@ class DictionarySummaryView extends GetView<DictionarySummaryController> {
                           _info(
                             image: 'images/ic_original.png',
                             label: 'Original',
-                            info: controller.catResponse.value.origin ?? controller.dogResponse.value.origin ?? '',
+                            info: controller.catResponse.value.origin ??
+                                controller.dogResponse.value.origin ??
+                                '',
                           ),
                           SizedBox(height: 16),
                           _info(
                             image: 'images/ic_age.png',
                             label: 'Age',
-                            info: '${controller.catResponse.value.lifeSpan ?? controller.dogResponse.value.lifeSpan ?? ''} years old',
+                            info:
+                                '${controller.catResponse.value.lifeSpan ?? controller.dogResponse.value.lifeSpan ?? ''} years old',
                           ),
                         ],
                       ),
@@ -158,10 +164,16 @@ class DictionarySummaryView extends GetView<DictionarySummaryController> {
                     _container(
                       child: Column(
                         children: [
-                          if(controller.catResponse.value.wikipediaUrl?.isNotEmpty == true)
-                            _menu(title: LocaleKeys.detail_information.tr, onTap: () {
-                            _launchUrl(controller.catResponse.value.wikipediaUrl ?? '');
-                          })
+                          if (controller
+                                  .catResponse.value.wikipediaUrl?.isNotEmpty ==
+                              true)
+                            _menu(
+                                title: LocaleKeys.detail_information.tr,
+                                onTap: () {
+                                  _launchUrl(controller
+                                          .catResponse.value.wikipediaUrl ??
+                                      '');
+                                })
                         ],
                       ),
                     ),

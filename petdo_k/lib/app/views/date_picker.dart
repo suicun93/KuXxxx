@@ -32,7 +32,8 @@ class DatePicker extends StatelessWidget {
                   cancelText: LocaleKeys.exit.tr,
                   confirmText: LocaleKeys.select.tr,
                   fieldLabelText: title,
-                  fieldHintText: '${LocaleKeys.enter.tr} $title'.capitalizeFirst,
+                  fieldHintText:
+                      '${LocaleKeys.enter.tr} $title'.capitalizeFirst,
                   errorFormatText: LocaleKeys.wrong_date_format.tr,
                   errorInvalidText: LocaleKeys.date_too_far.tr,
                   firstDate: now.subtract(Duration(days: 365)),

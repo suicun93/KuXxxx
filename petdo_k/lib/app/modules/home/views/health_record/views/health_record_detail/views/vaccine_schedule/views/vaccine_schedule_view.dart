@@ -72,8 +72,10 @@ class VaccineScheduleView extends GetView<VaccineScheduleController> {
                           itemBuilder: (_, index) => _vaccineBuilder(
                             index: index,
                             onTap: () {
-                              controller.selected.value = controller.vaccineMap[index];
-                              controller.vaccineCount.value = controller.vaccineMap.length - index;
+                              controller.selected.value =
+                                  controller.vaccineMap[index];
+                              controller.vaccineCount.value =
+                                  controller.vaccineMap.length - index;
                               HomeController.instance.changeMainView(
                                 MainView.vaccineEdit,
                               );
@@ -132,13 +134,16 @@ class VaccineScheduleView extends GetView<VaccineScheduleController> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              controller.vaccineMap[index].values.first.date ?? '',
+                              controller.vaccineMap[index].values.first.date ??
+                                  '',
                               overflow: TextOverflow.ellipsis,
                               style: Get.textTheme.headline6,
                             ),
                             SizedBox(height: 12),
                             Text(
-                              controller.vaccineMap[index].values.first.vaccineType ?? '',
+                              controller.vaccineMap[index].values.first
+                                      .vaccineType ??
+                                  '',
                               style: Get.textTheme.headline6,
                               overflow: TextOverflow.ellipsis,
                             ),

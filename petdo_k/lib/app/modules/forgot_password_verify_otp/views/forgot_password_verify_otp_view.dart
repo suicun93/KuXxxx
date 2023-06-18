@@ -36,8 +36,9 @@ class ForgotPasswordVerifyOtpView
               ),
             ),
             child: Obx(
-                  () => ListView(
-                keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+              () => ListView(
+                keyboardDismissBehavior:
+                    ScrollViewKeyboardDismissBehavior.onDrag,
                 children: [
                   Column(
                     children: [
@@ -119,12 +120,17 @@ class ForgotPasswordVerifyOtpView
                           onPressed: controller.code.value.length != 4
                               ? null
                               : () {
-                            context.loaderOverlay.show();
-                            Future.delayed(Duration(seconds: 2), () {
-                              context.loaderOverlay.hide();
-                              Fluttertoast.showToast(msg: LocaleKeys.forgot_password_wrong_code.tr);
-                            },);
-                          },
+                                  context.loaderOverlay.show();
+                                  Future.delayed(
+                                    Duration(seconds: 2),
+                                    () {
+                                      context.loaderOverlay.hide();
+                                      Fluttertoast.showToast(
+                                          msg: LocaleKeys
+                                              .forgot_password_wrong_code.tr);
+                                    },
+                                  );
+                                },
                         ),
                       ),
                       SizedBox(height: 20),

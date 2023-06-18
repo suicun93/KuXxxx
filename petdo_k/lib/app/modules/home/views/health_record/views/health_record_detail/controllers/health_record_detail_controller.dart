@@ -41,23 +41,33 @@ class HealthRecordDetailController extends GetxController {
     getAllExam();
   }
 
-  Future<void> getAllExam() async{
-    final dbVaccine = await dbHealth.doc(Get.find<HealthRecordController>().selectedId.value).collection(vetCollection).get();
-    final List<Map<String, PetVet>> data = dbVaccine.docs.map((snapshot) => {snapshot.id: PetVet.fromJson(snapshot.data())}).toList();
+  Future<void> getAllExam() async {
+    final dbVaccine = await dbHealth
+        .doc(Get.find<HealthRecordController>().selectedId.value)
+        .collection(vetCollection)
+        .get();
+    final List<Map<String, PetVet>> data = dbVaccine.docs
+        .map((snapshot) => {snapshot.id: PetVet.fromJson(snapshot.data())})
+        .toList();
     vetMap.addAll(data.reversed);
     ready.value = true;
   }
 
-  Future<void> getAllVaccine() async{
-    final dbVaccine = await dbHealth.doc(backController.selectedId.value).collection(vaccineCollection).get();
-    final data = dbVaccine.docs.map((snapshot) => {snapshot.id: PetVaccine.fromJson(snapshot.data())}).toList();
+  Future<void> getAllVaccine() async {
+    final dbVaccine = await dbHealth
+        .doc(backController.selectedId.value)
+        .collection(vaccineCollection)
+        .get();
+    final data = dbVaccine.docs
+        .map((snapshot) => {snapshot.id: PetVaccine.fromJson(snapshot.data())})
+        .toList();
     vaccineMap.addAll(data.reversed);
   }
 
   @override
   void onClose() {}
 
-  Future<void> removePet() async{
+  Future<void> removePet() async {
     await backController.deletePet();
   }
 

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -6,7 +5,6 @@ import '../../../../../common/const.dart';
 import '../../../../../views/animal_item.dart';
 import '../../../../../views/dropdown_list.dart';
 import '../../../../../views/loading_view.dart';
-import '../../../controllers/home_controller.dart';
 import '../controllers/dictionary_controller.dart';
 
 class DictionaryView extends GetView<DictionaryController> {

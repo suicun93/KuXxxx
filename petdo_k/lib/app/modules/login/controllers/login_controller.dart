@@ -98,7 +98,8 @@ class LoginController extends MyGetxController<LoginProvider> {
     final result = await dbWelCome
         .doc(loginDocument)
         .collection(
-            phoneNumber.value.isPhoneNumber ? phoneCollection : emailCollection).doc(phoneNumber.value.isPhoneNumber ? phoneNumber.value : email.value)
+            phoneNumber.value.isPhoneNumber ? phoneCollection : emailCollection)
+        .doc(phoneNumber.value.isPhoneNumber ? phoneNumber.value : email.value)
         .get();
     if (result.data()?[passwordField] == password.string) {
       return true;

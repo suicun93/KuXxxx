@@ -218,7 +218,8 @@ class EditPetView extends GetView<EditPetController> {
                                   SizedBox(height: 24),
                                   _buildTextFormField(
                                       title: '${LocaleKeys.weight.tr} (kg)',
-                                      textController: controller.weightController,
+                                      textController:
+                                          controller.weightController,
                                       textInputType:
                                           TextInputType.numberWithOptions(
                                               decimal: true),

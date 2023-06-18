@@ -540,7 +540,8 @@ class _SliverAppBarState extends State<MySliverAppBar>
   @override
   void didUpdateWidget(MySliverAppBar oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (widget.snap != oldWidget.snap || widget.floating != oldWidget.floating) {
+    if (widget.snap != oldWidget.snap ||
+        widget.floating != oldWidget.floating) {
       _updateSnapConfiguration();
     }
     if (widget.stretch != oldWidget.stretch) _updateStretchConfiguration();

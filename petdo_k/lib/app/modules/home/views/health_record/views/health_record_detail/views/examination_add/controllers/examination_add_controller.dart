@@ -7,7 +7,6 @@ import 'package:petdo_k/utils.dart';
 import '../../../../../../../../../common/const.dart';
 import '../../../../../../../controllers/home_controller.dart';
 import '../../../controllers/health_record_detail_controller.dart';
-import '../../examination_schedule/controllers/examination_schedule_controller.dart';
 
 class ExaminationAddController extends GetxController {
   final vaccineDateController = TextEditingController();
@@ -49,18 +48,20 @@ class ExaminationAddController extends GetxController {
         .doc(healthController.selectedId.value)
         .collection(vetCollection)
         .doc(DateTime.now().millisecondsSinceEpoch.toString());
-    await vetDoc.set(PetVet(
-        date: vaccineDateController.text,
-        bodyTemp: temp.value,
-        weight: weight.value,
-        drug: drug.value,
-        illness: illness.value,
-        phone: phone.value,
-        symptom: symptom.value,
-        returnDate: revaccineDateController.text,
-        doctor: doctor.value,
-        location: location.value)
-        .toJson()).whenComplete(() {
+    await vetDoc
+        .set(PetVet(
+                date: vaccineDateController.text,
+                bodyTemp: temp.value,
+                weight: weight.value,
+                drug: drug.value,
+                illness: illness.value,
+                phone: phone.value,
+                symptom: symptom.value,
+                returnDate: revaccineDateController.text,
+                doctor: doctor.value,
+                location: location.value)
+            .toJson())
+        .whenComplete(() {
       showSnackBar('Add successfully');
       ready.value = true;
       if (HomeController.instance.back() != MainView.examinationSchedule) {

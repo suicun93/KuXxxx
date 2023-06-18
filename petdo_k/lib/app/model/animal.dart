@@ -1,4 +1,4 @@
-import 'package:petdo_k/app/views/animal_item.dart';
+
 
 class AnimalResponse {
   final String imageUrl;

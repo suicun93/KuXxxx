@@ -20,9 +20,8 @@ class SettingController extends GetxController {
     await Preference.clearAll();
   }
 
-
   @override
-  void onReady() async{
+  void onReady() async {
     token.value = await Preference.getEmail();
     if (token.value?.isEmpty == true) {
       ready.value = true;
@@ -36,11 +35,8 @@ class SettingController extends GetxController {
     email.value = await Preference.getEmail();
     final documentResult = await dbWelCome
         .doc(infoDocument)
-        .collection(
-        phone.value.isNotEmpty ? phoneCollection : emailCollection)
-        .doc(phone.value.isNotEmpty
-        ? phone.value
-        : email.value)
+        .collection(phone.value.isNotEmpty ? phoneCollection : emailCollection)
+        .doc(phone.value.isNotEmpty ? phone.value : email.value)
         .get();
     imageUrl.value = documentResult.data()?['image'] ?? '';
     ready.value = true;
@@ -53,7 +49,8 @@ class SettingController extends GetxController {
         .doc(infoDocument)
         .collection(phonePref.isNotEmpty ? phoneCollection : emailCollection)
         .doc(phonePref.isNotEmpty ? phonePref : emailPref);
-    final imageId = '${DateTime.now().millisecondsSinceEpoch}_${image.value?.name}';
+    final imageId =
+        '${DateTime.now().millisecondsSinceEpoch}_${image.value?.name}';
     final imageStorage = storageRef.child(imageId);
     await imageStorage.putFile(File(image.value!.path));
     final imageUrl = await imageStorage.getDownloadURL();
@@ -62,13 +59,13 @@ class SettingController extends GetxController {
     return true;
   }
 
-   Future<void> getImage () async {
+  Future<void> getImage() async {
     final ImagePicker _picker = ImagePicker();
     image.value = await _picker.pickImage(source: ImageSource.gallery);
-    if (image.value != null){
+    if (image.value != null) {
       isImageUploading = true;
       await uploadImage();
-      isImageUploading= false;
+      isImageUploading = false;
     }
   }
 

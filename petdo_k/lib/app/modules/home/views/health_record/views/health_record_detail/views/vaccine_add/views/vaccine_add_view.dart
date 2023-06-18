@@ -104,7 +104,7 @@ class VaccineAddView extends GetView<VaccineAddController> {
                                   _buildTextFormField(
                                       title: LocaleKeys.location.tr,
                                       onChange: (_) =>
-                                      controller.location.value = _),
+                                          controller.location.value = _),
                                 ],
                               ),
                             ),

@@ -26,7 +26,8 @@ class AddPetController extends GetxController {
       : () async {
           ready.value = false;
           if (image.value?.path != null) {
-            final imageId = '${DateTime.now().millisecondsSinceEpoch}_${image.value?.name}';
+            final imageId =
+                '${DateTime.now().millisecondsSinceEpoch}_${image.value?.name}';
             final imageStorage = storageRef.child(imageId);
             await imageStorage.putFile(File(image.value!.path));
             final imageUrl = await imageStorage.getDownloadURL();
@@ -49,18 +50,18 @@ class AddPetController extends GetxController {
             });
           } else {
             final petInfo =
-            dbHealth.doc(DateTime.now().millisecondsSinceEpoch.toString());
+                dbHealth.doc(DateTime.now().millisecondsSinceEpoch.toString());
             petInfo
                 .set(PetHealth(
-                imageUrl: '',
-                imageId: '',
-                type: type.value,
-                isDog: isDog.value,
-                name: petName.value,
-                birthDay: birthdayController.text,
-                isMale: gender.value ?? false,
-                weight: petWeight.value)
-                .toJson())
+                        imageUrl: '',
+                        imageId: '',
+                        type: type.value,
+                        isDog: isDog.value,
+                        name: petName.value,
+                        birthDay: birthdayController.text,
+                        isMale: gender.value ?? false,
+                        weight: petWeight.value)
+                    .toJson())
                 .whenComplete(() {
               backController.onReady();
               back();

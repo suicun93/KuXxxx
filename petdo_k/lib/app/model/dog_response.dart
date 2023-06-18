@@ -4,9 +4,11 @@
 
 import 'dart:convert';
 
-List<DogResponse> dogsResponseFromJson(List list) => list.map((x) => DogResponse.fromJson(x)).toList();
+List<DogResponse> dogsResponseFromJson(List list) =>
+    list.map((x) => DogResponse.fromJson(x)).toList();
 
-String dogsResponseToJson(List<DogResponse> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+String dogsResponseToJson(List<DogResponse> data) =>
+    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class DogResponse {
   Eight? weight;
@@ -42,38 +44,38 @@ class DogResponse {
   });
 
   factory DogResponse.fromJson(Map<String, dynamic> json) => DogResponse(
-    weight: json["weight"] == null ? null : Eight.fromJson(json["weight"]),
-    height: json["height"] == null ? null : Eight.fromJson(json["height"]),
-    id: json["id"],
-    name: json["name"],
-    bredFor: json["bred_for"],
-    breedGroup: json["breed_group"],
-    lifeSpan: json["life_span"],
-    temperament: json["temperament"],
-    origin: json["origin"],
-    referenceImageId: json["reference_image_id"],
-    image: json["image"] == null ? null : Image.fromJson(json["image"]),
-    countryCode: json["country_code"],
-    description: json["description"],
-    history: json["history"],
-  );
+        weight: json["weight"] == null ? null : Eight.fromJson(json["weight"]),
+        height: json["height"] == null ? null : Eight.fromJson(json["height"]),
+        id: json["id"],
+        name: json["name"],
+        bredFor: json["bred_for"],
+        breedGroup: json["breed_group"],
+        lifeSpan: json["life_span"],
+        temperament: json["temperament"],
+        origin: json["origin"],
+        referenceImageId: json["reference_image_id"],
+        image: json["image"] == null ? null : Image.fromJson(json["image"]),
+        countryCode: json["country_code"],
+        description: json["description"],
+        history: json["history"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "weight": weight?.toJson(),
-    "height": height?.toJson(),
-    "id": id,
-    "name": name,
-    "bred_for": bredFor,
-    "breed_group": breedGroup,
-    "life_span": lifeSpan,
-    "temperament": temperament,
-    "origin": origin,
-    "reference_image_id": referenceImageId,
-    "image": image?.toJson(),
-    "country_code": countryCode,
-    "description": description,
-    "history": history,
-  };
+        "weight": weight?.toJson(),
+        "height": height?.toJson(),
+        "id": id,
+        "name": name,
+        "bred_for": bredFor,
+        "breed_group": breedGroup,
+        "life_span": lifeSpan,
+        "temperament": temperament,
+        "origin": origin,
+        "reference_image_id": referenceImageId,
+        "image": image?.toJson(),
+        "country_code": countryCode,
+        "description": description,
+        "history": history,
+      };
 }
 
 class Eight {
@@ -86,14 +88,14 @@ class Eight {
   });
 
   factory Eight.fromJson(Map<String, dynamic> json) => Eight(
-    imperial: json["imperial"],
-    metric: json["metric"],
-  );
+        imperial: json["imperial"],
+        metric: json["metric"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "imperial": imperial,
-    "metric": metric,
-  };
+        "imperial": imperial,
+        "metric": metric,
+      };
 }
 
 class Image {
@@ -110,16 +112,16 @@ class Image {
   });
 
   factory Image.fromJson(Map<String, dynamic> json) => Image(
-    id: json["id"],
-    width: json["width"],
-    height: json["height"],
-    url: json["url"],
-  );
+        id: json["id"],
+        width: json["width"],
+        height: json["height"],
+        url: json["url"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "width": width,
-    "height": height,
-    "url": url,
-  };
+        "id": id,
+        "width": width,
+        "height": height,
+        "url": url,
+      };
 }

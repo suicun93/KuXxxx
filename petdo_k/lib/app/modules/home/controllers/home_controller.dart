@@ -7,10 +7,8 @@ import 'package:petdo_k/app/modules/home/views/health_record/views/edit_pet/cont
 import 'package:petdo_k/app/modules/home/views/health_record/views/edit_pet/controllers/views/edit_pet_view.dart';
 import 'package:petdo_k/app/modules/home/views/setting/views/password/password_controller.dart';
 import 'package:petdo_k/app/modules/home/views/setting/views/password/password_info_view.dart';
-import 'package:petdo_k/app/modules/home/views/setting/views/text_app_view.dart';
 import 'package:petdo_k/utils.dart';
 
-import '../views/dictionary/controllers/dictionary_controller.dart';
 import '../views/dictionary/views/dictionary_summary/controllers/dictionary_summary_controller.dart';
 import '../views/dictionary/views/dictionary_summary/views/dictionary_summary_view.dart';
 import '../views/dictionary/views/dictionary_view.dart';
@@ -20,7 +18,6 @@ import '../views/dictionary/views/search_pet_disease/views/search_disease/views/
 import '../views/dictionary/views/search_pet_disease/views/search_pet/controllers/search_pet_controller.dart';
 import '../views/dictionary/views/search_pet_disease/views/search_pet/views/search_pet_view.dart';
 import '../views/dictionary/views/search_pet_disease/views/search_pet_disease_view.dart';
-import '../views/health_record/controllers/health_record_controller.dart';
 import '../views/health_record/views/add_pet/controllers/controllers/add_pet_controller.dart';
 import '../views/health_record/views/add_pet/controllers/views/add_pet_view.dart';
 import '../views/health_record/views/health_record_detail/controllers/health_record_detail_controller.dart';
@@ -106,7 +103,6 @@ class HomeController extends GetxController {
     if (_mapStackView[view.tab]!.last != view) {
       _mapStackView[view.tab]!.add(view);
       switch (view) {
-
         /// Dictionary
         case MainView.dictionarySummary:
           Get.reload<DictionarySummaryController>();
@@ -125,7 +121,7 @@ class HomeController extends GetxController {
         case MainView.addPet:
           Get.reload<AddPetController>();
           break;
-          case MainView.editPet:
+        case MainView.editPet:
           Get.reload<EditPetController>();
           break;
         case MainView.healthRecordDetail:
@@ -217,7 +213,6 @@ enum MainView {
 extension Tab on MainView {
   TabType get tab {
     switch (this) {
-
       ///
       case MainView.dictionary:
       case MainView.dictionarySummary:

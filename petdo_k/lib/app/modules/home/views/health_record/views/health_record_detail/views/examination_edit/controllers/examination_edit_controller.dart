@@ -38,7 +38,7 @@ class ExaminationEditController extends GetxController {
     final vetData =
         Get.find<ExaminationScheduleController>().selected.values.first;
     title.value =
-    '${LocaleKeys.number.tr} ${Get.find<ExaminationScheduleController>().vetCount.value}';
+        '${LocaleKeys.number.tr} ${Get.find<ExaminationScheduleController>().vetCount.value}';
     // Date time
     vaccineDateController.text = vetData.date ?? '';
     revaccineDateController.text = vetData.returnDate ?? '';
@@ -92,19 +92,19 @@ class ExaminationEditController extends GetxController {
         .collection(vetCollection)
         .doc(Get.find<ExaminationScheduleController>().selected.keys.first)
         .update(PetVet(
-        date: vaccineDateController.text,
-        returnDate: revaccineDateController.text,
-        location: coSoController.text,
-        doctor: bacSyController.text,
-        symptom: trieuChungController.text,
-        phone: doctorPhoneController.text,
-        drug: cacLoaiThuocController.text,
-        illness: chanDoanBenhController.text,
-        weight:
-        canNangController.text.replaceAll(RegExp(r'[^0-9]'), ''),
-        bodyTemp:
-        thanNhietController.text.replaceAll(RegExp(r'[^0-9]'), ''))
-        .toJson())
+                date: vaccineDateController.text,
+                returnDate: revaccineDateController.text,
+                location: coSoController.text,
+                doctor: bacSyController.text,
+                symptom: trieuChungController.text,
+                phone: doctorPhoneController.text,
+                drug: cacLoaiThuocController.text,
+                illness: chanDoanBenhController.text,
+                weight:
+                    canNangController.text.replaceAll(RegExp(r'[^0-9]'), ''),
+                bodyTemp:
+                    thanNhietController.text.replaceAll(RegExp(r'[^0-9]'), ''))
+            .toJson())
         .then((_) {
       showSnackBar('Successfully');
       ready.value = true;

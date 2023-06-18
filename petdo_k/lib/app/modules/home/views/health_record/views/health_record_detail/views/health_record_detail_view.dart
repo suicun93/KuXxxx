@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loader_overlay/loader_overlay.dart';
-import 'package:petdo_k/app/routes/app_pages.dart';
 
 import '../../../../../../../../generated/locales.g.dart';
 import '../../../../../../../common/const.dart';
@@ -65,7 +64,8 @@ class HealthRecordDetailView extends GetView<HealthRecordDetailController> {
 
                               /// Vaccine
                               _scheduleBlock(
-                                header: LocaleKeys.most_recent_vaccinated_time.tr,
+                                header:
+                                    LocaleKeys.most_recent_vaccinated_time.tr,
                                 title1: LocaleKeys.time.tr,
                                 content1: controller.vaccineMap.isNotEmpty
                                     ? controller.vaccineMap.first.values.first
@@ -88,9 +88,17 @@ class HealthRecordDetailView extends GetView<HealthRecordDetailController> {
                               _scheduleBlock(
                                 header: LocaleKeys.most_recent_examined_time.tr,
                                 title1: LocaleKeys.time.tr,
-                                content1: controller.vetMap.isNotEmpty ? controller.vetMap.first.values.first.date ?? '' : '',
+                                content1: controller.vetMap.isNotEmpty
+                                    ? controller
+                                            .vetMap.first.values.first.date ??
+                                        ''
+                                    : '',
                                 title2: LocaleKeys.location.tr,
-                                content2: controller.vetMap.isNotEmpty ? controller.vetMap.first.values.first.location ?? '' : '',
+                                content2: controller.vetMap.isNotEmpty
+                                    ? controller.vetMap.first.values.first
+                                            .location ??
+                                        ''
+                                    : '',
                                 buttonShow: LocaleKeys.see_other.tr,
                                 onShow: controller.showExamination,
                                 buttonAdd: LocaleKeys.add_schedule.tr,
@@ -222,8 +230,10 @@ class HealthRecordDetailView extends GetView<HealthRecordDetailController> {
                         ),
                       ),
                       GestureDetector(
-                        child: Image.asset('images/ic_edit.png', width: 18, height: 18),
-                        onTap: () => HomeController.instance.changeMainView(MainView.editPet),
+                        child: Image.asset('images/ic_edit.png',
+                            width: 18, height: 18),
+                        onTap: () => HomeController.instance
+                            .changeMainView(MainView.editPet),
                       ),
                     ],
                   ),
@@ -389,7 +399,8 @@ class HealthRecordDetailView extends GetView<HealthRecordDetailController> {
             ),
             Expanded(
               child: Center(
-                child: Text(LocaleKeys.medical_book.tr, style: Get.textTheme.subtitle2),
+                child: Text(LocaleKeys.medical_book.tr,
+                    style: Get.textTheme.subtitle2),
               ),
             ),
             SizedBox(width: 60),

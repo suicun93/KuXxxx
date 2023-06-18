@@ -39,15 +39,15 @@ class HealthRecordController extends GetxController {
   Future<void> deletePet() async {
     final petIndex = pets.indexOf(selectedPet.value);
     await dbHealth.doc(ids[petIndex]).delete();
-   if (selectedPet.value?.imageId.isNotEmpty == true) {
-     await storageRef.child(selectedPet.value?.imageId ?? '').delete();
-   }
-   ids.removeAt(petIndex);
-   pets.removeAt(petIndex);
-   noPet.value = pets.isNotEmpty;
+    if (selectedPet.value?.imageId.isNotEmpty == true) {
+      await storageRef.child(selectedPet.value?.imageId ?? '').delete();
+    }
+    ids.removeAt(petIndex);
+    pets.removeAt(petIndex);
+    noPet.value = pets.isNotEmpty;
   }
 
-  Future<void> editPet(PetHealth petHealth) async{
+  Future<void> editPet(PetHealth petHealth) async {
     final petIndex = pets.indexOf(selectedPet.value);
     final petRef = dbHealth.doc(ids[petIndex]);
     await petRef.update(petHealth.toJson());

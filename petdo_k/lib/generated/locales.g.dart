@@ -11,6 +11,7 @@ class AppTranslation {
 
 class LocaleKeys {
   LocaleKeys._();
+
   static const not_supported_yet = 'not_supported_yet';
   static const sos_central = 'sos_central';
   static const login_btn = 'login_btn';

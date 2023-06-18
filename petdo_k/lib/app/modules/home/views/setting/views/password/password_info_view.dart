@@ -5,7 +5,6 @@ import 'package:loader_overlay/loader_overlay.dart';
 import 'package:petdo_k/app/common/const.dart';
 import 'package:petdo_k/app/modules/home/controllers/home_controller.dart';
 import 'package:petdo_k/app/modules/home/views/setting/views/password/password_controller.dart';
-import 'package:petdo_k/app/views/loading_view.dart';
 import 'package:petdo_k/generated/locales.g.dart';
 
 class PasswordInfoView extends GetView<PasswordController> {
@@ -21,19 +20,19 @@ class PasswordInfoView extends GetView<PasswordController> {
               _appbar,
               Expanded(
                 child: Obx(() => Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(16),
-                      topRight: Radius.circular(16),
-                    ),
-                  ),
-                  child: SingleChildScrollView(
-                    // keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-                    padding: EdgeInsets.only(left: 40, right: 40),
-                    child: main(context: context),
-                  ),
-                )),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(16),
+                          topRight: Radius.circular(16),
+                        ),
+                      ),
+                      child: SingleChildScrollView(
+                        // keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+                        padding: EdgeInsets.only(left: 40, right: 40),
+                        child: main(context: context),
+                      ),
+                    )),
               )
             ],
           ),
@@ -81,9 +80,8 @@ class PasswordInfoView extends GetView<PasswordController> {
 
         //new password
         TextFormField(
-          validator: (v) => !(v?.isPassword == null )
-              ? LocaleKeys.password_invalid.tr
-              : null,
+          validator: (v) =>
+              !(v?.isPassword == null) ? LocaleKeys.password_invalid.tr : null,
           autovalidateMode: AutovalidateMode.onUserInteraction,
           style: Get.textTheme.headline6,
           cursorColor: subPrimaryColor,
@@ -113,8 +111,8 @@ class PasswordInfoView extends GetView<PasswordController> {
         SizedBox(height: 24),
         //confirm password
         TextFormField(
-          validator: (v) => !((v?.isPassword == null ) &&
-              v.toString() == controller.newPassword.value)
+          validator: (v) => !((v?.isPassword == null) &&
+                  v.toString() == controller.newPassword.value)
               ? LocaleKeys.password_not_match.tr
               : null,
           autovalidateMode: AutovalidateMode.always,
@@ -157,30 +155,31 @@ class PasswordInfoView extends GetView<PasswordController> {
   }
 
   Container get _appbar => Container(
-    color: Colors.transparent,
-    margin: EdgeInsets.only(
-      top: Get.mediaQuery.viewPadding.top + 16,
-      bottom: 16,
-    ),
-    alignment: Alignment.bottomCenter,
-    child: Row(
-      children: [
-        GestureDetector(
-          onTap: () => HomeController.instance.back(),
-          child: SizedBox(
-            width: 60,
-            child: Image.asset('images/ic_back.png', width: 16, height: 16),
-          ),
+        color: Colors.transparent,
+        margin: EdgeInsets.only(
+          top: Get.mediaQuery.viewPadding.top + 16,
+          bottom: 16,
         ),
-        Expanded(
-          child: Center(
-            child: Text(LocaleKeys.change_password.tr, style: Get.textTheme.subtitle2),
-          ),
+        alignment: Alignment.bottomCenter,
+        child: Row(
+          children: [
+            GestureDetector(
+              onTap: () => HomeController.instance.back(),
+              child: SizedBox(
+                width: 60,
+                child: Image.asset('images/ic_back.png', width: 16, height: 16),
+              ),
+            ),
+            Expanded(
+              child: Center(
+                child: Text(LocaleKeys.change_password.tr,
+                    style: Get.textTheme.subtitle2),
+              ),
+            ),
+            SizedBox(width: 60),
+          ],
         ),
-        SizedBox(width: 60),
-      ],
-    ),
-  );
+      );
 
   VoidCallback? checkEdit(BuildContext context) {
     if (controller.validToSubmit) {
