@@ -18,7 +18,7 @@ class HealthRecordController extends GetxController {
   @override
   void onReady() async {
     super.onReady();
-    token.value = await Preference.getEmail();
+    token.value = await Preference.getToken();
     ready.value = false;
     _getAllHealthRecord();
   }

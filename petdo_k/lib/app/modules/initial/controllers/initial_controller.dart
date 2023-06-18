@@ -29,7 +29,8 @@ class InitialController extends GetxController {
     final phoneNumber = await Preference.getPhoneNumber();
     final email = await Preference.getEmail();
     final password = await Preference.getPassword();
-    if (phoneNumber.isNotEmpty || email.isNotEmpty) {
+    final token = await Preference.getToken();
+    if (token == 'save') {
       final result = await dbWelCome
           .doc(loginDocument)
           .collection(
@@ -43,6 +44,7 @@ class InitialController extends GetxController {
             Duration(seconds: 1), () => Get.offAndToNamed(Routes.WELCOME));
       }
     } else {
+      await Preference.clearAll();
       Future.delayed(
           Duration(seconds: 1), () => Get.offAndToNamed(Routes.WELCOME));
     }

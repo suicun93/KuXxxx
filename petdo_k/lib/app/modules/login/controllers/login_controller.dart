@@ -84,17 +84,16 @@ class LoginController extends MyGetxController<LoginProvider> {
 
   Future<bool> login() async {
     if (saveLogin.isTrue) {
-      await Preference.setPhoneNumber(
-          phoneNumber.value.isPhoneNumber ? phoneNumber.value : '');
-      await Preference.setEmail(email.value);
-      await Preference.setPassword(password.value);
       await Preference.setSaveLogin(true);
+      await Preference.setToken('save');
     } else {
-      await Preference.setPhoneNumber('');
-      await Preference.setEmail('');
-      await Preference.setPassword('');
       await Preference.setSaveLogin(false);
+      await Preference.setToken('not save');
     }
+    await Preference.setPhoneNumber(
+        phoneNumber.value.isPhoneNumber ? phoneNumber.value : '');
+    await Preference.setEmail(email.value);
+    await Preference.setPassword(password.value);
     final result = await dbWelCome
         .doc(loginDocument)
         .collection(

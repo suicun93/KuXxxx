@@ -22,7 +22,7 @@ class SettingController extends GetxController {
 
   @override
   void onReady() async {
-    token.value = await Preference.getEmail();
+    token.value = await Preference.getToken();
     if (token.value?.isEmpty == true) {
       ready.value = true;
     } else {
