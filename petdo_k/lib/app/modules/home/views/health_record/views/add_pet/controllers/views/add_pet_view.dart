@@ -42,7 +42,7 @@ class AddPetView extends GetView<AddPetController> {
                                               BorderRadius.circular(8),
                                           child: controller.image.value == null
                                               ? Image.asset(
-                                                  'images/logo.png',
+                                                  'assets/logo_prod.jpeg',
                                                   width: 156,
                                                   height: 156,
                                                 )

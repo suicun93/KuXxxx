@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 
 import 'app/common/const.dart';
 import 'app/routes/app_pages.dart';
+import 'app/views/popup_service.dart';
 import 'generated/locales.g.dart';
 
 void main() async {

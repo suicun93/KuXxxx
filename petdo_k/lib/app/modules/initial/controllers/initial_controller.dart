@@ -1,5 +1,6 @@
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:petdo_k/app/views/popup_service.dart';
 import 'package:petdo_k/utils.dart';
 
 import '../../../common/const.dart';
@@ -35,7 +36,7 @@ class InitialController extends GetxController {
           .doc(loginDocument)
           .collection(
               phoneNumber.isNotEmpty ? phoneCollection : emailCollection)
-          .doc(phoneNumber.isNotEmpty ? phoneNumber : email)
+          .doc(phoneNumber.isNotEmpty ? '+$phoneNumber' : email)
           .get();
       if (result.data()?[passwordField] == password) {
         Get.offAndToNamed(Routes.HOME);

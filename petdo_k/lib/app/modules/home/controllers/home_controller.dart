@@ -9,6 +9,7 @@ import 'package:petdo_k/app/modules/home/views/setting/views/password/password_c
 import 'package:petdo_k/app/modules/home/views/setting/views/password/password_info_view.dart';
 import 'package:petdo_k/utils.dart';
 
+import '../../../views/popup_service.dart';
 import '../views/dictionary/views/dictionary_summary/controllers/dictionary_summary_controller.dart';
 import '../views/dictionary/views/dictionary_summary/views/dictionary_summary_view.dart';
 import '../views/dictionary/views/dictionary_view.dart';
@@ -41,6 +42,8 @@ import '../views/setting/views/setting_view.dart';
 class HomeController extends GetxController {
   /// Singleton
   static HomeController get instance => Get.find<HomeController>();
+  final popUpService = Get.find<PopupService>();
+
 
   /// Current View
   final _currentView = MainView.dictionary.obs;
@@ -91,10 +94,11 @@ class HomeController extends GetxController {
   //   super.onInit();
   // }
   //
-  // @override
-  // void onReady() {
-  //   super.onReady();
-  // }
+  @override
+  void onReady() {
+    super.onReady();
+    popUpService.init();
+  }
 
   @override
   void onClose() {}

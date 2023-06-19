@@ -36,7 +36,7 @@ class SettingController extends GetxController {
     final documentResult = await dbWelCome
         .doc(infoDocument)
         .collection(phone.value.isNotEmpty ? phoneCollection : emailCollection)
-        .doc(phone.value.isNotEmpty ? phone.value : email.value)
+        .doc(phone.value.isNotEmpty ? '+${phone.value}' : email.value)
         .get();
     imageUrl.value = documentResult.data()?['image'] ?? '';
     ready.value = true;
@@ -48,7 +48,7 @@ class SettingController extends GetxController {
     final documentInfo = dbWelCome
         .doc(infoDocument)
         .collection(phonePref.isNotEmpty ? phoneCollection : emailCollection)
-        .doc(phonePref.isNotEmpty ? phonePref : emailPref);
+        .doc(phonePref.isNotEmpty ? '+$phonePref' : emailPref);
     final imageId =
         '${DateTime.now().millisecondsSinceEpoch}_${image.value?.name}';
     final imageStorage = storageRef.child(imageId);

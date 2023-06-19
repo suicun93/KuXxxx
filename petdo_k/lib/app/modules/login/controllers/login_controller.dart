@@ -83,6 +83,7 @@ class LoginController extends MyGetxController<LoginProvider> {
   Future<bool> get submit => validToSubmit ? login() : Future.value(false);
 
   Future<bool> login() async {
+    String? phone;
     if (saveLogin.isTrue) {
       await Preference.setSaveLogin(true);
       await Preference.setToken('save');
@@ -90,15 +91,18 @@ class LoginController extends MyGetxController<LoginProvider> {
       await Preference.setSaveLogin(false);
       await Preference.setToken('not save');
     }
+    if(phoneNumber.value.isPhoneNumber && !phoneNumber.value.startsWith('0')) {
+      phone = '0${phoneNumber.value}';
+    }
     await Preference.setPhoneNumber(
-        phoneNumber.value.isPhoneNumber ? phoneNumber.value : '');
+        phoneNumber.value.isPhoneNumber ? (phone ?? phoneNumber.value) : '');
     await Preference.setEmail(email.value);
     await Preference.setPassword(password.value);
     final result = await dbWelCome
         .doc(loginDocument)
         .collection(
             phoneNumber.value.isPhoneNumber ? phoneCollection : emailCollection)
-        .doc(phoneNumber.value.isPhoneNumber ? phoneNumber.value : email.value)
+        .doc(phoneNumber.value.isPhoneNumber ? '+${phone ?? phoneNumber.value}' : email.value)
         .get();
     if (result.data()?[passwordField] == password.string) {
       return true;

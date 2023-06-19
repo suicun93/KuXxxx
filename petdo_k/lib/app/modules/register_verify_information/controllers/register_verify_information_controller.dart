@@ -37,6 +37,9 @@ class RegisterVerifyInformationController extends GetxController {
             RegisterVerifyPhoneController.phoneKey;
     phoneController.text = params[RegisterVerifyPhoneController.phoneKey] ?? '';
     phone.value = phoneController.text.toString();
+    if(!phone.value.startsWith('0')) {
+      phoneController.text ='0${phone.value}';
+    }
     emailController.text = params[RegisterVerifyPhoneController.emailKey] ?? '';
     email.value = emailController.text.toString();
   }
@@ -55,11 +58,15 @@ class RegisterVerifyInformationController extends GetxController {
   Future<bool> get submit => validToSubmit ? tiepTuc() : Future.value(false);
 
   Future<bool> tiepTuc() async {
+    String? phoneNumber;
+    if(!phone.value.startsWith('0')) {
+      phoneNumber = '0${phone.value}';
+    }
     final documentInfo = dbWelCome
         .doc(infoDocument)
         .collection(
             phone.value.isPhoneNumber ? phoneCollection : emailCollection)
-        .doc(phone.value.isPhoneNumber ? phone.value : email.value);
+        .doc(phone.value.isPhoneNumber ? '+${phoneNumber ?? phone.value}' : email.value);
     await documentInfo.set({
       'name': name.value,
     });
@@ -67,7 +74,7 @@ class RegisterVerifyInformationController extends GetxController {
         .doc(loginDocument)
         .collection(
             phone.value.isPhoneNumber ? phoneCollection : emailCollection)
-        .doc(phone.value.isPhoneNumber ? phone.value : email.value);
+        .doc(phone.value.isPhoneNumber ? '+${phoneNumber ?? phone.value}' : email.value);
     await documentLogin.set({'password': password.value});
     return true;
   }

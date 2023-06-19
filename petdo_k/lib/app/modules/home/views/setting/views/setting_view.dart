@@ -216,7 +216,7 @@ class SettingView extends GetView<SettingController> {
                           Align(
                             child: Container(
                               margin: EdgeInsets.symmetric(
-                                  vertical: 16, horizontal: 60),
+                                  vertical: 16, horizontal: 40),
                               width: double.infinity,
                               child: ElevatedButton(
                                 onPressed: () {
@@ -225,9 +225,9 @@ class SettingView extends GetView<SettingController> {
                                 },
                                 child: Text(
                                   LocaleKeys.logout.tr,
-                                  style: TextStyle(fontSize: 18),
+                                  style: TextStyle(fontSize: 14),
                                 ),
-                                style: _redElevatedButtonTheme,
+                                style: _redElevatedButtonTheme?.copyWith(padding:  MaterialStateProperty.all<EdgeInsets>(EdgeInsets.all(20))),
                               ),
                             ),
                             alignment: Alignment.bottomCenter,
@@ -244,7 +244,7 @@ class SettingView extends GetView<SettingController> {
       BuildContext context, String title, String iconUrl, String content) {
     return GestureDetector(
       child: Container(
-        padding: EdgeInsets.all(20),
+        padding: EdgeInsets.all(24),
         margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
         decoration: BoxDecoration(
             color: Colors.white,
@@ -252,14 +252,14 @@ class SettingView extends GetView<SettingController> {
             borderRadius: BorderRadius.all(Radius.circular(10))),
         child: Row(
           children: [
-            Image.asset(iconUrl, height: 30),
-            SizedBox(width: 20),
+            Image.asset(iconUrl, height: 20),
+            SizedBox(width: 10),
             Expanded(
                 child: Text(
               title,
               style: Get.textTheme.labelLarge,
             )),
-            Icon(Icons.arrow_forward_ios),
+            Icon(Icons.arrow_forward_ios, size: 14,),
           ],
         ),
       ),

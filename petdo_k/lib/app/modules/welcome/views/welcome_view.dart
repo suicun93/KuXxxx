@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:petdo_k/utils.dart';
 
 import '../../../../generated/locales.g.dart';
 import '../../../common/const.dart';
@@ -10,6 +11,7 @@ import '../controllers/welcome_controller.dart';
 class WelcomeView extends GetView<WelcomeController> {
   @override
   Widget build(BuildContext context) {
+    Get.find<WelcomeController>();
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: defaultSystemUiOverlayStyle.copyWith(
         statusBarBrightness: Brightness.light,
