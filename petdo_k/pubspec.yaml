@@ -11,7 +11,7 @@ description: Mobile App phi lợi nhuận để cứu trợ chó mèo hoang dã.
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.0.1+2
+version: 1.1.0+3
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
@@ -24,7 +24,7 @@ dependencies:
   cupertino_icons: ^1.0.5
 
   # Common
-  intl: ^0.18.1
+  intl: 0.17.0
 
   # GetX
   get: ^4.6.5
