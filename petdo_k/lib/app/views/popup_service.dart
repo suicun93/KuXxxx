@@ -8,6 +8,8 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../utils.dart';
 
 class PopupService extends GetxService {
+  var imageUrl = '';
+  var redirectUrl = '';
   Future<void> init() async {
     final remoteConfig = FirebaseRemoteConfig.instance;
     await remoteConfig.setConfigSettings(RemoteConfigSettings(
@@ -22,33 +24,35 @@ class PopupService extends GetxService {
     });
     await remoteConfig.fetchAndActivate();
     if (remoteConfig.getBool(SHOW_DIALOG)) {
-      openDialog(remoteConfig.getString(DIALOG_URL_IMAGE),
-          remoteConfig.getString(REDIRECT_URL_IMAGE));
+      imageUrl = remoteConfig.getString(DIALOG_URL_IMAGE);
+      redirectUrl = remoteConfig.getString(REDIRECT_URL_IMAGE);
+      openDialog();
     }
     remoteConfig.onConfigUpdated.listen((event) async {
       await remoteConfig.activate();
+      imageUrl = remoteConfig.getString(DIALOG_URL_IMAGE);
+      redirectUrl = remoteConfig.getString(REDIRECT_URL_IMAGE);
       if (remoteConfig.getBool(SHOW_DIALOG)) {
-        openDialog(remoteConfig.getString(DIALOG_URL_IMAGE),
-            remoteConfig.getString(REDIRECT_URL_IMAGE));
+        openDialog();
       }
     });
   }
 
-  void openDialog(String url, String launchUrl) {
+  void openDialog() {
     if (!isDialogShowing) {
       isDialogShowing = true;
       Get.dialog(AlertDialog(
         contentPadding: EdgeInsets.zero,
         content: GestureDetector(
           onTap: () {
-            _launchUrl(launchUrl);
+            _launchUrl(redirectUrl);
           },
-          child: _buildImage(url),
+          child: _buildImage(imageUrl),
         ),
       )).then((value) {
         isDialogShowing = false;
         Timer.periodic(Duration(minutes: 1), (timer) {
-          openDialog(url, launchUrl);
+          openDialog();
         });
       });
     }
