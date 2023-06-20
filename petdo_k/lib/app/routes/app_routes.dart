@@ -19,6 +19,7 @@ abstract class Routes {
   static const FORGOT_PASSWORD_SUCCESS = _Paths.FORGOT_PASSWORD_SUCCESS;
   static const FORGOT_PASSWORD_INPUT_PHONE_MAIL =
       _Paths.FORGOT_PASSWORD_INPUT_PHONE_MAIL;
+  static const CHANGE_LANGUAGE = _Paths.CHANGE_LANGUAGE;
 }
 
 abstract class _Paths {
@@ -35,4 +36,5 @@ abstract class _Paths {
   static const FORGOT_PASSWORD_SUCCESS = '/forgot-password-success';
   static const FORGOT_PASSWORD_INPUT_PHONE_MAIL =
       '/forgot-password-input-phone-mail';
+  static const CHANGE_LANGUAGE = '/change-language';
 }

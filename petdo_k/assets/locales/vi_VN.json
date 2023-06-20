@@ -90,6 +90,7 @@
   "wrong_date_format": "Sai định dạng ngày",
   "date_too_far": "Ngày chọn quá xa",
   "do_you_want_to_delete_schedule": "Bạn có muốn xóa lịch này không ?",
+  "change_language": "Đổi ngôn ngữ",
   "welcome": {
     "welcome_to_petdo_k": "Chào mừng đến với \\nPetNottoK",
     "login_without_account": "Không cần tài khoản"

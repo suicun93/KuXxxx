@@ -209,6 +209,38 @@ class SettingView extends GetView<SettingController> {
                                       LocaleKeys.about_us.tr,
                                       'images/ic_about_us.png',
                                       aboutUs),
+                                  InkWell(
+                                    onTap: () {
+                                      Get.toNamed(Routes.CHANGE_LANGUAGE);
+                                    },
+                                    child: Container(
+                                      padding: EdgeInsets.all(20),
+                                      margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        boxShadow: [defaultBoxShadow],
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(10),
+                                        ),
+                                      ),
+                                      child: Row(
+                                        children: [
+                                          Image.asset(
+                                            'images/ic_about_us.png',
+                                            height: 30,
+                                          ),
+                                          SizedBox(width: 20),
+                                          Expanded(
+                                            child: Text(
+                                              LocaleKeys.change_language.tr,
+                                              style: Get.textTheme.labelLarge,
+                                            ),
+                                          ),
+                                          Icon(Icons.arrow_forward_ios),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),

@@ -71,6 +71,17 @@ class Preference {
     pref.setBool('SaveLogin', registered);
   }
 
+  /// Get language
+  static Future<String?> getLanguage() async {
+    final pref = await instance();
+    return pref.getString('language');
+  }
+
+  static Future setLanguage(String language) async {
+    final pref = await instance();
+    pref.setString('language', language);
+  }
+
   static clearAll() async {
     await setName('');
     await setPassword('');

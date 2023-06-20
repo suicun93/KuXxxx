@@ -90,6 +90,7 @@
   "wrong_date_format": "Wrong date format",
   "date_too_far": "Date too far",
   "do_you_want_to_delete_schedule": "Do you want to delete schedule ?",
+  "change_language": "Change Language",
   "welcome": {
     "welcome_to_petdo_k": "Welcome to \\nPetNottoK",
     "login_without_account": "Login as guest"

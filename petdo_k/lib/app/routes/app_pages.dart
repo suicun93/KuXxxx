@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import '../modules/change_language/bindings/change_language_binding.dart';
+import '../modules/change_language/views/change_language_view.dart';
 import '../modules/forgot_password_input_new/bindings/forgot_password_input_new_binding.dart';
 import '../modules/forgot_password_input_new/views/forgot_password_input_new_view.dart';
 import '../modules/forgot_password_input_phone_mail/bindings/forgot_password_input_phone_mail_binding.dart';
@@ -94,6 +96,11 @@ class AppPages {
       name: _Paths.FORGOT_PASSWORD_INPUT_PHONE_MAIL,
       page: () => ForgotPasswordInputPhoneMailView(),
       binding: ForgotPasswordInputPhoneMailBinding(),
+    ),
+    GetPage(
+      name: _Paths.CHANGE_LANGUAGE,
+      page: () => const ChangeLanguageView(),
+      binding: ChangeLanguageBinding(),
     ),
   ];
 }

@@ -1,9 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 
 import 'app/common/const.dart';
+import 'app/common/language_currency.dart';
 import 'app/routes/app_pages.dart';
 import 'app/views/popup_service.dart';
 import 'generated/locales.g.dart';
@@ -11,6 +13,7 @@ import 'generated/locales.g.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  final locale = (await SupportedLanguages.saved).locale;
 
   /// Run app
   runApp(
@@ -67,10 +70,18 @@ void main() async {
       getPages: AppPages.routes,
       debugShowCheckedModeBanner: false,
       theme: defaultTheme,
-      // Đa ngôn ngữ - Multilingual - i18n
+      /// Đa ngôn ngữ - Multilingual - i18n
+      supportedLocales: SupportedLanguages.supportedLocales,
       translationsKeys: AppTranslation.translations,
-      locale: Get.deviceLocale,
-      fallbackLocale: Locale('en', 'US'),
+      localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      // Default = deviceLocale
+      locale: locale,
+      // If failed => US
+      fallbackLocale: SupportedLanguages.defaultSupportedLanguages.locale,
     ),
   );
 

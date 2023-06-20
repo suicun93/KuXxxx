@@ -11,7 +11,6 @@ class AppTranslation {
 
 class LocaleKeys {
   LocaleKeys._();
-
   static const not_supported_yet = 'not_supported_yet';
   static const sos_central = 'sos_central';
   static const login_btn = 'login_btn';
@@ -104,6 +103,7 @@ class LocaleKeys {
   static const date_too_far = 'date_too_far';
   static const do_you_want_to_delete_schedule =
       'do_you_want_to_delete_schedule';
+  static const change_language = 'change_language';
   static const welcome_welcome_to_petdo_k = 'welcome_welcome_to_petdo_k';
   static const welcome_login_without_account = 'welcome_login_without_account';
   static const login_where_are_you_from = 'login_where_are_you_from';
@@ -226,6 +226,7 @@ class Locales {
     'wrong_date_format': 'Wrong date format',
     'date_too_far': 'Date too far',
     'do_you_want_to_delete_schedule': 'Do you want to delete schedule ?',
+    'change_language': 'Change Language',
     'welcome_welcome_to_petdo_k': 'Welcome to \nPetNottoK',
     'welcome_login_without_account': 'Login as guest',
     'login_where_are_you_from': 'Where are you from',
@@ -343,6 +344,7 @@ class Locales {
     'wrong_date_format': 'Sai định dạng ngày',
     'date_too_far': 'Ngày chọn quá xa',
     'do_you_want_to_delete_schedule': 'Bạn có muốn xóa lịch này không ?',
+    'change_language': 'Đổi ngôn ngữ',
     'welcome_welcome_to_petdo_k': 'Chào mừng đến với \nPetNottoK',
     'welcome_login_without_account': 'Không cần tài khoản',
     'login_where_are_you_from': 'Bạn đến từ đâu',
