@@ -10,6 +10,8 @@ import '../../utils.dart';
 class PopupService extends GetxService {
   var imageUrl = '';
   var redirectUrl = '';
+  var isShow = false;
+  Timer? timer;
   Future<void> init() async {
     final remoteConfig = FirebaseRemoteConfig.instance;
     await remoteConfig.setConfigSettings(RemoteConfigSettings(
@@ -23,17 +25,23 @@ class PopupService extends GetxService {
       REDIRECT_URL_IMAGE: ""
     });
     await remoteConfig.fetchAndActivate();
+    isShow = remoteConfig.getBool(SHOW_DIALOG);
     if (remoteConfig.getBool(SHOW_DIALOG)) {
       imageUrl = remoteConfig.getString(DIALOG_URL_IMAGE);
       redirectUrl = remoteConfig.getString(REDIRECT_URL_IMAGE);
       openDialog();
+    } else {
+      timer?.cancel();
     }
     remoteConfig.onConfigUpdated.listen((event) async {
       await remoteConfig.activate();
       imageUrl = remoteConfig.getString(DIALOG_URL_IMAGE);
       redirectUrl = remoteConfig.getString(REDIRECT_URL_IMAGE);
+      isShow = remoteConfig.getBool(SHOW_DIALOG);
       if (remoteConfig.getBool(SHOW_DIALOG)) {
         openDialog();
+      } else {
+        timer?.cancel();
       }
     });
   }
@@ -51,9 +59,13 @@ class PopupService extends GetxService {
         ),
       )).then((value) {
         isDialogShowing = false;
-        Timer.periodic(Duration(minutes: 1), (timer) {
-          openDialog();
-        });
+        if (isShow) {
+          timer = Timer.periodic(Duration(minutes: 1), (timer) {
+            openDialog();
+          });
+        } else {
+          timer?.cancel();
+        }
       });
     }
   }
