@@ -70,7 +70,6 @@ dependencies:
   build_runner: ^2.3.3
   fl_paging: ^2.2.0
   firebase_storage: ^11.2.3
-  firebase_remote_config: ^4.2.3
   firebase_analytics: ^10.4.3
 
   flutter_flavorizr: ^2.1.6

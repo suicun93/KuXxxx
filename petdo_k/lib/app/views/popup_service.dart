@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -13,32 +12,12 @@ class PopupService extends GetxService {
   var isShow = false;
   Timer? timer;
   Future<void> init() async {
-    final remoteConfig = FirebaseRemoteConfig.instance;
-    await remoteConfig.setConfigSettings(RemoteConfigSettings(
-      fetchTimeout: const Duration(minutes: 1),
-      minimumFetchInterval: const Duration(hours: 1),
-    ));
-
-    await remoteConfig.setDefaults(const {
-      SHOW_DIALOG: false,
-      DIALOG_URL_IMAGE: "",
-      REDIRECT_URL_IMAGE: ""
-    });
-    await remoteConfig.fetchAndActivate();
-    isShow = remoteConfig.getBool(SHOW_DIALOG);
-    if (remoteConfig.getBool(SHOW_DIALOG)) {
-      imageUrl = remoteConfig.getString(DIALOG_URL_IMAGE);
-      redirectUrl = remoteConfig.getString(REDIRECT_URL_IMAGE);
-      openDialog();
-    } else {
-      timer?.cancel();
-    }
-    remoteConfig.onConfigUpdated.listen((event) async {
-      await remoteConfig.activate();
-      imageUrl = remoteConfig.getString(DIALOG_URL_IMAGE);
-      redirectUrl = remoteConfig.getString(REDIRECT_URL_IMAGE);
-      isShow = remoteConfig.getBool(SHOW_DIALOG);
-      if (remoteConfig.getBool(SHOW_DIALOG)) {
+    docPopup.snapshots().listen((event) {
+      isShow = event.data()?[SHOW_DIALOG];
+      imageUrl = event.data()?[DIALOG_URL_IMAGE];
+      redirectUrl = event.data()?[REDIRECT_URL_IMAGE];
+      print('$isShow -- $imageUrl--$redirectUrl');
+      if (isShow) {
         openDialog();
       } else {
         timer?.cancel();

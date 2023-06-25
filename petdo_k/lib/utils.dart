@@ -1,12 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_flavorizr/parser/models/flavors/flavor.dart';
-import 'package:get/get.dart';
-import 'package:petdo_k/generated/locales.g.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 const welcomeCollection = 'Welcome';
 const loginDocument = 'login';
@@ -19,6 +12,7 @@ const petDocument = 'Pet';
 const healthCollection = 'Health';
 const vaccineCollection = 'Vaccine';
 const vetCollection = 'Vet';
+const popUpCollection = 'Popup';
 
 const baseUrl = 'https://api.thecatapi.com/v1/';
 const dogApi =
@@ -28,6 +22,8 @@ const catApi =
 
 final dbWelCome = FirebaseFirestore.instance.collection(welcomeCollection);
 final dbHealth = FirebaseFirestore.instance.collection(healthCollection);
+final docPopup =
+    FirebaseFirestore.instance.collection(popUpCollection).doc(popUpCollection);
 final storageRef = FirebaseStorage.instance.ref();
 
 var isImageUploading = false;
